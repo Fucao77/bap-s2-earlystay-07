@@ -1,4 +1,6 @@
+import React from 'react';
+
 export default function nav() {
-    "tests"
+  'testds';
   return <nav>Ceci est la nav</nav>;
 }
