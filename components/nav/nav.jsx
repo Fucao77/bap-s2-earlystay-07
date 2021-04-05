@@ -1,5 +1,5 @@
 export default function nav() {
-    "tets"
+    "test"
     return (
         <nav>
             Ceci est la nav
