@@ -2,3 +2,5 @@ node_modules
 .next
 build
 .github
+next.config.js
+.eslintrc.js
