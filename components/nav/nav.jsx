@@ -1,5 +1,5 @@
 export default function nav() {
-    "tests"
+    "testssd"
     return (
         <nav>
             Ceci est la nav
