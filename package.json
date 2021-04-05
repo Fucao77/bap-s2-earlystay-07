@@ -8,7 +8,7 @@
     "start": "next start",
     "prepare": "husky install",
     "lint" : "npx eslint --fix",
-    "prettier" : "npx prettier --write --ignore-unknown"
+    "prettier" : "npx prettier --write --ignore-unknown '**/*.(js|jsx)'"
   },
   "dependencies": {
     "next": "10.1.3",
