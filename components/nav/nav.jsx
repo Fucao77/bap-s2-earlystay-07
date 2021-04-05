@@ -1,4 +1,4 @@
 export default function nav() {
-    "test"
+    "tests"
   return <nav>Ceci est la nav</nav>;
 }
