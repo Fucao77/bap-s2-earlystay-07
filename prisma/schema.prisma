@@ -1,0 +1,120 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model users {
+  id          Int       @id @default(autoincrement())
+  username    String    @unique @db.VarChar(255)
+  password    String    @db.VarChar(255)
+  articles    articles[]
+}
+
+model articles {
+  id            Int       @id @default(autoincrement())
+  title         String    @db.VarChar(255)
+  slug          String    @unique @db.VarChar(255) 
+  description   String    @db.MediumText
+  content       String    @db.LongText
+  miniature     String    @db.MediumText
+  author_id     Int       
+  author        users     @relation(fields: [author_id], references: [id] )
+  created_at    DateTime  @default(now())
+}
+
+model acheminement_prestations {
+  id              Int      @id @default(autoincrement())
+  code_produit    String   @db.VarChar(255)
+  numero          Int
+  sens            String   @db.VarChar(255)
+  type_prestation String   @db.VarChar(255)
+  inclusion       String   @db.VarChar(255)
+  moyen           String   @db.VarChar(255)
+  ville_depart    String   @db.VarChar(255)
+  produits        produits @relation(fields: [code_produit], references: [code])
+
+  @@index([code_produit], name: "fk_acheminement_prestations_code_produit")
+}
+
+model commercial_les_plus_paragraph {
+  id           Int      @id @default(autoincrement())
+  code_produit String   @db.VarChar(255)
+  numero       Int
+  titre        String?  @db.VarChar(255)
+  texte        String?  @db.VarChar(255)
+  produits     produits @relation(fields: [code_produit], references: [code])
+
+  @@index([code_produit], name: "fk_commercial_les_plus_paragraph_produit")
+}
+
+model commercial_reservations {
+  id           Int      @id @default(autoincrement())
+  code_produit String   @db.VarChar(255)
+  type         String   @db.VarChar(255)
+  numero       Int
+  media        String   @db.LongText
+  commentaires String   @db.MediumText
+  produits     produits @relation(fields: [code_produit], references: [code])
+
+  @@index([code_produit], name: "fk_commercial_reservations_produit")
+}
+
+model destinations {
+  id           Int      @id @default(autoincrement())
+  code_produit String   @db.VarChar(255)
+  numero       Int
+  ville        String   @db.VarChar(255)
+  produits     produits @relation(fields: [code_produit], references: [code])
+
+  @@index([code_produit], name: "fk_destinations_code_produit")
+}
+
+model formule_descriptif_paragraph {
+  id                                  String                                @id @db.VarChar(255)
+  code_produit                        String                                @db.VarChar(255)
+  numero                              Int
+  titre                               String                                @db.MediumText
+  texte                               String                                @db.LongText
+  produits                            produits                              @relation(fields: [code_produit], references: [code])
+  formule_descriptif_paragraph_objets formule_descriptif_paragraph_objets[]
+
+  @@index([code_produit], name: "fk_formule_descriptif_paragraph_code_produit")
+}
+
+model formule_descriptif_paragraph_objets {
+  id                           Int                          @id @default(autoincrement())
+  descriptif_id                String                       @db.VarChar(255)
+  petit                        String                       @db.LongText
+  grand                        String                       @db.LongText
+  legende                      String                       @db.LongText
+  formule_descriptif_paragraph formule_descriptif_paragraph @relation(fields: [descriptif_id], references: [id])
+
+  @@index([descriptif_id], name: "fk_formule_descriptif_paragraph_objets_descriptif_id")
+}
+
+model produits {
+  code                          String                          @id @db.VarChar(255)
+  name                          String                          @db.VarChar(255)
+  vente                         String                          @db.VarChar(255)
+  formule                       String                          @db.VarChar(255)
+  presentable_seul              String                          @db.VarChar(255)
+  avec_acheminement             String                          @db.VarChar(255)
+  interne_to                    String                          @db.VarChar(255)
+  type_hebergement              String                          @db.VarChar(255)
+  nom_hebergement               String                          @db.VarChar(255)
+  theme_to                      String                          @db.VarChar(255)
+  theme_ceto                    String                          @db.VarChar(255)
+  picto_principal_petit         String                          @db.LongText
+  picto_principal_grand         String                          @db.LongText
+  accroche                      String                          @db.LongText
+  les_plus                      String                          @db.LongText
+  acheminement_prestations      acheminement_prestations[]
+  commercial_les_plus_paragraph commercial_les_plus_paragraph[]
+  commercial_reservations       commercial_reservations[]
+  destinations                  destinations[]
+  formule_descriptif_paragraph  formule_descriptif_paragraph[]
+}
