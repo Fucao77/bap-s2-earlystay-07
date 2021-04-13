@@ -7,10 +7,7 @@ export async function convertXft(prisma, xft, productCodes) {
     ignoreAttributes: false,
   });
 
-  const airTypeSchemas = [],
-    // airTypeBeginSchemas = [],
-    airTypePriceRuleSchemas = [],
-    airTypePriceQuantitySchema = [];
+  const airTypeSchemas = [];
 
   await xftData.Segments.Segments[0].Segment.forEach(async (seg, segIndex) => {
     const segments = Array.isArray(seg.Segments.Segment)
@@ -42,6 +39,15 @@ export async function convertXft(prisma, xft, productCodes) {
 
         if (!begin) return;
 
+        const airTypePriceQuantitySchema = begin.Price.Rule.Quantities.Quantity.map(
+          (quantity) => ({
+            topic: quantity.MinMax['@_Topic'],
+            unit: quantity['@_Unit'],
+            max: quantity.MinMax['@_Max'],
+            min: quantity.MinMax['@_Min'],
+          })
+        );
+
         airTypeBeginSchemas.push({
           id: beginId,
           between_begin: new Date(begin.Betweens.Between['@_Begin']),
@@ -62,27 +68,19 @@ export async function convertXft(prisma, xft, productCodes) {
                   ref: begin.Price.Prices.Price['@_Ref'],
                 },
               },
+              segment_air_type_price_rules: {
+                create: {
+                  id: beginId,
+                  code_value: begin.Price.Rule.Code['@_Value'],
+                  code_name: begin.Price.Rule.Code['@_Name'],
+                  at_ref: begin.Price.Rule.At['@_Ref'],
+                  segment_air_type_price_quantities: {
+                    create: airTypePriceQuantitySchema,
+                  },
+                },
+              },
             },
           },
-        });
-
-        // TO INSERT
-        airTypePriceRuleSchemas.push({
-          id: beginId,
-          price_id: beginId,
-          code_value: begin.Price.Rule.Code['@_Value'],
-          code_name: begin.Price.Rule.Code['@_Name'],
-          at_ref: begin.Price.Rule.At['@_Ref'],
-        });
-
-        begin.Price.Rule.Quantities.Quantity.forEach((quantity) => {
-          airTypePriceQuantitySchema.push({
-            air_type_rule_id: beginId,
-            topic: quantity.MinMax['@_Topic'],
-            unit: quantity['@_Unit'],
-            max: quantity.MinMax['@_Max'],
-            min: quantity.MinMax['@_Min'],
-          });
         });
       });
 
@@ -104,7 +102,7 @@ export async function convertXft(prisma, xft, productCodes) {
     }
   };
 
-  const pool = new PromisePool(promiseProducer(), 10);
+  const pool = new PromisePool(promiseProducer(), 20);
 
   await pool.start();
 
