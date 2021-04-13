@@ -1,4 +1,5 @@
 import parser from 'fast-xml-parser';
+import PromisePool from 'es6-promise-pool';
 
 export async function convertXft(prisma, xft, productCodes) {
   const xftData = parser.parse(xft, {
@@ -7,13 +8,11 @@ export async function convertXft(prisma, xft, productCodes) {
   });
 
   const airTypeSchemas = [],
-    airTypeBeginSchemas = [],
-    airTypePriceSchemas = [],
-    airTypePriceDescSchemas = [],
+    // airTypeBeginSchemas = [],
     airTypePriceRuleSchemas = [],
     airTypePriceQuantitySchema = [];
 
-  xftData.Segments.Segments[0].Segment.forEach((seg, segIndex) => {
+  await xftData.Segments.Segments[0].Segment.forEach(async (seg, segIndex) => {
     const segments = Array.isArray(seg.Segments.Segment)
       ? seg.Segments.Segment
       : [seg.Segments.Segment];
@@ -21,16 +20,18 @@ export async function convertXft(prisma, xft, productCodes) {
 
     if (!productCodes.includes(productId)) return;
 
-    segments.forEach((subSeg, index) => {
+    await segments.forEach(async (subSeg, index) => {
       const segId = productId + segIndex + index;
 
-      airTypeSchemas.push({
+      const airTypeSchema = {
         id: segId,
         product_code: productId,
         from_ref: subSeg.From['@_Ref'],
         from_default: subSeg.From['@_Default'],
         to_ref: subSeg.To['@_Ref'],
-      });
+      };
+
+      const airTypeBeginSchemas = [];
 
       const subSegs = Array.isArray(subSeg.Begins.Begin)
         ? subSeg.Begins.Begin
@@ -43,29 +44,29 @@ export async function convertXft(prisma, xft, productCodes) {
 
         airTypeBeginSchemas.push({
           id: beginId,
-          air_type_id: segId,
-          between_begins: begin.Betweens.Between['@_Begin'],
-          between_end: begin.Betweens.Between['@_End'],
+          between_begin: new Date(begin.Betweens.Between['@_Begin']),
+          between_end: new Date(begin.Betweens.Between['@_End']),
           end_moment: begin.End['@_Moment'],
           day: begin['@_Day'],
+          segment_air_type_prices: {
+            create: {
+              id: beginId,
+              price_ref: begin.Price['@_Ref'],
+              quantity: begin.Price['@_Quantity'],
+              segment_air_type_price_descriptions: {
+                create: {
+                  code_value: begin.Price.Prices.Price.Code['@_Value'],
+                  code_name: begin.Price.Prices.Price.Code['@_Name'],
+                  tax_value: begin.Price.Prices.Price.Tax['@_Value'],
+                  value: begin.Price.Prices.Price['@_Value'],
+                  ref: begin.Price.Prices.Price['@_Ref'],
+                },
+              },
+            },
+          },
         });
 
-        airTypePriceSchemas.push({
-          id: beginId,
-          air_type_begin_id: beginId,
-          price_ref: begin.Price['@_Ref'],
-          quantity: begin.Price['@_Quantity'],
-        });
-
-        airTypePriceDescSchemas.push({
-          price_id: beginId,
-          code_value: begin.Price.Prices.Price.Code['@_Value'],
-          code_name: begin.Price.Prices.Price.Code['@_Name'],
-          tax_value: begin.Price.Prices.Price.Tax['@_Value'],
-          value: begin.Price.Prices.Price['@_Value'],
-          ref: begin.Price.Prices.Price['@_Ref'],
-        });
-
+        // TO INSERT
         airTypePriceRuleSchemas.push({
           id: beginId,
           price_id: beginId,
@@ -84,17 +85,28 @@ export async function convertXft(prisma, xft, productCodes) {
           });
         });
       });
+
+      //PUSH SCHEMA
+      airTypeSchemas.push({
+        ...airTypeSchema,
+        segment_air_type_begins: {
+          create: airTypeBeginSchemas,
+        },
+      });
     });
   });
 
-  console.log(airTypeBeginSchemas);
+  // MANAGE PROMISES
 
-  await prisma.segment_air_types.createMany({ data: airTypeSchemas });
-  // await prisma.segment_air_type_begins.createMany({data: airTypeBeginSchemas})
-  // await prisma.segment_air_type_prices.createMany({data: airTypePriceSchemas})
-  // await prisma.segment_air_type_price_descriptions.createMany({data : airTypePriceDescSchemas})
-  // await prisma.segment_air_type_price_rules.createMany({data: airTypePriceRuleSchemas})
-  // await prisma.segment_air_type_price_quantities.createMany({ data: airTypePriceQuantitySchema})
+  const promiseProducer = function* () {
+    for (const index in airTypeSchemas) {
+      yield prisma.segment_air_types.create({ data: airTypeSchemas[index] });
+    }
+  };
+
+  const pool = new PromisePool(promiseProducer(), 10);
+
+  await pool.start();
 
   return xftData;
 }

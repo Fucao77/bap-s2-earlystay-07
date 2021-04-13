@@ -146,6 +146,7 @@ model segment_air_type_begins {
   between_begin           DateTime                  @db.Date
   between_end             DateTime                  @db.Date
   end_moment              String                    @db.VarChar(50)
+  day                     Int
   segment_air_types       segment_air_types         @relation(fields: [air_type_id], references: [id])
   segment_air_type_prices segment_air_type_prices[]
 
