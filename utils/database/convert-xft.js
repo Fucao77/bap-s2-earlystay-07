@@ -54,32 +54,21 @@ export async function convertXft(prisma, xft, productCodes) {
           between_end: new Date(begin.Betweens.Between['@_End']),
           end_moment: begin.End['@_Moment'],
           day: begin['@_Day'],
-          segment_air_type_prices: {
-            create: {
-              id: beginId,
-              price_ref: begin.Price['@_Ref'],
-              quantity: begin.Price['@_Quantity'],
-              segment_air_type_price_descriptions: {
-                create: {
-                  code_value: begin.Price.Prices.Price.Code['@_Value'],
-                  code_name: begin.Price.Prices.Price.Code['@_Name'],
-                  tax_value: begin.Price.Prices.Price.Tax['@_Value'],
-                  value: begin.Price.Prices.Price['@_Value'],
-                  ref: begin.Price.Prices.Price['@_Ref'],
-                },
-              },
-              segment_air_type_price_rules: {
-                create: {
-                  id: beginId,
-                  code_value: begin.Price.Rule.Code['@_Value'],
-                  code_name: begin.Price.Rule.Code['@_Name'],
-                  at_ref: begin.Price.Rule.At['@_Ref'],
-                  segment_air_type_price_quantities: {
-                    create: airTypePriceQuantitySchema,
-                  },
-                },
-              },
-            },
+
+          price_main_ref: begin.Price['@_Ref'],
+          price_quantity: begin.Price['@_Quantity'],
+          price_code_value: begin.Price.Prices.Price.Code['@_Value'],
+          price_code_name: begin.Price.Prices.Price.Code['@_Name'],
+          price_tax_value: begin.Price.Prices.Price.Tax['@_Value'],
+          price_original_value: begin.Price.Prices.Price['@_OriginalValue'],
+          price_value: begin.Price.Prices.Price['@_Value'],
+          price_ref: begin.Price.Prices.Price['@_Ref'],
+
+          rule_code_value: begin.Price.Rule.Code['@_Value'],
+          rule_code_name: begin.Price.Rule.Code['@_Name'],
+          rule_at_ref: begin.Price.Rule.At['@_Ref'],
+          air_type_price_quantities: {
+            create: airTypePriceQuantitySchema,
           },
         });
       });
@@ -87,7 +76,7 @@ export async function convertXft(prisma, xft, productCodes) {
       //PUSH SCHEMA
       airTypeSchemas.push({
         ...airTypeSchema,
-        segment_air_type_begins: {
+        air_type_begins: {
           create: airTypeBeginSchemas,
         },
       });
@@ -98,7 +87,7 @@ export async function convertXft(prisma, xft, productCodes) {
 
   const promiseProducer = function* () {
     for (const index in airTypeSchemas) {
-      yield prisma.segment_air_types.create({ data: airTypeSchemas[index] });
+      yield prisma.air_types.create({ data: airTypeSchemas[index] });
     }
   };
 

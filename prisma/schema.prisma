@@ -7,6 +7,26 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model users {
+  id          Int       @id @default(autoincrement())
+  username    String    @unique @db.VarChar(255)
+  password    String    @db.VarChar(255)
+  articles    articles[]
+}
+
+model articles {
+  id            Int       @id @default(autoincrement())
+  title         String    @db.VarChar(255)
+  slug          String    @unique @db.VarChar(255) 
+  description   String    @db.MediumText
+  content       String    @db.LongText
+  miniature     String    @db.MediumText
+  author_id     Int       
+  author        users     @relation(fields: [author_id], references: [id] )
+  created_at    DateTime  @default(now())
+}
+
+
 model commercial_info_plus {
   id                              String                            @id @db.VarChar(50)
   info_id                         String                            @db.VarChar(50)
@@ -137,79 +157,54 @@ model products {
   delivery_services delivery_services[]
   destinations      destinations[]
   options           options[]
-  segment_air_types segment_air_types[]
+  air_types         air_types[]
 }
 
-model segment_air_type_begins {
-  id                      String                    @id @db.VarChar(50)
-  air_type_id             String                    @db.VarChar(50)
-  between_begin           DateTime                  @db.Date
-  between_end             DateTime                  @db.Date
-  end_moment              String                    @db.VarChar(50)
-  day                     Int
-  segment_air_types       segment_air_types         @relation(fields: [air_type_id], references: [id])
-  segment_air_type_prices segment_air_type_prices[]
+model air_type_begins {
+  id                                                  String                                @id @db.VarChar(50)
+  air_type_id                                         String                                @db.VarChar(50)
+  between_begin                                       DateTime                              @db.Date
+  between_end                                         DateTime                              @db.Date
+  end_moment                                          String                                @db.VarChar(50)
+  day                                                 Int
+  price_main_ref                                      String                                @db.VarChar(100)
+  price_quantity                                      String                                @db.VarChar(50)
+  price_code_value                                    String                                @db.VarChar(50)
+  price_code_name                                     String                                @db.VarChar(50)
+  price_tax_value                                     Int
+  price_value                                         Int
+  price_original_value                                Int?
+  price_ref                                                 String                                @db.VarChar(50)     
+  rule_code_value                                     String                                @db.VarChar(50)
+  rule_code_name                                      String                                @db.VarChar(50)
+  rule_at_ref                                         String                                @db.VarChar(50)
+  air_type_price_quantities                           air_type_rule_quantities[] 
+  air_types                                           air_types                     @relation(fields: [air_type_id], references: [id])
 
-  @@index([air_type_id], name: "fk_segment_air_type_begins_air_type_id")
+  @@index([air_type_id], name: "fk_air_type_begins_air_type_id")
 }
 
-model segment_air_type_price_descriptions {
-  id                      Int                     @id @default(autoincrement())
-  price_id                String                  @db.VarChar(50)
-  code_value              String                  @db.VarChar(50)
-  code_name               String                  @db.VarChar(50)
-  tax_value               Int
-  value                   Int
-  ref                     String                  @db.VarChar(50)
-  segment_air_type_prices segment_air_type_prices @relation(fields: [price_id], references: [id])
 
-  @@index([price_id], name: "fk_segment_air_type_price_descriptions_price_id")
-}
-
-model segment_air_type_price_quantities {
+model air_type_rule_quantities {
   id                           Int                          @id @default(autoincrement())
-  air_type_rule_id             String                       @db.VarChar(50)
+  air_type_begin_id             String                       @db.VarChar(50)
   topic                        String                       @db.VarChar(50)
   unit                         String                       @db.VarChar(50)
   max                          Int
   min                          Int
-  segment_air_type_price_rules segment_air_type_price_rules @relation(fields: [air_type_rule_id], references: [id])
+  air_type_price_rules air_type_begins @relation(fields: [air_type_begin_id], references: [id])
 
-  @@index([air_type_rule_id], name: "fk_segment_air_type_price_quantities_air_type_rule_id")
+  @@index([air_type_begin_id], name: "fk_air_type_price_quantities_air_type_begin_id")
 }
 
-model segment_air_type_price_rules {
-  id                                String                              @id @db.VarChar(50)
-  price_id                          String                              @db.VarChar(50)
-  code_value                        String                              @db.VarChar(50)
-  code_name                         String                              @db.VarChar(50)
-  at_ref                            String                              @db.VarChar(50)
-  segment_air_type_prices           segment_air_type_prices             @relation(fields: [price_id], references: [id])
-  segment_air_type_price_quantities segment_air_type_price_quantities[]
-
-  @@index([price_id], name: "fk_segment_air_type_price_rules_price_id")
-}
-
-model segment_air_type_prices {
-  id                                  String                                @id @db.VarChar(50)
-  air_type_begin_id                   String                                @db.VarChar(50)
-  price_ref                           String                                @db.VarChar(100)
-  quantity                            String                                @db.VarChar(50)
-  segment_air_type_begins             segment_air_type_begins               @relation(fields: [air_type_begin_id], references: [id])
-  segment_air_type_price_descriptions segment_air_type_price_descriptions[]
-  segment_air_type_price_rules        segment_air_type_price_rules[]
-
-  @@index([air_type_begin_id], name: "fk_segment_air_type_prices_air_type_begin_id")
-}
-
-model segment_air_types {
+model air_types {
   id                      String                    @id @db.VarChar(50)
   product_code            String                    @db.VarChar(255)
   from_ref                String                    @db.VarChar(50)
   from_default            String                    @db.VarChar(50)
   to_ref                  String                    @db.VarChar(50)
   products                products                  @relation(fields: [product_code], references: [interne_to])
-  segment_air_type_begins segment_air_type_begins[]
+  air_type_begins         air_type_begins[]
 
-  @@index([product_code], name: "fk_segment_air_types_product_code")
+  @@index([product_code], name: "fk_air_types_product_code")
 }
