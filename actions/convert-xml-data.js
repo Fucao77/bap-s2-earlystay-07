@@ -1,23 +1,66 @@
-import { convertCeto } from '../utils/database/convert-ceto';
-import { convertXft } from '../utils/database/convert-xft';
-import { PrismaClient } from '@prisma/client';
+const { convertCeto } = require('./services/convert-ceto.js');
+const { convertXft } = require('./services/convert-xft.js');
+const truncateProducts = require('./services/truncate-products');
+const { PrismaClient } = require('@prisma/client');
+const log = console.log;
+const chalk = require('chalk');
+const chalkAnimation = require('chalk-animation');
+const { Timer } = require('timer-node');
+const { fetchCeto } = require('./services/fetch-ceto.js');
+const { fetchXft } = require('./services/fetch-xft.js');
 
-export default async function convertXmlData() {
+async function convertXmlData() {
   const prisma = new PrismaClient();
+  const loadingAnimation = chalkAnimation.karaoke('Loading...');
+  const timer = new Timer({
+    label: 'Process timer',
+  });
 
   try {
-    const cetoFile = await (
-      await fetch('http://localhost:3000/data/ceto.xml')
-    ).text();
+    timer.start();
+
+    log(chalk.green('Ceto and Xft file in fetching'));
+
+    loadingAnimation.start();
+
+    const [cetoFile, xftFile] = await Promise.all([
+      fetchCeto(),
+      fetchXft(),
+      truncateProducts(prisma),
+    ]);
+
+    loadingAnimation.stop();
+
+    log(chalk.green('Data are fetched'));
+
+    log(chalk.yellow('Ceto conversion begins'));
+
+    loadingAnimation.start();
+
     const { productCodes } = await convertCeto(prisma, cetoFile);
 
-    const xftFile = await (
-      await fetch('http://localhost:3000/data/xftcpdstandard.xml')
-    ).text();
+    loadingAnimation.stop();
+
+    log('Ceto conversion ends');
+
+    log('Xft conversion begins');
+
+    loadingAnimation.start();
+
     await convertXft(prisma, xftFile, productCodes);
+
+    loadingAnimation.stop();
+
+    log('Xft conversion ends');
+
+    timer.stop();
+
+    log(chalk.green(timer.format('%label [%m] minutes [%s] seconds [%ms] ms')));
   } catch (e) {
     console.error(e);
   }
 
   await prisma.$disconnect();
 }
+
+module.exports = convertXmlData;

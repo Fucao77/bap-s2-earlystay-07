@@ -187,12 +187,12 @@ model air_type_begins {
 
 model air_type_rule_quantities {
   id                           Int                          @id @default(autoincrement())
-  air_type_begin_id             String                       @db.VarChar(50)
+  air_type_begin_id            String                       @db.VarChar(50)
   topic                        String                       @db.VarChar(50)
   unit                         String                       @db.VarChar(50)
   max                          Int
   min                          Int
-  air_type_price_rules air_type_begins @relation(fields: [air_type_begin_id], references: [id])
+  air_type_price_rules         air_type_begins              @relation(fields: [air_type_begin_id], references: [id])
 
   @@index([air_type_begin_id], name: "fk_air_type_price_quantities_air_type_begin_id")
 }

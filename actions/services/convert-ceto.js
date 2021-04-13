@@ -1,6 +1,6 @@
-import parser from 'fast-xml-parser';
+const parser = require('fast-xml-parser');
 
-export async function convertCeto(prisma, ceto) {
+exports.convertCeto = async function (prisma, ceto) {
   const productSchemas = [],
     deliverySchemas = [],
     destinationSchemas = [],
@@ -198,4 +198,4 @@ export async function convertCeto(prisma, ceto) {
   });
 
   return { cetoData, productCodes };
-}
+};

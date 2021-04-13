@@ -1,7 +1,7 @@
-import parser from 'fast-xml-parser';
-import PromisePool from 'es6-promise-pool';
+const parser = require('fast-xml-parser');
+const PromisePool = require('es6-promise-pool');
 
-export async function convertXft(prisma, xft, productCodes) {
+exports.convertXft = async function (prisma, xft, productCodes) {
   const xftData = parser.parse(xft, {
     parseAttributeValue: true,
     ignoreAttributes: false,
@@ -30,6 +30,7 @@ export async function convertXft(prisma, xft, productCodes) {
 
       const airTypeBeginSchemas = [];
 
+      //Sub segments can be parsed as array or not
       const subSegs = Array.isArray(subSeg.Begins.Begin)
         ? subSeg.Begins.Begin
         : [subSeg.Begins.Begins];
@@ -91,9 +92,12 @@ export async function convertXft(prisma, xft, productCodes) {
     }
   };
 
-  const pool = new PromisePool(promiseProducer(), 20);
+  const pool = new PromisePool(
+    promiseProducer(),
+    Number(process.env.PROMISE_MAX_CONCURRENCE) || 10
+  );
 
   await pool.start();
 
   return xftData;
-}
+};

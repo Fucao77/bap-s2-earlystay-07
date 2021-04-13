@@ -3,7 +3,7 @@ import Nav from '../components/nav';
 
 export default function Home() {
   useEffect(() => {
-    fetch('/api/test-ceto')
+    fetch('/api/test')
       .then((res) => res.json())
       .then((res) => {
         console.log(res);
