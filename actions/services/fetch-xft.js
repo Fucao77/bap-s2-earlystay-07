@@ -12,7 +12,7 @@ exports.fetchXft = async function () {
       secure: false,
     });
     await client.downloadTo(
-      'public/data/xftcpdstandard.xml',
+      process.env.DATA_DIR + '/xftcpdstandard.xml',
       '/xftcpdstandard.xml'
     );
 

@@ -11,7 +11,10 @@ exports.fetchCeto = async function () {
       password: process.env.CETO_FTP_PASS,
       secure: false,
     });
-    await client.downloadTo('public/data/ceto.xml', '/ceto/ceto.xml');
+    await client.downloadTo(
+      process.env.DATA_DIR + '/ceto.xml',
+      '/ceto/ceto.xml'
+    );
 
     return fetch('http://localhost:3000/data/ceto.xml').then((res) =>
       res.text()
