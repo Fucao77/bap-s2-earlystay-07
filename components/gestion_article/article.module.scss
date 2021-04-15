@@ -1,0 +1,30 @@
+.section {
+
+    display: flex;
+    justify-content: center;
+
+    .article {
+        width: 1334px;
+        height: 255px;
+        background: var.$primary-gradient;
+        border-radius: 11px;
+
+        .img {
+            width: 392.91px;
+            height: 255px;
+            position: absolute;
+        }
+
+        .header {
+            margin-left: 400px;
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+            margin-top: 50px;
+
+        }
+
+
+    }
+
+}
