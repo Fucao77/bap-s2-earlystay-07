@@ -4,7 +4,6 @@ import {
   article,
   img,
   header,
-  contenu,
 } from '../gestion_article/article.module.scss';
 
 export default function Gestion() {
@@ -24,7 +23,7 @@ export default function Gestion() {
           <p>25 mars 2021</p>
         </div>
 
-        <div className={contenu}>
+        <div>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod,
             fugiat ducimus? Consequuntur eligendi, nemo atque temporibus, qui
