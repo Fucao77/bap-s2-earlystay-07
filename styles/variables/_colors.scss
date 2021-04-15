@@ -1,1 +1,25 @@
-$primary : blue;
+
+//Blue
+$primary-blue: #13275C;
+$secondary-blue: #3668A4;
+$tertiary-blue: #79A2D2;
+
+$header-blue: #1E3A5C;
+
+//Orange
+$primary-orange: #D25F0A;
+$secondary-orange: #F79750;
+$tertiary-orange: #F9AE76;
+
+//White 
+$white: #FFFFFF;
+
+//Black
+$black: #000000;
+
+//Grey
+$grey: #9D9D9D;
+
+//Gradient
+$primary-gradient: linear-gradient(90deg, #3668A4 0%, #5396C6 98.37%);
+$secondary-gradient: linear-gradient(93.72deg, #13275C 0.1%, rgba(0, 43, 158, 0.76) 97.44%);
