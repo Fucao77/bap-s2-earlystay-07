@@ -1,7 +1,15 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
 .wrapper {
     border: 2px solid var.$white;
     display: inline-block;
-    padding: var.$XS-margin var.$XL-margin;
+    padding: map-get(var.$margins, 1) map-get(var.$margins, 15);
+    
     background: none;
     color: var.$white;
     cursor: pointer;
@@ -9,11 +17,24 @@
     justify-content: center;
     align-items: center;
     position: relative;
+    &:focus {
+        outline: none;
+    }
 }
 .clock {
     position: absolute;
     right: 5%;
 }
 .labelWrapper { 
-    font-size: var.$p-size;
+    font-size: var.$important-size;
+}
+.pickerWrapper{
+    background-color: var.$white;
+    position: absolute;
+    top: 100%;
+    width: 100%;
+
+    & > * {
+        width: 100%;
+    }
 }

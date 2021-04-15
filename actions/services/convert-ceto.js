@@ -1,5 +1,11 @@
 const parser = require('fast-xml-parser');
 
+/**
+ *
+ * @param {PrismaClient} prisma
+ * @param {String} ceto
+ * @returns
+ */
 exports.convertCeto = async function (prisma, ceto) {
   const productSchemas = [],
     deliverySchemas = [],

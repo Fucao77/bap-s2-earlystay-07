@@ -1,0 +1,20 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var.$white;
+}
+.label{
+    padding: map-get($map: var.$margins, $key: 1 ) 0;
+    font-size: var.$important-size;
+}
+.arrowBtn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 100%;
+    border: none;
+    cursor: pointer;
+}

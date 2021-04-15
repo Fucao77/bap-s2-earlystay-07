@@ -1,0 +1,23 @@
+.container {
+
+}
+
+.input {
+    font-size: var.$h2-size;
+    background: none;
+    border: none;
+    border-bottom: 3px solid var.$white;
+    color: var.$white;
+    text-align: center;
+
+    &::placeholder {
+        color: var.$white;
+        font-weight: 200;
+    }
+}
+
+.confirm {
+    cursor: pointer;
+    background: none;
+    border: none;
+}
