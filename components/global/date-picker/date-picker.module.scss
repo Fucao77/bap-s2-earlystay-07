@@ -9,7 +9,7 @@
     border: 2px solid var.$white;
     display: inline-block;
     padding: map-get(var.$margins, 1) map-get(var.$margins, 15);
-    
+    width: 100%;
     background: none;
     color: var.$white;
     cursor: pointer;

@@ -24,3 +24,23 @@
 .img {
     width: 80%;
 }
+
+.label {
+    padding: map-get($map: var.$margins, $key: 3 ) 0;
+}
+
+@media screen and (max-width: 800px) {
+    .imgWrapper {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .container {
+        flex-direction: column;
+    }
+    .trustItem {
+        margin: map-get($map: var.$margins, $key: 3 ) 0;
+    }
+}

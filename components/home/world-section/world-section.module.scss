@@ -22,3 +22,24 @@
 .world {
     width: 70%;
 }
+
+.offerSection {
+    width: 30%;
+}
+
+@media screen and (max-width: 1000px) {
+    .worldSection {
+        overflow-x: hidden;
+    }
+    .worldWrapper {
+        flex-direction: column-reverse;
+    }
+    .world {
+        width: 140%;
+        margin: map-get($map: var.$margins, $key: 4 ) 0;
+    }
+    .offerSection {
+        width: 100%;
+        margin: map-get($map: var.$margins, $key: 4 ) 0;
+    }
+}

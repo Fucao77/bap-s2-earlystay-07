@@ -11,6 +11,7 @@
     position: relative;
     @include mix.flex-center-all;
     cursor: pointer;
+    width: 100%;
 
     &:focus {
         outline: none;

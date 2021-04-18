@@ -3,6 +3,7 @@ import {
   imgWrapper,
   img,
   trustItem,
+  label,
 } from './trust-banner.module.scss';
 
 const trustData = [
@@ -32,7 +33,7 @@ export default function TrustBanner() {
           <div className={imgWrapper}>
             <img className={img} src={item.img} alt={item.label} />
           </div>
-          <p>{item.label}</p>
+          <p className={label}>{item.label}</p>
         </article>
       ))}
     </section>

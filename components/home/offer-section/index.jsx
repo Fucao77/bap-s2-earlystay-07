@@ -16,15 +16,15 @@ import {
 import classNames from 'classnames';
 import { useState } from 'react';
 
-export default function OfferSection({ data }) {
+export default function OfferSection({ data, label, className }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const currentData = data[currentIndex];
 
   return (
-    <section className={container}>
+    <section className={classNames(container, className)}>
       <div className={sliderContainer}>
         <article>
-          <h3 className={title}>{currentData.continent}</h3>
+          <h3 className={title}>{label}</h3>
           <div className={imgWrapper}>
             <img className={img} src={currentData.img} alt="" />
           </div>

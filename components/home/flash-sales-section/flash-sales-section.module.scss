@@ -40,7 +40,9 @@
 }
 
 .slideBg {
+    min-width: 1000px;
     width: 100%;
+    min-height: 100%;
 }
 
 .slideTitle {
@@ -103,4 +105,10 @@
 .slideArrowRight {
     right: 5%;
     clip-path: polygon(0 0, 100% 50%, 100% 50%, 0 100%);
+}
+
+@media screen and (max-width: 600px) {
+    .slideWrapper {
+        height: 100vh;
+    }
 }

@@ -1,5 +1,6 @@
 .container {
-
+    max-width: 100vw;
+    display: flex;
 }
 
 .input {
@@ -9,6 +10,7 @@
     border-bottom: 3px solid var.$white;
     color: var.$white;
     text-align: center;
+    width: 90%;
 
     &::placeholder {
         color: var.$white;

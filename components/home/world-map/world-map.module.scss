@@ -1,0 +1,21 @@
+.worldItem {
+    path {
+        fill: var.$grey;
+        stroke: var.$black;
+        stroke-width: 20;
+        cursor: pointer;
+        transition: .3s;
+    }
+
+    &:hover:not(.worldItemSelected) {
+        path {
+            fill: rgba($color: var.$secondary-orange, $alpha: .7);
+        }
+    }
+}
+
+.worldItemSelected {
+    path {
+        fill: var.$secondary-orange
+    }
+}

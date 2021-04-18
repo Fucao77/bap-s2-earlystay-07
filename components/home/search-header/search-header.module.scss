@@ -4,6 +4,7 @@
     position: relative;
     @include mix.flex-center-all;
     flex-direction: column;
+    overflow-x: hidden;
 }
 .main {
     display: flex;
@@ -26,6 +27,7 @@
     width: 100%;
     height: 100%;
     z-index: -1;
+    min-width: 1200px;
 }
 
 .button {
@@ -33,6 +35,26 @@
 }
 
 .seeButton {
-    position: absolute;
-    bottom: 20%;
+    position: relative;
+}
+
+@media screen and (max-width: 1200px) {
+    .buttonContainer {
+        flex-direction: column;
+        align-items: center;
+    }
+    .button {
+        margin: map-get($map: var.$margins, $key: 3 ) 0;
+        width: 300px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .main {
+        padding: 0  map-get($map: var.$margins, $key: 4 );
+        height: auto;
+    }
+    .seeButton  {
+        margin-top: map-get($map: var.$margins, $key: 6 );
+    }
 }

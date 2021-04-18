@@ -1,5 +1,4 @@
 .container {
-    width: 30%;
     background-color: var.$white;
     padding: map-get($map: var.$margins, $key: 5);
 }
@@ -18,6 +17,7 @@
 .imgWrapper {
     width: 100%;
     height: 15vw;
+    min-height: 20vh;
     overflow: hidden;
     @include mix.flex-center-all
 }

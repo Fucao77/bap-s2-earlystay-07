@@ -79,7 +79,7 @@ export default function SearchHeader() {
         </div>
       </div>
 
-      <SeeMoreButton className={seeButton} />
+      <SeeMoreButton className={seeButton} to="#world" />
     </header>
   );
 }

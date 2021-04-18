@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import SubTitle from '../../global/sub-title';
 import OfferSection from '../offer-section';
 import WorldMap from '../world-map';
@@ -7,6 +8,7 @@ import {
   worldWrapper,
   world,
   adviceText,
+  offerSection,
 } from './world-section.module.scss';
 
 const fakeOffers = [
@@ -44,17 +46,40 @@ const fakeOffers = [
   },
 ];
 
+const continentTitles = {
+  oceania: 'Océanie',
+  europa: 'Europe',
+  'south-america': 'Amérique du Sud',
+  'north-america': 'Amérique du Nord',
+  asia: 'Asie',
+  africa: 'Afrique',
+};
+
 export default function WorldSection() {
+  const [selectedContinent, setSelectedContinent] = useState('europa');
+
+  const onChangeContinent = (e) => {
+    setSelectedContinent(e);
+  };
+
   return (
-    <section className={worldSection}>
+    <section className={worldSection} id="world">
       <SubTitle title="Envie de découvertes ?" color="white" />
       <p className={adviceText}>
         Sélectionner un continent pour découvrir nos nouvelles destinations
         disponibles en ce moment !
       </p>
       <div className={worldWrapper}>
-        <OfferSection data={fakeOffers} />
-        <WorldMap className={world} />
+        <OfferSection
+          className={offerSection}
+          data={fakeOffers}
+          label={continentTitles[selectedContinent]}
+        />
+        <WorldMap
+          className={world}
+          onChangeContinent={onChangeContinent}
+          defaultContinent={selectedContinent}
+        />
       </div>
     </section>
   );

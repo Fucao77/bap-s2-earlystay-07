@@ -1,11 +1,11 @@
 import { container, arrowBtn, label } from './see-more.module.scss';
 import classNames from 'classnames';
 
-export default function SeeMoreButton({ className }) {
+export default function SeeMoreButton({ className, to }) {
   return (
     <div className={classNames(container, className)}>
       <label className={label}>Voir plus</label>
-      <button className={arrowBtn}>
+      <a className={arrowBtn} href={to}>
         <svg
           width="16"
           height="24"
@@ -18,7 +18,7 @@ export default function SeeMoreButton({ className }) {
             fill="#F79750"
           />
         </svg>
-      </button>
+      </a>
     </div>
   );
 }
