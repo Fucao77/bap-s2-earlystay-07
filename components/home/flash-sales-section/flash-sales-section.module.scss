@@ -1,0 +1,3 @@
+.container {
+    padding: map-get($map: var.$margins, $key: 7 ) map-get($map: var.$margins, $key: 5 );
+}

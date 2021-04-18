@@ -1,20 +1,17 @@
 // import { useEffect } from 'react';
 // import Nav from '../components/nav';
-import SearchHeader from '../components/search-header';
-import SubTitle from '../components/sub-title';
-import WorldMap from '../components/world-map';
+import FlashSalesSection from '../components/home/flash-sales-section';
+import SearchHeader from '../components/home/search-header';
 
-import { worldSection } from '../styles/pages/index.module.scss';
+import WorldSection from '../components/home/world-section';
 
 export default function Home() {
   return (
     <div>
       {/* <Nav /> */}
       <SearchHeader />
-      <section className={worldSection}>
-        <SubTitle title="Envie de découvertes ?" />
-        <WorldMap />
-      </section>
+      <WorldSection />
+      <FlashSalesSection />
     </div>
   );
 }

@@ -8,7 +8,7 @@ import {
 } from './border-selector.module.scss';
 import classNames from 'classnames';
 import { useRef, useState, useEffect } from 'react';
-import { isClicked } from '../../utils/click-detector';
+import { isClicked } from '../../../utils/click-detector';
 
 export default function BorderSelector({
   label,

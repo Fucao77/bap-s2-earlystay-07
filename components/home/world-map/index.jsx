@@ -1,8 +1,7 @@
-export default function WorldMap() {
+export default function WorldMap({ className }) {
   return (
     <svg
-      width="995"
-      height="426"
+      className={className}
       viewBox="0 0 995 426"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

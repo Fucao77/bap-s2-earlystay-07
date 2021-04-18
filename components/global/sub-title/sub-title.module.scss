@@ -1,0 +1,29 @@
+.subTitle {
+    display: inline-flex;
+    flex-direction: column;
+    font-size: var.$h2-size;
+
+    &::after {
+        display: block;
+        content: "";
+        width: 60%;
+        height: 3px;
+        background-color: black;
+    }
+}
+
+.colorWhite {
+    color: var.$white;
+
+    &::after {
+        background-color: var.$white;
+    }
+}
+
+.colorOrange {
+    color: var.$secondary-orange;
+
+    &::after {
+        background-color: var.$secondary-orange;
+    }
+}

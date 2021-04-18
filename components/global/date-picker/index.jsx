@@ -8,8 +8,8 @@ import {
 import DayPicker, { LocaleUtils } from 'react-day-picker';
 import { useEffect, useRef, useState } from 'react';
 import 'react-day-picker/lib/style.css';
-import { dateToString } from '../../utils/date';
-import { isClicked } from '../../utils/click-detector';
+import { dateToString } from '../../../utils/date';
+import { isClicked } from '../../../utils/click-detector';
 import classNames from 'classnames';
 
 export default function DatePicker({

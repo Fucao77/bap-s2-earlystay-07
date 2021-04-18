@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import BorderSelector from '../border-selector';
-import DatePicker from '../date-picker';
-import SeeMoreButton from '../see-more-button';
+import BorderSelector from '../../global/border-selector';
+import DatePicker from '../../global/date-picker';
+import SeeMoreButton from '../../global/see-more-button';
 import TravelInput from '../travel-input';
 import {
   container,
