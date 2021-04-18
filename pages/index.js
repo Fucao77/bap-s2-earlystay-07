@@ -1,5 +1,6 @@
 // import { useEffect } from 'react';
 // import Nav from '../components/nav';
+import TrustBanner from '../components/global/trust-banner';
 import FlashSalesSection from '../components/home/flash-sales-section';
 import SearchHeader from '../components/home/search-header';
 
@@ -12,6 +13,7 @@ export default function Home() {
       <SearchHeader />
       <WorldSection />
       <FlashSalesSection />
+      <TrustBanner />
     </div>
   );
 }

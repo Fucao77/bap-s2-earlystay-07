@@ -1,0 +1,26 @@
+.container {
+    display: flex;
+    justify-content: space-around;
+    background-color: var.$primary-blue;
+    padding: map-get($map: var.$margins, $key: 10);
+    border: 5px solid var.$secondary-orange;
+}
+.trustItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var.$white;
+}
+.imgWrapper {
+    background-color: var.$secondary-orange;
+    width: 70px;
+    height: 70px;
+    @include mix.flex-center-all;
+    border-radius: 100%;
+    padding: map-get($map: var.$margins, $key: 2 );
+    box-sizing: content-box;
+}
+
+.img {
+    width: 80%;
+}
