@@ -8,14 +8,3 @@
     padding: map-get($map: var.$margins, $key: 1 ) 0;
     font-size: var.$important-size;
 }
-.arrowBtn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var.$white;
-    width: 60px;
-    height: 60px;
-    border-radius: 100%;
-    border: none;
-    cursor: pointer;
-}

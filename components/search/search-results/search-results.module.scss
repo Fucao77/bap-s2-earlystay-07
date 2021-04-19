@@ -1,0 +1,18 @@
+.container {
+    padding: map-get($map: var.$margins, $key: 7 ) map-get($map: var.$margins, $key: 5 );
+}
+
+.resultWrapper {
+    padding: map-get($map: var.$margins, $key: 4 ) 0;
+}
+
+.footer {
+    position: relative;
+    margin: map-get($map: var.$margins, $key: 3 );
+    @include mix.flex-center-all;
+}
+
+.goBackBtn {
+    position: absolute;
+    right: 10%;
+}

@@ -1,0 +1,19 @@
+.container {
+    display: flex;
+}
+
+.circleButton {
+    display: block;
+    width: 25px;
+    height: 25px;
+    border-radius: 100%;
+    background-color: var.$grey;
+    border: none;
+    margin: 0 map-get($map: var.$margins, $key: 2 );
+    transition: .4s;
+    cursor: pointer;
+
+    &:hover {
+        background-color: var.$primary-blue;
+    }
+}

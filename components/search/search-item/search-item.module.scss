@@ -1,0 +1,124 @@
+.container {
+    display: flex;
+    align-items: center;
+    height: 20vh;
+    width: 100%;
+    background: var.$secondary-gradient ;
+    overflow: hidden;
+    border-radius: 10px;
+    margin: map-get($map: var.$margins, $key: 4 ) 0;
+
+    
+}
+
+.miniature {
+    width: 25%;
+    overflow: hidden;
+    @include mix.flex-center-all;
+
+    & > img {
+        width: 100%;
+    }
+}
+
+.main {
+    color: var.$white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 55%;
+}
+
+.mainTitle {
+    font-size: var.$h3-size;
+    padding-bottom: map-get($map: var.$margins, $key: 2 );
+}
+
+.mainDescription {
+    padding-bottom: map-get($map: var.$margins, $key: 2 );
+}
+
+.mainWrapper {
+    padding: map-get($map: var.$margins, $key: 3);
+}
+.wrapper{
+    flex: 1;
+    padding-right: map-get($map: var.$margins, $key: 10);
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+.ctaLink {
+    color: var.$white;
+    font-weight: bold;
+    font-size: var.$important-size;
+}
+
+.annexDataWrapper {
+
+    display: flex;
+    justify-content: flex-end;
+}
+
+.annexData {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var.$white;
+    margin: 0 map-get($map: var.$margins, $key: 3 );
+
+    p {
+        font-weight: bold;
+    }
+
+    svg {
+        width: 45px;
+        height: 45px;
+    }
+}
+
+@media screen and (max-width: 1100px) {
+    .container {
+        flex-direction: column;
+        height: auto;
+    }
+    .miniature {
+        width: 100%;
+        height: 30vh;
+
+        img {
+            min-height: 100%;
+            width: 100%;
+        }
+    }
+
+    .mainWrapper {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-right: 0;
+    }
+
+    .main {
+        width: 100%;
+        align-items: center;
+    }
+
+    .mainDescription {
+        text-align: center;
+    }
+    
+    .annexDataWrapper {
+        padding: map-get($map: var.$margins, $key: 3  ) 0;
+    }
+
+    .ctaLink {
+        align-self: flex-end;
+    }
+}
