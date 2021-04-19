@@ -1,11 +1,11 @@
 import React from 'react';
-// import Link from 'next/link';
-// import { footer, link } from './footer.module.scss';
+import Link from 'next/link';
+import { footer, link } from './footer.module.scss';
 
 export default function Footer() {
   return (
     <footer>
-      {/* <div>
+      <div>
         <h3>Nos destination</h3>
         <Link href="/connexion/connexion">
           <a className={link}>Egypte</a>
@@ -49,7 +49,7 @@ export default function Footer() {
         <Link href="/connexion/connexion">
           <a className={link}>FAQ</a>
         </Link>
-      </div> */}
+      </div>
     </footer>
   );
 }
