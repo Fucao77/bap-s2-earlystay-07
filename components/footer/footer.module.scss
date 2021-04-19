@@ -1,0 +1,32 @@
+
+.footer {
+    display: flex;
+    justify-content: space-around;
+    background-color: var.$primary-blue;
+    color:white;
+    font-style: var.$poppins;
+    padding:20px;
+    text-align: center;
+    
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+}
+
+.title{
+    font-weight: 500;
+    font-size:var.$h3-size;
+}
+
+
+.link {
+    text-decoration: none;
+    color: white;
+    font-size:var.$text-size;
+    padding:20px;
+    font-weight: 300;
+}
+
+

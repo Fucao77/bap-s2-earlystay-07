@@ -2,6 +2,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
+Create .env file and provide correct informations (according to the fields from the .env.example file) 
 
 ```bash
 npm install 
