@@ -3,8 +3,8 @@ import {
   blog,
   titre,
   body,
-  search,
   liner,
+  article,
 } from '../blog_admin/blog.module.scss';
 import Button from '../Create_article';
 import Gestion from '../gestion_article';
@@ -17,14 +17,20 @@ export default function Blog() {
 
         <Button />
       </header>
-
       <div className={body}>
         <h2>Mes articles</h2>
         <div className={liner}></div>
-        <div className={search}></div>
+        <div>
+          <input type="text" placeholder="Recherche" />
+        </div>
+      </div>{' '}
+      <br /> <br /> <br /> <br />
+      <div className={article}>
+        <Gestion />
+        <br /> <br />
+        <Gestion />
+        <br /> <br />
       </div>
-
-      <Gestion />
     </div>
   );
 }

@@ -1,3 +1,5 @@
+@use "sass:map";
+
 //margin
 $XXl-margin: 4.8rem;
 $XL-margin: 4rem;
@@ -7,3 +9,14 @@ $S-margin: 1.6rem;
 
 $XS-margin: 0.8rem;
 
+$XS-margin: 0.6rem;
+
+//map margins
+
+$step: 0.5;
+$margins: ();
+
+@for $i from 1 through 15 {
+    $value : ($step  * $i) + rem;
+    $margins : map.set($margins, $i,  $value);
+}

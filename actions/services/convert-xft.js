@@ -1,6 +1,13 @@
 const parser = require('fast-xml-parser');
 const PromisePool = require('es6-promise-pool');
 
+/**
+ *
+ * @param {PrismaClient} prisma
+ * @param {String} xft
+ * @param {String[]} productCodes
+ * @returns
+ */
 exports.convertXft = async function (prisma, xft, productCodes) {
   const xftData = parser.parse(xft, {
     parseAttributeValue: true,

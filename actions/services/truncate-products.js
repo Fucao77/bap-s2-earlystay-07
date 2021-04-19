@@ -1,5 +1,9 @@
 const chalk = require('chalk');
 
+/**
+ *
+ * @param {PrismaClient} prisma
+ */
 module.exports = async function truncateProducts(prisma) {
   console.log(chalk.red('Truncate begins'));
 

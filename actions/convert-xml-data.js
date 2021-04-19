@@ -6,8 +6,8 @@ const log = console.log;
 const chalk = require('chalk');
 const chalkAnimation = require('chalk-animation');
 const { Timer } = require('timer-node');
-const { fetchCeto } = require('./services/fetch-ceto.js');
-const { fetchXft } = require('./services/fetch-xft.js');
+const fs = require('fs');
+const { getDataFromFtp } = require('./services/data-from-ftp.js');
 
 async function convertXmlData() {
   const prisma = new PrismaClient();
@@ -23,9 +23,32 @@ async function convertXmlData() {
 
     loadingAnimation.start();
 
+    if (!fs.existsSync(process.env.DATA_DIR)) {
+      fs.mkdirSync(process.env.DATA_DIR);
+      log(process.env.DATA_DIR + ' created');
+    }
+
     const [cetoFile, xftFile] = await Promise.all([
-      fetchCeto(),
-      fetchXft(),
+      getDataFromFtp(
+        {
+          host: process.env.CETO_FTP,
+          user: process.env.CETO_FTP_USER,
+          password: process.env.CETO_FTP_PASS,
+          secure: false,
+          dir: '/ceto',
+        },
+        'ceto.xml'
+      ),
+      getDataFromFtp(
+        {
+          host: process.env.XFT_FTP,
+          user: process.env.XFT_FTP_USER,
+          password: process.env.XFT_FTP_PASS,
+          secure: false,
+          dir: '/',
+        },
+        'xftcpdstandard.xml'
+      ),
       truncateProducts(prisma),
     ]);
 

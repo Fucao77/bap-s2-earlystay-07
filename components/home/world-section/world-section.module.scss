@@ -1,0 +1,45 @@
+.worldSection {
+    min-height: 100vh;
+    background: var.$primary-gradient;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: map-get($map: var.$margins, $key: 7 ) map-get($map: var.$margins, $key: 5 );
+}
+
+.adviceText {
+    color: var.$white;
+    font-size: var.$text-size;
+    margin: map-get($map: var.$margins, $key: 3) 0; 
+}
+.worldWrapper {
+    display: flex;
+    justify-content: space-between;
+    flex: 1;
+    align-items: center;
+    width: 100%;
+}
+.world {
+    width: 70%;
+}
+
+.offerSection {
+    width: 30%;
+}
+
+@media screen and (max-width: 1000px) {
+    .worldSection {
+        overflow-x: hidden;
+    }
+    .worldWrapper {
+        flex-direction: column-reverse;
+    }
+    .world {
+        width: 140%;
+        margin: map-get($map: var.$margins, $key: 4 ) 0;
+    }
+    .offerSection {
+        width: 100%;
+        margin: map-get($map: var.$margins, $key: 4 ) 0;
+    }
+}

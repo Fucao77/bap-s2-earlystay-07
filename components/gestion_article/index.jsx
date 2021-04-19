@@ -4,6 +4,9 @@ import {
   article,
   img,
   header,
+  description,
+  date,
+  footer,
 } from '../gestion_article/article.module.scss';
 
 export default function Gestion() {
@@ -20,16 +23,24 @@ export default function Gestion() {
 
         <div className={header}>
           <h1>Mon article de blog </h1>
-          <p>25 mars 2021</p>
+          <div className={date}>
+            <p>25 mars 2021</p>
+          </div>
         </div>
 
-        <div>
+        <div className={description}>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod,
             fugiat ducimus? Consequuntur eligendi, nemo atque temporibus, qui
             error provident nostrum, dolor quo nulla neque illo nihil amet
             ratione at repellendus!
           </p>
+        </div>
+
+        <div className={footer}>
+          <a href="">Modifier</a>
+          <a href="">Consulter</a>
+          <a href="">Supprimer</a>
         </div>
       </div>
     </section>

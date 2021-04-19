@@ -1,0 +1,60 @@
+.container {
+    position: relative;
+}
+
+.button {
+    border: 2px solid var.$white;
+    background: none;
+    color: var.$white;
+    padding: map-get(var.$margins, 1) map-get(var.$margins, 15);
+    font-size: var.$important-size;
+    position: relative;
+    @include mix.flex-center-all;
+    cursor: pointer;
+    width: 100%;
+
+    &:focus {
+        outline: none;
+    }
+
+    &:hover .arrow path {
+        fill: var.$white;
+    }
+}
+
+.arrow {
+    position: absolute;
+    right: 5%;
+
+    path {
+       transition: 5s; 
+    }
+}
+
+.arrowSelected {
+    path {
+        fill: var.$white;
+    }
+}
+
+.containerOptions {
+    position: absolute;
+    width: 100%;
+    list-style: none;
+    color: var.$white;
+    max-height: 30vh;
+    overflow-y: scroll;
+    z-index: 50;
+}
+.option {
+    display: flex;
+    justify-content: center;
+    padding: map-get( var.$margins , 1  ) 0;
+    background-color: rgba($color: var.$white, $alpha: 0.9);
+    color: var.$primary-blue;
+
+    &:hover {
+        background-color: rgba($color: var.$white, $alpha: 0.2);
+        cursor: pointer;
+    }
+}
