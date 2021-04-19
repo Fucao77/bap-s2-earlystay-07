@@ -7,7 +7,7 @@ import {
   description,
   date,
   footer,
-} from '../gestion_article/article.module.scss';
+} from './article.module.scss';
 
 export default function Gestion() {
   return (

@@ -5,9 +5,12 @@ import {
   body,
   liner,
   article,
-} from '../blog_admin/blog.module.scss';
-import Button from '../Create_article';
-import Gestion from '../gestion_article';
+} from '../blog-admin/blog.module.scss';
+import Button from './button-article';
+import Footer from '../footer';
+import Gestion from './article-manager';
+import Search from './search-input';
+import Slider from './slider-button';
 
 export default function Blog() {
   return (
@@ -17,20 +20,25 @@ export default function Blog() {
 
         <Button />
       </header>
+
       <div className={body}>
         <h2>Mes articles</h2>
         <div className={liner}></div>
-        <div>
-          <input type="text" placeholder="Recherche" />
-        </div>
-      </div>{' '}
-      <br /> <br /> <br /> <br />
+
+        <Search />
+      </div>
+
       <div className={article}>
         <Gestion />
-        <br /> <br />
+
         <Gestion />
-        <br /> <br />
       </div>
+
+      <Slider />
+
+      <footer>
+        <Footer></Footer>
+      </footer>
     </div>
   );
 }

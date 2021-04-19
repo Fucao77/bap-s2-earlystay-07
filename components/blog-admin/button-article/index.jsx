@@ -1,5 +1,5 @@
 import React from 'react';
-import { button } from '../Create_article/button.module.scss';
+import { button } from '../button-article/button.module.scss';
 
 export default function Button() {
   return (
