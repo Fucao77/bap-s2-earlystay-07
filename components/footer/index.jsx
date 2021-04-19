@@ -1,12 +1,12 @@
 import React from 'react';
 import Link from 'next/link';
-import { footer, link } from './footer.module.scss';
+import { content, link, footer, title } from './footer.module.scss';
 
 export default function Footer() {
   return (
-    <footer>
-      <div>
-        <h3>Nos destination</h3>
+    <footer className={footer}>
+      <div className={content}>
+        <h3 className={title}>Nos destination</h3>
         <Link href="/connexion/connexion">
           <a className={link}>Egypte</a>
         </Link>
@@ -20,13 +20,13 @@ export default function Footer() {
           <a className={link}>France</a>
         </Link>
       </div>
-      <div>
-        <h3>A propos</h3>
+      <div className={content}>
+        <h3 className={title}>A propos</h3>
         <Link href="/connexion/connexion">
           <a className={link}>Qui sommes-nous ?</a>
         </Link>
         <Link href="/connexion/connexion">
-          <a className={link}>Plan duu site</a>
+          <a className={link}>Plan du site</a>
         </Link>
         <Link href="/connexion/connexion">
           <a className={link}>Notre concept</a>
@@ -35,8 +35,8 @@ export default function Footer() {
           <a className={link}>Votre Avis</a>
         </Link>
       </div>
-      <div>
-        <h3>Info pratiques</h3>
+      <div className={content}>
+        <h3 className={title}>Info pratiques</h3>
         <Link href="/connexion/connexion">
           <a className={link}>Mentions légales</a>
         </Link>
