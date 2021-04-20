@@ -1,0 +1,50 @@
+.section {
+  header {
+    width: 100%;
+    height: 336px;
+    background-color: var.$primary-blue;
+    color: var.$white;
+
+    .titre {
+      padding: 100px;
+
+      h1 {
+        font-size: var.$h1-size;
+      }
+
+    }
+  }
+
+  .article_header {
+      width: 100%;
+      height: auto;
+      display: flex;
+      justify-content: space-around;
+      padding-top: 50px;
+
+      .image {
+        width: 45%;
+  
+       img {
+           width: 700px;
+           height: auto;
+       }
+  
+    }
+
+    .contenu {
+        width: 45%;
+
+        h2 {
+            float: left;
+        }
+
+    }
+
+
+  }
+
+  
+
+
+}
