@@ -30,7 +30,10 @@ export default function SearchItem({
         <div className={wrapper}>
           <div className={main}>
             <h3 className={mainTitle}>{title}</h3>
-            <p className={mainDescription}>{description}</p>
+            <p className={mainDescription}>
+              {description.substring(0, 150)}
+              {description.length > 151 ? '...' : ''}
+            </p>
           </div>
           <footer className={annexDataWrapper}>
             <div className={annexData}>

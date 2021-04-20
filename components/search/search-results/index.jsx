@@ -16,7 +16,7 @@ const data = [
       'https://images.unsplash.com/photo-1618675962429-3f82741be252?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80',
     title: 'Pérou - Lima',
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...',
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliquadzdzqdqzdzqd qzdzqdzqdzqdqzdzqdzqd qzdzq dzqdqzdzqdqzdqzdqzdqzdqzd zqdqzdqz d qdqzd qzdzqdqz dqdqzd qzdq dqzdzqd qzdd qzd ',
     linkUrl: '/',
     price: 1300,
     dayNumber: 7,

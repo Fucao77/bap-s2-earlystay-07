@@ -21,6 +21,7 @@ export default function BorderSelector({
   const toggle = () => setSelectorEnable((prev) => !prev);
   const selectOption = (index) => {
     setSelected(data[index]);
+    toggle();
   };
 
   const selectorRef = useRef();

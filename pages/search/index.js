@@ -12,7 +12,7 @@ export default function Search() {
   return (
     <div>
       <Nav />
-      <SearchHeader searchValue={query.search} displaySeeMore={false} />
+      <SearchHeader defaultData={query} displaySeeMore={false} />
       <SearchResults pages={pages} />
       <TrustBanner />
       <Footer />

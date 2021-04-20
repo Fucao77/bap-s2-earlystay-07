@@ -40,6 +40,7 @@
 
 .mainWrapper {
     padding: map-get($map: var.$margins, $key: 3);
+    width: 75%;
 }
 .wrapper{
     flex: 1;
@@ -96,6 +97,7 @@
     .mainWrapper {
         display: flex;
         flex-direction: column;
+        width: 100%;
     }
 
     .wrapper {
@@ -116,6 +118,12 @@
     
     .annexDataWrapper {
         padding: map-get($map: var.$margins, $key: 3  ) 0;
+    }
+    .annexData {
+        svg {
+            width: 30px;
+            height: 30px;
+        }
     }
 
     .ctaLink {

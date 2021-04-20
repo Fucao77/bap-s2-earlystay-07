@@ -4,6 +4,7 @@ import DatePicker from '../../global/date-picker';
 import SeeMoreButton from '../../global/see-more-button';
 import TravelInput from '../travel-input';
 import classNames from 'classnames';
+import { THEMES } from '../../../constants/travels';
 
 import {
   container,
@@ -15,47 +16,44 @@ import {
   containerFillScreen,
   containerOverScreen,
 } from './search-header.module.scss';
+import { useRouter } from 'next/router';
 
-export default function SearchHeader({
-  searchValue = '',
-  displaySeeMore = true,
-}) {
+export default function SearchHeader({ defaultData, displaySeeMore = true }) {
   const [goingDate, setGoingDate] = useState(null);
   const [duration, setDuration] = useState(null);
   const [theme, setTheme] = useState(null);
-  const [travelTitle, setTravelTitle] = useState(searchValue);
+  const [travelTitle, setTravelTitle] = useState('');
+
+  const router = useRouter();
+
+  const onSearch = () => {
+    router.push(
+      `/search?search=${travelTitle}&duration=${duration.value}&theme=${
+        theme.value
+      }&date=${goingDate.getTime()}`
+    );
+  };
 
   useEffect(() => {
-    setTravelTitle(searchValue);
-  }, [searchValue]);
+    if (!defaultData) return;
+
+    setTravelTitle(defaultData.search);
+    setTheme({
+      value: defaultData.theme,
+      label: THEMES.find((t) => t.value === defaultData.theme)?.label,
+    });
+    setDuration({
+      value: defaultData.duration,
+      label:
+        defaultData.duration + ' jour' + (defaultData.duration > 1 ? 's' : ''),
+    });
+    setGoingDate(new Date(Number(defaultData.date)));
+  }, [defaultData]);
 
   const durations = Array.from(Array(60).keys()).map((item, index) => ({
     label: `${index + 1} jour${index + 1 > 1 ? 's' : ''}`,
     value: index + 1,
   }));
-
-  const themes = [
-    {
-      label: 'Theme 1',
-      value: 'T',
-    },
-    {
-      label: 'Theme 1',
-      value: 'T',
-    },
-    {
-      label: 'Theme 1',
-      value: 'T',
-    },
-    {
-      label: 'Theme 1',
-      value: 'T',
-    },
-    {
-      label: 'Theme 1',
-      value: 'T',
-    },
-  ];
 
   return (
     <header
@@ -71,6 +69,7 @@ export default function SearchHeader({
           placeholder="Recherchez votre destination de rêve"
           value={travelTitle}
           setValue={setTravelTitle}
+          onSubmit={onSearch}
         />
         <div className={buttonContainer}>
           <DatePicker
@@ -89,7 +88,7 @@ export default function SearchHeader({
           <BorderSelector
             className={button}
             label="Thèmes"
-            data={themes}
+            data={THEMES}
             selected={theme}
             setSelected={setTheme}
           />
