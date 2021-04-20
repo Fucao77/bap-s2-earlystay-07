@@ -1,0 +1,54 @@
+.section {
+    
+    display: flex;
+    justify-content: center;
+    margin-top: 112px;    
+    margin-bottom: 112px;
+    
+}
+.card {
+    width: 40%;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+.form {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    padding: 20px;
+}
+
+.svg{
+    margin: 10px;
+}
+.input {
+    margin : 10px;
+    padding-right : 70px;
+    margin-bottom: 30px;
+}
+.titre {
+    font-family: var.$poppins;
+    font-size: var.$h1-size;
+    color: var.$secondary-orange;
+}
+
+.hr {
+    background-color: var.$secondary-orange;
+    width: 200px;
+    height:2px;
+}
+.header {
+    display: flex;
+    align-items: left;
+    flex-direction: column;
+    padding-left: 5%;
+    padding-bottom: 30px;
+}
+
+.connecter{
+    font-family: var.$poppins;
+    border:none;
+    color: var.$white;
+    background-color: var.$secondary-orange;
+    padding: 8px 30px;
+    font-size: var.$important-size;
+}
