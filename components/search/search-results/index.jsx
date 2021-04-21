@@ -55,7 +55,7 @@ const data = [
 
 export default function SearchResults({ pages }) {
   return (
-    <section className={container}>
+    <section className={container} id="results">
       <SubTitle title="Résultats" />
       <div className={resultWrapper}>
         {data.map((item, index) => (

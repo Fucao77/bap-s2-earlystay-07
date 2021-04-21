@@ -1,5 +1,9 @@
 import { actionButton } from './action-button.module.scss';
 
-export default function ActionButton({ children }) {
-  return <button className={actionButton}>{children}</button>;
+export default function ActionButton({ children, onClick }) {
+  return (
+    <button className={actionButton} onClick={onClick}>
+      {children}
+    </button>
+  );
 }

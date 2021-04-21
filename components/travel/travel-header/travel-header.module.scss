@@ -1,0 +1,40 @@
+.container {
+    min-height: 100vh;
+    background-color: var.$primary-blue-opacity;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: map-get($map: var.$margins, $key: 8 ) ;
+    position: relative;
+}
+
+.containerBgImg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    overflow-y: hidden;
+
+    img {
+        min-width: 100%;
+        min-height: 100%;
+    }
+}
+
+.annexContainer {
+    background-color: var.$white;
+    padding: map-get($map: var.$margins, $key: 6);
+}
+
+.annexTitle {
+    font-weight: normal;
+    font-size: var.$h2-size;
+}
+.annexSubTitle {
+    font-weight: normal;
+    color: var.$secondary-orange;
+    text-decoration: underline;
+    margin: map-get($map: var.$margins, $key:3 ) 0;
+}

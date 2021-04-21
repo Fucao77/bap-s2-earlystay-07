@@ -24,6 +24,7 @@
     "react-datepicker": "^3.7.0",
     "react-day-picker": "^7.4.10",
     "react-dom": "17.0.2",
+    "react-html-parser": "^2.0.2",
     "slugify": "^1.5.0",
     "timer-node": "^5.0.2"
   },

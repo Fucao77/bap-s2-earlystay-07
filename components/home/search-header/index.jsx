@@ -19,7 +19,7 @@ import {
 import { useRouter } from 'next/router';
 
 export default function SearchHeader({ defaultData, displaySeeMore = true }) {
-  const [goingDate, setGoingDate] = useState(null);
+  const [departureDate, setDepartureDate] = useState(null);
   const [duration, setDuration] = useState(null);
   const [theme, setTheme] = useState(null);
   const [travelTitle, setTravelTitle] = useState('');
@@ -27,10 +27,17 @@ export default function SearchHeader({ defaultData, displaySeeMore = true }) {
   const router = useRouter();
 
   const onSearch = () => {
+    if (!travelTitle || !duration || !theme || !departureDate) {
+      alert(
+        'Il faut définir une date de départ, une durée et un thème pour valider la recherche'
+      );
+      return;
+    }
+
     router.push(
       `/search?search=${travelTitle}&duration=${duration.value}&theme=${
         theme.value
-      }&date=${goingDate.getTime()}`
+      }&date=${departureDate.getTime()}#results`
     );
   };
 
@@ -47,7 +54,7 @@ export default function SearchHeader({ defaultData, displaySeeMore = true }) {
       label:
         defaultData.duration + ' jour' + (defaultData.duration > 1 ? 's' : ''),
     });
-    setGoingDate(new Date(Number(defaultData.date)));
+    setDepartureDate(new Date(Number(defaultData.date)));
   }, [defaultData]);
 
   const durations = Array.from(Array(60).keys()).map((item, index) => ({
@@ -75,8 +82,8 @@ export default function SearchHeader({ defaultData, displaySeeMore = true }) {
           <DatePicker
             className={button}
             label="Aller"
-            selectedDate={goingDate}
-            setDate={setGoingDate}
+            selectedDate={departureDate}
+            setDate={setDepartureDate}
           />
           <BorderSelector
             className={button}

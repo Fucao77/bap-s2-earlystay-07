@@ -88,7 +88,7 @@ export default function FlashSalesSection() {
             </article>
           ))}
         </div>
-        <Link href="/">
+        <Link href="/travel/something">
           <a className={slideBtn}>Découvrir l'offre</a>
         </Link>
         <button
