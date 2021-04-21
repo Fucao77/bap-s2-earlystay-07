@@ -1,0 +1,21 @@
+.section {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    margin-left: 10%;
+    margin-top: 4%;
+    margin-bottom: 4%;
+    font-family: var.$poppins;
+}
+.title {
+    color: var.$secondary-orange;
+    text-align: center;
+    font-family: var.$poppins;
+    margin-top: 4%;
+    font-size: var.$h1-size;
+}
+.articleTitle {
+    font-size: var.$h2-size;
+    padding-bottom: 2%;
+}
+

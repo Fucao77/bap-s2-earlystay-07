@@ -40,7 +40,7 @@ export default function Footer() {
         <Link href="/connexion/connexion">
           <a className={link}>Mentions légales</a>
         </Link>
-        <Link href="/connexion/connexion">
+        <Link href="/CGU">
           <a className={link}>Conditions générales d'utilisation</a>
         </Link>
         <Link href="/connexion/connexion">
