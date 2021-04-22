@@ -1,0 +1,81 @@
+.inputText{
+
+    border: solid 2px var.$primary-blue;
+    padding-bottom: 15rem;
+    padding-top: 1rem;
+    padding-left: 1rem;
+    width: 70vw;
+    color: var.$primary-blue;
+    font-size: var.$p-size;
+    margin-bottom: var.$L-margin;
+    margin-top: var.$L-margin;
+}
+
+.borderLessInput{
+    border-top:none;
+    border-left: none;
+    border-right: none;
+    padding: 0.8rem;
+    border-color: var.$primary-blue;
+    color: var.$primary-blue;
+    text-align: center;
+    font-style: italic;
+    font-size: var.$p-size;
+
+    margin-top: var.$L-margin;
+    margin-bottom: var.$L-margin;
+}
+
+
+.submitButton{
+    background-color: var.$secondary-orange;
+    color: var.$white;
+    border: none;
+    padding: 1rem 4rem;
+    margin-top: var.$L-margin;
+    border-radius: 2px;
+}
+
+
+
+.formArticle{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.inputFile{
+    width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+
+.inputFile + .inputFileLabel {
+    padding: 4rem;
+    color: white;
+    background-color: #F1F1F1;
+    color: #7E7E7E;
+    border-radius: 10px;
+    border-width: 2px;
+    border-style: dashed;
+
+
+}
+
+
+.inputFile + .inputFileLabel {
+	cursor: pointer;
+}
+
+
+
+
+
+.wysiwyg{
+    display: none;
+}
+
