@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import InputText from '../inputText';
-//import parse from 'html-react-parser'
+import axios from 'axios';
 
-// import validateMessage from '../validateMessage';
+import ValidateMessage from '../validateMessage';
 
 //style
 import { inputText } from './form.module.scss';
@@ -11,15 +11,16 @@ import { submitButton } from './form.module.scss';
 import { formArticle } from './form.module.scss';
 import { inputFile } from './form.module.scss';
 import { inputFileLabel } from './form.module.scss';
+import { ErrorMessage } from '../errorMessage';
 
 export default function Form() {
-  let send = false;
-
   const [title, setTitle] = useState('Entrez votre titre ici');
   const [description, setDescription] = useState('Entrez votre description');
   const [content, setContent] = useState('Entrez votre contenu');
+  const [validateMessage, setValidateMessage] = useState('');
+  const [errors, setErrors] = useState({});
 
-  const miniature = 'test';
+  const miniature = 'test.png';
   const editorRef = useRef();
   const [editorLoaded, setEditorLoaded] = useState(false);
   const { CKEditor, ClassicEditor } = editorRef.current || {};
@@ -38,17 +39,24 @@ export default function Form() {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    fetch('../../api/addArticle', {
-      method: 'POST',
-      body: JSON.stringify({ title, description, content, miniature }),
-    })
+    axios
+      .post('/api/addArticle', {
+        title,
+        description,
+        content,
+        miniature,
+      })
+
+      .then((res) => res.json())
+
       .then((res) => {
-        console.log(res);
-        send = true;
+        console.log({ res });
+        setValidateMessage('Article envoyé');
       })
 
       .catch((e) => {
-        console.log(e);
+        console.log(e.response.data);
+        setErrors(e.response.data);
       });
   };
 
@@ -62,7 +70,14 @@ export default function Form() {
           classType={borderLessInput}
         ></InputText>
 
-        <input className={inputFile} type="file" name="miniature" />
+        {errors.title && <ErrorMessage>{errors.title}</ErrorMessage>}
+
+        <input
+          className={inputFile}
+          type="file"
+          name="miniature"
+          id="miniature"
+        />
         <label className={inputFileLabel} htmlFor="miniature">
           Ajouter une miniature
         </label>
@@ -74,28 +89,36 @@ export default function Form() {
           classType={inputText}
         ></InputText>
 
-        {editorLoaded && (
-          <CKEditor
-            editor={ClassicEditor}
-            data={content}
-            onChange={(event, editor) => {
-              setContent(editor.getData());
-            }}
-            type="classic"
-            style={{
-              witdh: '70vw',
-              border: '5px solid red',
-            }}
-          />
+        {errors.description && (
+          <ErrorMessage>{errors.description}</ErrorMessage>
         )}
 
-        {send ? (
-          <validateMessage>Article envoyé</validateMessage>
-        ) : (
-          <button type="submit" className={submitButton}>
-            Ajouter
-          </button>
+        {editorLoaded && (
+          <div style={{ width: '70vw' }}>
+            <CKEditor
+              editor={ClassicEditor}
+              data={content}
+              onChange={(event, editor) => {
+                setContent(editor.getData());
+              }}
+              type="classic"
+              style={{
+                display: 'none',
+                border: '5px solid red',
+              }}
+            />
+
+            {errors.content && <ErrorMessage>{errors.content}</ErrorMessage>}
+          </div>
         )}
+
+        {validateMessage && (
+          <ValidateMessage>{validateMessage}</ValidateMessage>
+        )}
+
+        <button type="submit" className={submitButton}>
+          Ajouter
+        </button>
       </form>
     </div>
   );

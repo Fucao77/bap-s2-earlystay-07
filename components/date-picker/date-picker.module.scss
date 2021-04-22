@@ -1,0 +1,19 @@
+.wrapper {
+    border: 2px solid var.$white;
+    display: inline-block;
+    padding: var.$XS-margin var.$XL-margin;
+    background: none;
+    color: var.$white;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.clock {
+    position: absolute;
+    right: 5%;
+}
+.labelWrapper { 
+    font-size: var.$p-size;
+}

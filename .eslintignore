@@ -5,3 +5,5 @@ build
 next.config.js
 .eslintrc.js
 prisma
+server.js
+actions
