@@ -1,0 +1,12 @@
+.actionButton {
+    background-color: var.$secondary-orange;
+    color: var.$white;
+    padding: map-get($map: var.$margins, $key: 2 );
+    font-weight: bold;
+    font-size: var.$h3-size;
+    border: none;
+    width: 90%;
+    margin: 0 auto;
+    display: block;
+    cursor: pointer;
+}

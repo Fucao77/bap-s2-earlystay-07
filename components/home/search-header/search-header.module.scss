@@ -1,0 +1,66 @@
+.container {
+    background-color: var.$primary-blue-opacity;
+    height: 120vh;
+    position: relative;
+    @include mix.flex-center-all;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+.containerFillScreen {
+    height: 100vh;
+}
+.containerOverScreen {
+    height: 120vh;
+}
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 60vh;
+}
+.buttonContainer {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-top: map-get($map: var.$margins, $key:15 );
+}
+
+.bgImg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    min-width: 1200px;
+}
+
+.button {
+    margin: 0 map-get(var.$margins, 5);
+}
+
+.seeButton {
+    position: relative;
+}
+
+@media screen and (max-width: 1200px) {
+    .buttonContainer {
+        flex-direction: column;
+        align-items: center;
+    }
+    .button {
+        margin: map-get($map: var.$margins, $key: 3 ) 0;
+        width: 300px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .main {
+        padding: 0  map-get($map: var.$margins, $key: 4 );
+        height: auto;
+    }
+    .seeButton  {
+        margin-top: map-get($map: var.$margins, $key: 6 );
+    }
+}

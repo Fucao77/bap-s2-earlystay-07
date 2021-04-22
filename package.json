@@ -18,6 +18,7 @@
     "bcrypt": "^5.0.1",
     "chalk": "^4.1.0",
     "chalk-animation": "^1.6.0",
+    "classnames": "^2.3.1",
     "es6-promise-pool": "^2.5.0",
     "fast-xml-parser": "^3.19.0",
     "html-react-parser": "^1.2.5",
@@ -25,7 +26,9 @@
     "node-cron": "^3.0.0",
     "react": "17.0.2",
     "react-datepicker": "^3.7.0",
+    "react-day-picker": "^7.4.10",
     "react-dom": "17.0.2",
+    "react-html-parser": "^2.0.2",
     "slugify": "^1.5.0",
     "timer-node": "^5.0.2"
   },

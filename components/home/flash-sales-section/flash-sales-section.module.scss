@@ -1,0 +1,114 @@
+.section {
+    padding-bottom:map-get($map: var.$margins, $key: 15 ) ;
+}
+.container {
+    padding: map-get($map: var.$margins, $key: 9 ) map-get($map: var.$margins, $key: 5 );
+}
+
+.slideWrapper {
+    position: relative;
+    height: 75vh;
+    overflow: hidden;
+}
+
+.slideGroup {
+    display: flex;
+    position: absolute;
+    height: 100%;
+    min-width: 100vw;
+    transition: .5s
+}
+
+.slideBgWrapper {
+    @include mix.flex-center-all;
+    width: 100vw;
+    max-width: 100%;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+    left: 0;
+    top: 0;
+    height: 100%;
+
+}
+
+.slide {
+    @include mix.flex-center-all;
+    height : 100%;
+    width: 100%;
+    position: relative;
+}
+
+.slideBg {
+    min-width: 1000px;
+    width: 100%;
+    min-height: 100%;
+}
+
+.slideTitle {
+    font-size: var.$h1-size;
+    color: var.$white;
+    background-color: rgba($color: var.$black, $alpha: 0.5);
+    padding: map-get($map: var.$margins, $key: 1 );
+}
+
+.slideSubTitle {
+    @extend .slideTitle;
+    font-size: var.$text-size;
+    margin-top: map-get($map: var.$margins, $key: 1 );
+}
+
+.mainContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.slideBtn {
+    position: absolute;
+    color: var.$white;
+    bottom: 15%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: var.$important-size;
+    padding: map-get($map: var.$margins, $key: 1 ) map-get($map: var.$margins, $key: 3 );
+    background-color: rgba($color: var.$black, $alpha: 0.5);
+    border: 2px solid var.$white;
+}
+
+.slideArrow {
+    position: absolute;
+    content: "";
+    display: block;
+    width: 40px;
+    height: 40px;
+    background-color: var.$white;
+    top: 50%;
+    opacity: .7;
+    cursor: pointer;
+    transition: .3s;
+    border: none;
+
+    &:hover {
+        opacity: 1;
+    }
+
+    &:focus {
+        outline: none;
+    }
+    
+}
+.slideArrowLeft {
+    left: 5%;
+    clip-path: polygon(0 50%, 100% 0, 100% 100%, 0 50%);
+}
+.slideArrowRight {
+    right: 5%;
+    clip-path: polygon(0 0, 100% 50%, 100% 50%, 0 100%);
+}
+
+@media screen and (max-width: 600px) {
+    .slideWrapper {
+        height: 100vh;
+    }
+}

@@ -1,3 +1,21 @@
 .nav {
+<<<<<<< HEAD
     color: var.$primary-blue;
 }
+=======
+    display:flex;
+    justify-content: space-between;
+    background-color: white;
+    padding: 10px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+
+.link{
+    padding: 10px;
+    text-decoration: none;
+    color: #3668A4;
+}
+
+
+>>>>>>> 3ef00e68a14d15d9703387c59e8bac8bbfa9a64c
