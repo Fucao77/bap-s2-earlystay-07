@@ -7,8 +7,6 @@ $L-margin: 3.2rem;
 $M-margin: 2.4rem;
 $S-margin: 1.6rem;
 $XS-margin: 0.6rem;
-<<<<<<< HEAD
-=======
 
 //map margins
 
@@ -19,4 +17,3 @@ $margins: ();
     $value : ($step  * $i) + rem;
     $margins : map.set($margins, $i,  $value);
 }
->>>>>>> 3ef00e68a14d15d9703387c59e8bac8bbfa9a64c
