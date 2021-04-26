@@ -7,6 +7,10 @@
     font-style: var.$poppins;
     padding:30px;
     text-align: center;
+
+    @media screen and (max-width:850px){
+        flex-flow: column wrap ;
+    }
 }
 
 .content {

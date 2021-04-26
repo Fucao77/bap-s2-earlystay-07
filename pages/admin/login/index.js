@@ -1,6 +1,6 @@
-import Nav from '../../components/nav';
-import Footer from '../../components/footer';
-import Connection from '../../components/connection';
+import Nav from '../../../components/nav';
+import Footer from '../../../components/footer';
+import Connection from '../../../components/connection';
 import { getCsrfToken, signIn } from 'next-auth/client';
 import { useRouter } from 'next/router';
 

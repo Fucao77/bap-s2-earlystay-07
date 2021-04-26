@@ -10,6 +10,8 @@ module.exports = async function truncateProducts(prisma) {
   const airTypeTransaction = async () => {
     await prisma.air_type_rule_quantities.deleteMany({});
     await prisma.air_type_begins.deleteMany({});
+    await prisma.price_data.deleteMany({});
+    await prisma.stay_type_meal_plans.deleteMany({});
     await prisma.air_types.deleteMany({});
   };
 

@@ -174,14 +174,16 @@ model air_type_begins {
   price_tax_value                                     Int
   price_value                                         Int
   price_original_value                                Int?
-  price_ref                                                 String                                @db.VarChar(50)     
+  price_ref                                           String                                @db.VarChar(50)     
   rule_code_value                                     String                                @db.VarChar(50)
   rule_code_name                                      String                                @db.VarChar(50)
   rule_at_ref                                         String                                @db.VarChar(50)
   air_type_price_quantities                           air_type_rule_quantities[] 
   air_types                                           air_types                     @relation(fields: [air_type_id], references: [id])
+  price_data                                          price_data                    @relation(fields: [price_main_ref], references: [id])
 
   @@index([air_type_id], name: "fk_air_type_begins_air_type_id")
+  @@index([price_main_ref], name: "fk_air_type_price_data_id")
 }
 
 
@@ -208,3 +210,34 @@ model air_types {
 
   @@index([product_code], name: "fk_air_types_product_code")
 }
+
+model stay_type_meal_plans {
+  id              String          @id @db.VarChar(50) 
+  code_txt        String?          @db.VarChar(50)
+  code            String          @db.VarChar(50)
+  text            String          @db.VarChar(50)
+  price_data      price_data[]
+}
+
+model price_data {
+  id                      String                    @id @db.VarChar(100)
+  currency                String? 
+  decimals                Int? 
+  quantity                String? 
+  role                    String?
+  duration_night          Int       
+  duration_day            Int 
+  quantity_for            String                    @db.VarChar(50)
+  quantity_unit           String                    @db.VarChar(50)
+  meal_plan_ref           String                    @db.VarChar(50)
+  room_ref                String                    @db.VarChar(50)  
+  traveller_type          String                    @db.VarChar(50)
+  traveller_quantity      Int    
+  air_type_begins         air_type_begins[]
+  meal_plan               stay_type_meal_plans      @relation(fields: [meal_plan_ref], references: [id])
+
+  @@index([meal_plan_ref], name: "fk_meal_plan_ref")
+}
+
+
+
