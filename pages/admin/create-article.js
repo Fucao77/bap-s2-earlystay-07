@@ -1,4 +1,4 @@
-import Form from '../../components/formArticle';
+import Form from '../../components/formNewArticle';
 import Header from '../../components/adminHeader';
 
 export default function Formulaire() {

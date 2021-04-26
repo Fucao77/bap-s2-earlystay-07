@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   section,
   form,
@@ -11,7 +11,15 @@ import {
   card,
 } from './connection.module.scss';
 
-export default function Connection() {
+export default function Connection({ onConnection, csrfToken }) {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    onConnection({ username, password });
+  };
+
   return (
     <section className={section}>
       <div className={card}>
@@ -19,7 +27,8 @@ export default function Connection() {
           <h1 className={titre}>Se connecter</h1>
           <div className={hr}></div>
         </div>
-        <form className={form}>
+        <form className={form} onSubmit={onSubmit}>
+          <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
           <svg
             className={svg}
             width="25"
@@ -33,7 +42,12 @@ export default function Connection() {
               fill="#13275C"
             />
           </svg>
-          <input className={input} />
+          <input
+            className={input}
+            name="username"
+            value={username}
+            onInput={(e) => setUsername(e.target.value)}
+          />
 
           <svg
             className={svg}
@@ -50,7 +64,12 @@ export default function Connection() {
               fill="#13275C"
             />
           </svg>
-          <input className={input} />
+          <input
+            className={input}
+            type="password"
+            value={password}
+            onInput={(e) => setPassword(e.target.value)}
+          />
 
           <button className={connecter}>Se connecter</button>
         </form>

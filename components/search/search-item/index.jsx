@@ -17,7 +17,7 @@ export default function SearchItem({
   imageUrl,
   title,
   description,
-  linkUrl,
+  // linkUrl,
   price,
   dayNumber,
 }) {
@@ -81,7 +81,7 @@ export default function SearchItem({
             </div>
           </footer>
         </div>
-        <Link href={linkUrl}>
+        <Link href={'/travel/d'}>
           <a className={ctaLink}>Découvrir</a>
         </Link>
       </div>
