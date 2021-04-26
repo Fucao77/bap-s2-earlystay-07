@@ -1,9 +1,12 @@
 import TravelHeader from '../../components/travel/travel-header';
 import Nav from '../../components/nav';
 import { getTravelById } from '../../services/travel-service';
-import { displayDuration } from '../../utils/travel-parser';
+import { getDurations, getMealPlans } from '../../utils/travel-parser';
+import OfferForm from '../../components/travel/offer-form';
 
 export default function TravelDescription({ travel }) {
+  const durations = getDurations(travel.air_types);
+  const mealPlans = getMealPlans(travel.air_types);
   console.log(travel);
   return (
     <div>
@@ -13,9 +16,20 @@ export default function TravelDescription({ travel }) {
         accomodationName={travel.options[0].accomodation_name}
         description={travel.commercial_infos[0].catch_phrase}
         imageUrl={travel.options[0].option_descriptions[0].big_picto}
-        duration={displayDuration()}
-        option={'DEMI-PENSION'}
+        duration={
+          durations[0] +
+          (durations.length > 1
+            ? ' à ' + durations[durations.length - 1]
+            : '') +
+          ' jours'
+        }
+        option={
+          mealPlans.length > 1
+            ? mealPlans.map((meal) => meal.text).join(' ou ')
+            : mealPlans[0].text
+        }
       />
+      <OfferForm />
     </div>
   );
 }

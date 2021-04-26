@@ -8,51 +8,61 @@ import { ObjectSerializer } from '../utils/serializer';
 export async function getTravelById(id) {
   const prisma = new PrismaClient();
 
-  const results = await prisma.products.findUnique({
-    where: {
-      interne_to: id,
-    },
-    include: {
-      air_types: {
-        include: {
-          air_type_begins: {
-            include: {
-              price_data: true,
-            },
-          },
-        },
+  try {
+    const results = await prisma.products.findUnique({
+      where: {
+        interne_to: id,
       },
-      options: {
-        include: {
-          option_descriptions: {
-            include: {
-              option_description_paragraphs: {
-                include: {
-                  option_description_paragraph_objects: true,
+      include: {
+        air_types: {
+          include: {
+            air_type_begins: {
+              include: {
+                price_data: {
+                  include: {
+                    meal_plan: true,
+                    air_type_begins: false,
+                  },
                 },
               },
             },
           },
         },
+        options: {
+          include: {
+            option_descriptions: {
+              include: {
+                option_description_paragraphs: {
+                  include: {
+                    option_description_paragraph_objects: true,
+                  },
+                },
+              },
+            },
+          },
+        },
+        commercial_infos: true,
       },
-      commercial_infos: true,
-    },
-  });
+    });
 
-  if (!results) return null;
+    if (!results) return null;
 
-  const serializer = new ObjectSerializer();
+    const serializer = new ObjectSerializer();
 
-  const formatedAirTypes = results.air_types.map((res) => {
-    return {
-      ...res,
-      air_type_begins: res.air_type_begins.map((begin) => {
-        return serializer.serialize(begin);
-      }),
-    };
-  });
+    const formatedAirTypes = results.air_types.map((res) => {
+      return {
+        ...res,
+        air_type_begins: res.air_type_begins.map((begin) => {
+          return serializer.serialize(begin);
+        }),
+      };
+    });
 
-  prisma.$disconnect();
+    prisma.$disconnect();
 
-  return { ...results, air_types: formatedAirTypes };
+    return { ...results, air_types: formatedAirTypes };
+  } catch (e) {
+    console.log(e);
+    return null;
+  }
 }

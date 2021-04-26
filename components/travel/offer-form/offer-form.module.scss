@@ -1,0 +1,23 @@
+.container {
+    background-color: var.$primary-blue;
+    margin: map-get($map: var.$margins, $key: 10) map-get($map: var.$margins, $key: 3);
+    padding: map-get($map: var.$margins, $key: 10) map-get($map: var.$margins, $key: 8);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.blockWrapper {
+    background-color: var.$white;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    margin: map-get($map: var.$margins, $key: 3 ) 0;
+    padding: map-get($map: var.$margins, $key: 7 ) map-get($map: var.$margins, $key: 10 );
+}
+
+.title {
+    color: var.$secondary-orange;
+    font-size: var.$h3-size;
+    font-weight: normal;
+}
