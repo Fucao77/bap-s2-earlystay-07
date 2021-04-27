@@ -21,7 +21,7 @@ export default function Nav() {
         <Link href="/QSN/index.js">
           <a className={link}>Qui sommes-nous?</a>
         </Link>
-        <Link href="/faq/index.js">
+        <Link href="/FAQ">
           <a className={link}>FAQ</a>
         </Link>
       </div>

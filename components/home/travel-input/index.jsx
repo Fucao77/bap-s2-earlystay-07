@@ -1,12 +1,22 @@
 import { container, input, confirm } from './travel-input.module.scss';
 
-export default function TravelInput({ placeholder, value, setValue }) {
+export default function TravelInput({
+  placeholder,
+  value,
+  setValue,
+  onSubmit,
+}) {
   const onInput = (e) => {
     setValue(e.target.value);
   };
 
+  const onLocalSubmit = (e) => {
+    e.preventDefault();
+    onSubmit();
+  };
+
   return (
-    <div className={container}>
+    <form className={container} onSubmit={onLocalSubmit}>
       <input
         type="text"
         placeholder={placeholder}
@@ -14,7 +24,7 @@ export default function TravelInput({ placeholder, value, setValue }) {
         onInput={onInput}
         className={input}
       />
-      <button className={confirm}>
+      <button className={confirm} onClick={onSubmit}>
         <svg
           width="32"
           height="32"
@@ -28,6 +38,6 @@ export default function TravelInput({ placeholder, value, setValue }) {
           />
         </svg>
       </button>
-    </div>
+    </form>
   );
 }
