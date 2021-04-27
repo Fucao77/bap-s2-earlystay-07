@@ -1,10 +1,4 @@
-.title {
-    font-family: var.$poppins;
-    font-size: var.$h1-size;
-    color: var.$secondary-orange;
-    text-align: center;
-    padding: 20px;
-}
+
 
 .buttonfaq{
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
@@ -21,4 +15,8 @@
     display: flex;
     align-items: center;
     flex-direction: column;
+}
+
+.svg{
+    margin-left: 10px;
 }
