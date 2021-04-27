@@ -13,36 +13,16 @@
       }
 
     }
-  }
 
-  .article_header {
-      width: 100%;
-      height: auto;
-      display: flex;
-      justify-content: space-around;
-      padding-top: 50px;
-
-      .image {
-        width: 45%;
-  
-       img {
-           width: 700px;
-           height: auto;
-       }
-  
+    .liner {
+      width: 1340px;
+      height: 454px;
+      background-color: gray;
     }
 
-    .contenu {
-        width: 45%;
-
-        h2 {
-            float: left;
-        }
-
-    }
-
-
   }
+
+
 
   
 

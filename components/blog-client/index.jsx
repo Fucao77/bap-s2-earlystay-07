@@ -1,14 +1,10 @@
 import React from 'react';
+import { section, titre, liner } from '../blog-client/blogclient.module.scss';
 import Nav from '../nav';
-import {
-  section,
-  titre,
-  article_header,
-  image,
-  contenu,
-} from '../blog-client/blogclient.module.scss';
+import HeaderArticle from './header-article';
+import ListArticle from './listes-article';
 
-export default function Clientblog() {
+export default function BlogClient() {
   return (
     <section className={section}>
       <Nav />
@@ -19,18 +15,11 @@ export default function Clientblog() {
         </div>
       </header>
 
-      <div className={article_header}>
-        <div className={image}>
-          <img
-            src="https://images.unsplash.com/photo-1515896769750-31548aa180ed?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1434&q=80"
-            alt=""
-          />
-        </div>
+      <HeaderArticle />
 
-        <div className={contenu}>
-          <h2>Titre</h2>
-        </div>
-      </div>
+      <div className={liner}></div>
+
+      <ListArticle />
     </section>
   );
 }

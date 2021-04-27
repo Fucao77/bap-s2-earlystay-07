@@ -5,6 +5,7 @@ import {
   body,
   liner,
   article,
+  slide,
 } from '../blog-admin/blog.module.scss';
 import Button from './button-article';
 import Footer from '../footer';
@@ -34,7 +35,9 @@ export default function Blog() {
         <Gestion />
       </div>
 
-      <Slider />
+      <div className={slide}>
+        <Slider />
+      </div>
 
       <footer>
         <Footer></Footer>

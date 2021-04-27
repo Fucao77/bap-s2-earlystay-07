@@ -52,3 +52,36 @@
     }
 
 }
+
+
+@media screen and (max-width: 440px)
+{
+    .section {
+      
+        .article {
+            display: flex;
+            flex-direction: column;
+            width: 515px;
+            height: 557px;
+            
+            div {
+
+                .img {
+                    width: 515px;
+                    height: 139px;
+                }
+
+            }
+
+
+
+
+            .header {
+                font-size: 20px;               
+                padding-top: 150px;
+            }
+
+        }
+
+    }
+}
