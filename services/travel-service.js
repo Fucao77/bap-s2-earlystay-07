@@ -24,6 +24,8 @@ export async function getTravelById(id) {
                     air_type_begins: false,
                   },
                 },
+
+                air_type_price_quantities: true,
               },
             },
           },

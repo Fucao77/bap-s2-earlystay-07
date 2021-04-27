@@ -7,6 +7,12 @@
     align-items: flex-start;
 }
 
+.title {
+    color: var.$secondary-orange;
+    font-size: var.$h3-size;
+    font-weight: normal;
+}
+
 .blockWrapper {
     background-color: var.$white;
     display: inline-flex;
@@ -16,8 +22,18 @@
     padding: map-get($map: var.$margins, $key: 7 ) map-get($map: var.$margins, $key: 10 );
 }
 
-.title {
-    color: var.$secondary-orange;
-    font-size: var.$h3-size;
-    font-weight: normal;
+.blockRow {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.blockContent {
+    padding: map-get($map: var.$margins, $key: 4 ) 0;
+    display: flex;
+    align-items: center;
+}
+
+.input {
+    font-size: var.$text-size;
 }

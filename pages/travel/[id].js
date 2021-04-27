@@ -1,7 +1,11 @@
 import TravelHeader from '../../components/travel/travel-header';
 import Nav from '../../components/nav';
 import { getTravelById } from '../../services/travel-service';
-import { getDurations, getMealPlans } from '../../utils/travel-parser';
+import {
+  getDurations,
+  getMealPlans,
+  getOffers,
+} from '../../utils/travel-parser';
 import OfferForm from '../../components/travel/offer-form';
 
 export default function TravelDescription({ travel }) {
@@ -29,7 +33,7 @@ export default function TravelDescription({ travel }) {
             : mealPlans[0].text
         }
       />
-      <OfferForm />
+      <OfferForm offers={getOffers(travel.air_types)} />
     </div>
   );
 }
