@@ -19,6 +19,7 @@ export default function Form({
   onSubmit,
   validateMessage,
   errors,
+  prevMiniature,
 }) {
   const [title, setTitle] = useState(
     prevTitle ? prevTitle : 'Entrez votre titre ici'
@@ -67,6 +68,7 @@ export default function Form({
           value={miniature}
           setValue={setMiniature}
           name={'miniature'}
+          miniature={prevMiniature}
         ></InputImage>
 
         <InputText
