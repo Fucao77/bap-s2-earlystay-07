@@ -39,6 +39,7 @@
 }
 
 .containerOptions {
+    z-index: 50;
     position: absolute;
     width: 100%;
     list-style: none;
@@ -53,6 +54,7 @@
     padding: map-get( var.$margins , 1  ) 0;
     background-color: rgba($color: var.$white, $alpha: 0.9);
     color: var.$primary-blue;
+    border: 2px solid rgba($color: var.$white, $alpha: 0.9);
 
     &:hover {
         background-color: rgba($color: var.$white, $alpha: 0.2);
@@ -91,4 +93,36 @@
         border-left: 2px solid var.$black;
         border-right: 2px solid var.$black;
     }
+
+    .option {
+        background-color: rgba($color: var.$white, $alpha: 1);
+
+        &:hover:first-child{
+           
+            border-bottom: 2px solid var.$black;
+            cursor: pointer;
+        }
+
+        &:hover:not(:first-child){
+           
+            border-top: 2px solid var.$black;
+            border-bottom: 2px solid var.$black;
+            cursor: pointer;
+        }
+    }
+}
+
+.themeDisable {
+    
+
+    .button {
+        opacity: .5;
+        cursor: not-allowed;
+
+        &:hover .arrow path {
+            fill: none;
+        }
+    }
+
+    
 }

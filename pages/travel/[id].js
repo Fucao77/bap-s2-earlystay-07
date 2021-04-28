@@ -1,25 +1,21 @@
 import TravelHeader from '../../components/travel/travel-header';
 import Nav from '../../components/nav';
 import { getTravelById } from '../../services/travel-service';
-import {
-  getDurations,
-  getMealPlans,
-  getOffers,
-} from '../../utils/travel-parser';
+import { getDurations, getMealPlans } from '../../utils/travel-parser';
 import OfferForm from '../../components/travel/offer-form';
 
 export default function TravelDescription({ travel }) {
-  const durations = getDurations(travel.air_types);
-  const mealPlans = getMealPlans(travel.air_types);
-  console.log(travel);
+  const durations = getDurations(travel.travels);
+  const mealPlans = getMealPlans(travel.travels);
+
   return (
     <div>
       <Nav />
       <TravelHeader
         title={travel.name}
-        accomodationName={travel.options[0].accomodation_name}
-        description={travel.commercial_infos[0].catch_phrase}
-        imageUrl={travel.options[0].option_descriptions[0].big_picto}
+        accomodationName={travel.accomodation_name}
+        description={travel.catch_phrase}
+        imageUrl={travel.big_picto}
         duration={
           durations[0] +
           (durations.length > 1
@@ -33,13 +29,13 @@ export default function TravelDescription({ travel }) {
             : mealPlans[0].text
         }
       />
-      <OfferForm offers={getOffers(travel.air_types)} />
+      <OfferForm offers={travel.travels} />
     </div>
   );
 }
 
 export async function getServerSideProps() {
-  const travel = await getTravelById('AQ3CR');
+  const travel = await getTravelById('AQ4CR');
 
   return {
     props: {

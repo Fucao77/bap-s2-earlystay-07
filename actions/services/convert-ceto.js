@@ -72,6 +72,9 @@ exports.convertCeto = async function (prisma, ceto) {
             product.informations_formule.sejour_ville.thematique.theme_ceto[
               '@_value'
             ],
+          catch_phrase:
+            product.informations_commerciales.presentation_commerciale
+              .accroche_liste.libelle,
           delivery_services: {
             create: {
               // product_code: productId,
