@@ -93,7 +93,11 @@ export default function OfferForm({ offers }) {
     }));
 
     setChildQuantity(null);
-    setAdultQuantity(null);
+    setAdultQuantity(
+      quantities.length === 1
+        ? generateInputSelectorFeed(quantities, 'adulte')[0]
+        : null
+    );
   }, [airport]);
 
   // When adult quantity is selected
@@ -117,10 +121,12 @@ export default function OfferForm({ offers }) {
       childQuantities: generateInputSelectorFeed(quantities, 'enfant'),
     }));
 
-    setChildQuantity(null);
+    setChildQuantity(
+      quantities.length === 1
+        ? generateInputSelectorFeed(quantities, 'enfant')[0]
+        : null
+    );
   }, [adultQuantity]);
-
-  console.log(baseData);
 
   return (
     <section className={container}>

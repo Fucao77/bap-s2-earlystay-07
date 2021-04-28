@@ -6,11 +6,19 @@ import OfferForm from '../../components/travel/offer-form';
 import TabView from '../../components/global/tab-view';
 import TrustBanner from '../../components/global/trust-banner';
 import Footer from '../../components/footer';
+import HtmlParser from 'react-html-parser';
+
+import {
+  descriptionBlock,
+  descriptionBlockTitle,
+  imageBlock,
+  imageBlockItem,
+} from '../../styles/pages/travel.module.scss';
 
 export default function TravelDescription({ travel }) {
   const durations = getDurations(travel.travels);
   const mealPlans = getMealPlans(travel.travels);
-
+  console.log(travel);
   return (
     <div>
       <Nav />
@@ -34,11 +42,28 @@ export default function TravelDescription({ travel }) {
       />
       <OfferForm offers={travel.travels} />
       <TabView>
-        <TabView.TabItem title="Informations">test</TabView.TabItem>
+        <TabView.TabItem title="Informations">
+          {travel.options.map(
+            (option, index) =>
+              option.text && (
+                <article key={index} className={descriptionBlock}>
+                  <h3 className={descriptionBlockTitle}>{option.title}</h3>
+                  <div>{HtmlParser(option.text)}</div>
+                </article>
+              )
+          )}
+        </TabView.TabItem>
         <TabView.TabItem title="Images">
-          {travel.options[0].images.map((img, index) => (
-            <img src={img.big} alt="" key={index} />
-          ))}
+          <div className={imageBlock}>
+            {travel.options[0].images.map((img, index) => (
+              <img
+                src={img.big}
+                alt=""
+                key={index}
+                className={imageBlockItem}
+              />
+            ))}
+          </div>
         </TabView.TabItem>
       </TabView>
       <TrustBanner />
