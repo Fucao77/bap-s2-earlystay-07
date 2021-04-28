@@ -3,6 +3,9 @@ import Nav from '../../components/nav';
 import { getTravelById } from '../../services/travel-service';
 import { getDurations, getMealPlans } from '../../utils/travel-parser';
 import OfferForm from '../../components/travel/offer-form';
+import TabView from '../../components/global/tab-view';
+import TrustBanner from '../../components/global/trust-banner';
+import Footer from '../../components/footer';
 
 export default function TravelDescription({ travel }) {
   const durations = getDurations(travel.travels);
@@ -30,6 +33,16 @@ export default function TravelDescription({ travel }) {
         }
       />
       <OfferForm offers={travel.travels} />
+      <TabView>
+        <TabView.TabItem title="Informations">test</TabView.TabItem>
+        <TabView.TabItem title="Images">
+          {travel.options[0].images.map((img, index) => (
+            <img src={img.big} alt="" key={index} />
+          ))}
+        </TabView.TabItem>
+      </TabView>
+      <TrustBanner />
+      <Footer />
     </div>
   );
 }

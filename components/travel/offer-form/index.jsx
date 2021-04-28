@@ -179,25 +179,23 @@ export default function OfferForm({ offers }) {
           <h3 className={title}>Total</h3>
           <div className={priceTable}>
             <div className={priceTableRow}>
-              <td>Aéroport départ : </td>
-              <td>{airport ? airport.label : 'non spécifié'}</td>
+              <p>Aéroport départ : </p>
+              <p>{airport ? airport.label : 'non spécifié'}</p>
             </div>
 
             <div className={priceTableRow}>
-              <td>Aéroport arrivé : </td>
-              <td>
-                {baseData.travel ? baseData.travel.to_ref : 'non spécifié'}
-              </td>
+              <p>Aéroport arrivé : </p>
+              <p>{baseData.travel ? baseData.travel.to_ref : 'non spécifié'}</p>
             </div>
 
             <div className={priceTableRow}>
-              <td>Adulte(s) : </td>
-              <td>{adultQuantity ? adultQuantity.value : 'non spécifié'}</td>
+              <p>Adulte(s) : </p>
+              <p>{adultQuantity ? adultQuantity.value : 'non spécifié'}</p>
             </div>
 
             <div className={priceTableRow}>
-              <td>Enfant(s) :</td>
-              <td>{childQuantity ? childQuantity.value : 'non spécifié'}</td>
+              <p>Enfant(s) :</p>
+              <p>{childQuantity ? childQuantity.value : 'non spécifié'}</p>
             </div>
           </div>
           <footer className={totalBlockFooter}>
