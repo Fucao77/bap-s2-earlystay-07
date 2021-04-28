@@ -19,9 +19,60 @@ export default function FAQpage() {
           sagittis dignissim.
         </p>
       </FAQ>
-      <FAQ title="test ">
+      <FAQ title="test">
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra
+          egestas erat nulla nunc sagittis dignissim.Lorem ipsum dolor sit amet,
+          consectetur adipiscing elit. Vive Lorem ipsum dolor sit amet,
+          consectetur adipiscing elit. Viverra egestas erat nulla nunc sagittis
+          dignissim.Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Vive
+        </p>
+      </FAQ>
+      <FAQ title="Pourquoi avoir créé un site ? ">
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra
+          egestas erat nulla nunc sagittis dignissim.Lorem ipsum dolor sit amet,
+          consectetur adipiscing elit. Vive Lorem ipsum dolor sit amet,
+          consectetur adipiscing elit. Viverra egestas erat nulla nunc sagittis
+          dignissim.Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Vive
+        </p>
+      </FAQ>
+      <FAQ title="Comment nous contacter ? ">
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra
+          egestas erat nulla nunc sagittis dignissim.Lorem ipsum dolor sit amet,
+          consectetur adipiscing elit. Vive Lorem ipsum dolor sit amet,
+          consectetur adipiscing elit. Viverra egestas erat nulla nunc sagittis
+          dignissim.Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Vive Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra
+          egestas erat nulla nunc sagittis dignissim.Lorem ipsum dolor sit amet,
+          consectetur adipiscing elit. Vive
+        </p>
+      </FAQ>
+
+      <FAQ title="Comment nous contacter ? ">
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra
+          egestas erat nulla nunc sagittis dignissim.Lorem ipsum dolor sit amet,
+          consectetur adipiscing elit. Vive Lorem ipsum dolor sit amet,
+          consectetur adipiscing elit. Viverra egestas erat nulla nunc sagittis
+          dignissim.Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Vive Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra
+          egestas erat nulla nunc sagittis dignissim.Lorem ipsum dolor sit amet,
+          consectetur adipiscing elit. Vive
+        </p>
+      </FAQ>
+
+      <FAQ title="Comment nous contacter ? ">
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra
+          egestas erat nulla nunc sagittis dignissim.Lorem ipsum dolor sit amet,
+          consectetur adipiscing elit. Vive Lorem ipsum dolor sit amet,
+          consectetur adipiscing elit. Viverra egestas erat nulla nunc sagittis
+          dignissim.Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Vive Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra
           egestas erat nulla nunc sagittis dignissim.Lorem ipsum dolor sit amet,
           consectetur adipiscing elit. Vive
         </p>
