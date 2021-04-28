@@ -5,6 +5,7 @@ import {
   containerOptions,
   option,
   arrowSelected,
+  themeBlack,
 } from './border-selector.module.scss';
 import classNames from 'classnames';
 import { useRef, useState, useEffect } from 'react';
@@ -16,11 +17,13 @@ export default function BorderSelector({
   data,
   selected,
   setSelected,
+  theme = 'white',
 }) {
   const [selectorEnable, setSelectorEnable] = useState(false);
   const toggle = () => setSelectorEnable((prev) => !prev);
   const selectOption = (index) => {
     setSelected(data[index]);
+    toggle();
   };
 
   const selectorRef = useRef();
@@ -45,7 +48,13 @@ export default function BorderSelector({
   }, []);
 
   return (
-    <div className={classNames(className, container)}>
+    <div
+      className={classNames(
+        className,
+        container,
+        theme === 'black' ? themeBlack : null
+      )}
+    >
       <button className={button} onClick={toggle} ref={buttonRef}>
         {selected?.label ? selected.label : label}
         <svg

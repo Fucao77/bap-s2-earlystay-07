@@ -1,19 +1,22 @@
 import React from 'react';
+
 import {
   article_header,
-  image,
+  blockimg,
   contenu,
   texte,
   footer_article,
+  image,
 } from '../header-article/headerclient.module.scss';
 
 export default function HeaderArticle() {
   return (
     <div className={article_header}>
-      <div className={image}>
+      <div className={blockimg}>
         <img
           src="https://images.unsplash.com/photo-1515896769750-31548aa180ed?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1434&q=80"
           alt=""
+          className={image}
         />
       </div>
 

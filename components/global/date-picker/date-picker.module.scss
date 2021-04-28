@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    font-size: var.$important-size;
     position: relative;
 }
 
@@ -17,16 +18,18 @@
     justify-content: center;
     align-items: center;
     position: relative;
+    font-size: 1em;
     &:focus {
         outline: none;
     }
 }
+
 .clock {
     position: absolute;
     right: 5%;
 }
 .labelWrapper { 
-    font-size: var.$important-size;
+    font-size: inherit;
 }
 .pickerWrapper{
     background-color: var.$white;
@@ -36,5 +39,26 @@
 
     & > * {
         width: 100%;
+    }
+}
+
+// THEMES 
+
+.themeBlack {
+    .wrapper  {
+        border-color: var.$black;
+        color: var.$black;
+    }
+
+    .pickerWrapper {
+        border-bottom: 2px solid var.$black;
+        border-left: 2px solid var.$black;
+        border-right: 2px solid var.$black;
+    }
+
+    .clock {
+       path {
+           fill: var.$black;
+       } 
     }
 }

@@ -5,7 +5,7 @@
     justify-content: space-around;
     padding-top: 50px;
 
-    .image {
+    .blockimg {
       width: 45%;
 
      img {
@@ -54,4 +54,56 @@
   }
 
 
+}
+
+
+/*responsive format Mobile */
+
+@media screen and (max-width: 440px) {
+    .article_header {
+        
+        .blockimg{
+          padding-left: 100px;
+
+            .image{
+                width: 550px;
+                height: 400px;
+            }
+        }
+
+        .contenu {
+            padding-top: 450px;
+            padding-left: 150px;
+           text-align: center;
+           
+
+            h2 {
+               font-size: 40px;
+           }
+
+
+
+          .texte {
+              p {
+                position: absolute;
+                width: 615.03px;
+                font-size: 20px;
+              }
+            
+          }
+
+          .footer_article {
+              padding-top: 400px;
+              display: flex;
+              justify-content: space-between;
+              width: 300px;
+              align-items: center;
+            
+              
+    
+          }
+
+        }
+      
+    }
 }

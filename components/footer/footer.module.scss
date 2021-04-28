@@ -5,9 +5,12 @@
     background-color: var.$primary-blue;
     color:white;
     font-style: var.$poppins;
-    padding:20px;
+    padding:30px;
     text-align: center;
-    
+
+    @media screen and (max-width:850px){
+        flex-flow: column wrap ;
+    }
 }
 
 .content {
@@ -18,6 +21,7 @@
 .title{
     font-weight: 500;
     font-size:var.$h3-size;
+    padding:10px;
 }
 
 
@@ -30,10 +34,3 @@
 }
 
 
-@media screen and (max-width: 440px) {
-    .footer {
-        .content {
-            font-size: 50px;
-        }
-    }
-}

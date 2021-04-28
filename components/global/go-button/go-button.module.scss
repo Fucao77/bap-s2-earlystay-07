@@ -1,0 +1,30 @@
+.goBtn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 100%;
+    border: none;
+    cursor: pointer;
+}
+
+.goBtnOrange {
+    background-color: var.$secondary-orange;
+
+    path {
+        fill: var.$white
+    }
+}
+
+.goBtnWhite {
+    background-color: var.$white;
+
+    path {
+        fill: var.$secondary-orange;
+    }
+}
+
+.goBtnTop {
+    transform: rotate(180deg);
+}

@@ -22,9 +22,43 @@
 
   }
 
+  .list {
+    display: flex;
+    justify-content: center;
+  }
+
+}
 
 
-  
+@media screen and (max-width: 440px) {
+  .section {
+    
+    header {
+      width: 720px;
+      height: 488px;
+      .titre {
+        h1 {
+          text-align: center;
+          font-size: 80px;
+        }
+      }
+   
+    }
 
+
+
+
+    .list {
+      display: none;
+    }
+
+
+    footer {
+      padding-top: 110px;
+      width: 720px;
+    }
+
+
+  }
 
 }

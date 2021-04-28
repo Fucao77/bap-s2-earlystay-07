@@ -56,29 +56,34 @@
 
 @media screen and (max-width: 440px)
 {
+
+
     .section {
       
         .article {
             display: flex;
             flex-direction: column;
-            width: 515px;
-            height: 557px;
+            width: 110vh;
+            height: 657px;
             
             div {
 
                 .img {
-                    width: 515px;
-                    height: 139px;
+                    width: 895px;
+                    height: 239px;
                 }
-
             }
 
 
-
-
             .header {
-                font-size: 20px;               
-                padding-top: 150px;
+                padding-top: 250px;            
+                flex-flow: column;
+            }
+
+            .description {
+                text-align: center;
+                
+
             }
 
         }

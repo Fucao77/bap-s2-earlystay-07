@@ -14,11 +14,15 @@ import {
 } from './offer-section.module.scss';
 
 import classNames from 'classnames';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-export default function OfferSection({ data, label, className }) {
+export default function OfferSection({ data, label, className, onClick }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const currentData = data[currentIndex];
+
+  useEffect(() => {
+    setCurrentIndex(0);
+  }, [data]);
 
   return (
     <section className={classNames(container, className)}>
@@ -47,7 +51,7 @@ export default function OfferSection({ data, label, className }) {
         ))}
       </div>
       <footer className={ctaButtonWrapper}>
-        <ActionButton>Je réserve</ActionButton>
+        <ActionButton onClick={onClick}>Je réserve</ActionButton>
       </footer>
     </section>
   );
