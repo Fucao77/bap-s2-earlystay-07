@@ -1,0 +1,24 @@
+.descriptionBlock {
+    background: var.$secondary-gradient;
+    margin: map-get($map: var.$margins, $key: 2 ) 0;
+    padding: map-get($map: var.$margins, $key: 4 ) ;
+
+    * {
+        color: var.$white;
+    }
+}
+
+.descriptionBlockTitle {
+    margin-bottom: map-get($map: var.$margins, $key: 2) ;
+}
+
+.imageBlock {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+}
+
+.imageBlockItem {
+    margin-bottom: map-get($map: var.$margins, $key: 2 );
+}

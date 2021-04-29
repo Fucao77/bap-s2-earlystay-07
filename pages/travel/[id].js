@@ -1,25 +1,32 @@
 import TravelHeader from '../../components/travel/travel-header';
 import Nav from '../../components/nav';
 import { getTravelById } from '../../services/travel-service';
-import {
-  getDurations,
-  getMealPlans,
-  getOffers,
-} from '../../utils/travel-parser';
+import { getDurations, getMealPlans } from '../../utils/travel-parser';
 import OfferForm from '../../components/travel/offer-form';
+import TabView from '../../components/global/tab-view';
+import TrustBanner from '../../components/global/trust-banner';
+import Footer from '../../components/footer';
+import HtmlParser from 'react-html-parser';
+
+import {
+  descriptionBlock,
+  descriptionBlockTitle,
+  imageBlock,
+  imageBlockItem,
+} from '../../styles/pages/travel.module.scss';
 
 export default function TravelDescription({ travel }) {
-  const durations = getDurations(travel.air_types);
-  const mealPlans = getMealPlans(travel.air_types);
+  const durations = getDurations(travel.travels);
+  const mealPlans = getMealPlans(travel.travels);
   console.log(travel);
   return (
     <div>
       <Nav />
       <TravelHeader
         title={travel.name}
-        accomodationName={travel.options[0].accomodation_name}
-        description={travel.commercial_infos[0].catch_phrase}
-        imageUrl={travel.options[0].option_descriptions[0].big_picto}
+        accomodationName={travel.accomodation_name}
+        description={travel.catch_phrase}
+        imageUrl={travel.big_picto}
         duration={
           durations[0] +
           (durations.length > 1
@@ -33,13 +40,40 @@ export default function TravelDescription({ travel }) {
             : mealPlans[0].text
         }
       />
-      <OfferForm offers={getOffers(travel.air_types)} />
+      <OfferForm offers={travel.travels} />
+      <TabView>
+        <TabView.TabItem title="Informations">
+          {travel.options.map(
+            (option, index) =>
+              option.text && (
+                <article key={index} className={descriptionBlock}>
+                  <h3 className={descriptionBlockTitle}>{option.title}</h3>
+                  <div>{HtmlParser(option.text)}</div>
+                </article>
+              )
+          )}
+        </TabView.TabItem>
+        <TabView.TabItem title="Images">
+          <div className={imageBlock}>
+            {travel.options[0].images.map((img, index) => (
+              <img
+                src={img.big}
+                alt=""
+                key={index}
+                className={imageBlockItem}
+              />
+            ))}
+          </div>
+        </TabView.TabItem>
+      </TabView>
+      <TrustBanner />
+      <Footer />
     </div>
   );
 }
 
 export async function getServerSideProps() {
-  const travel = await getTravelById('AQ3CR');
+  const travel = await getTravelById('AQ4CR');
 
   return {
     props: {

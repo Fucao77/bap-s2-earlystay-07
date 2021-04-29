@@ -1,0 +1,24 @@
+
+
+.buttonfaq{
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    width: 60%;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.text {
+    width: 60%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.container{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.svg{
+    margin-left: 10px;
+    transition: 0.2s;
+}

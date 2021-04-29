@@ -27,54 +27,9 @@ model articles {
 }
 
 
-model commercial_info_plus {
-  id                              String                            @id @db.VarChar(50)
-  info_id                         String                            @db.VarChar(50)
-  number                          Int
-  commercial_infos                commercial_infos                  @relation(fields: [info_id], references: [id])
-  commercial_info_plus_paragraphs commercial_info_plus_paragraphs[]
-
-  @@index([info_id], name: "fk_commercial_info_plus_info_id")
-}
-
-model commercial_info_plus_paragraphs {
-  id                   Int                  @id @default(autoincrement())
-  info_plus_id         String               @db.VarChar(50)
-  title                String               @db.VarChar(255)
-  text                 String               @db.MediumText
-  number               Int
-  commercial_info_plus commercial_info_plus @relation(fields: [info_plus_id], references: [id])
-
-  @@index([info_plus_id], name: "fk_commercial_info_plus_paragraphs_info_plus_id")
-}
-
-model commercial_infos {
-  id                      String                    @id @db.VarChar(50)
-  product_code            String                    @db.VarChar(255)
-  catch_phrase            String                    @db.MediumText
-  products                products                  @relation(fields: [product_code], references: [interne_to])
-  commercial_info_plus    commercial_info_plus[]
-  commercial_reservations commercial_reservations[]
-
-  @@index([product_code], name: "fk_commercial_infos_product_code")
-}
-
-model commercial_reservations {
-  id               Int              @id @default(autoincrement())
-  info_id          String           @db.VarChar(50)
-  type             String           @db.VarChar(255)
-  media            String           @db.LongText
-  comment          String           @db.MediumText
-  number           Int
-  commercial_infos commercial_infos @relation(fields: [info_id], references: [id])
-
-  @@index([info_id], name: "fk_commercial_reservations_info_id")
-}
-
 model delivery_services {
   id             Int      @id @default(autoincrement())
-  product_code   String   @db.VarChar(255)
-  number         Int
+  product_code   String   @db.VarChar(50)
   direction      String   @db.VarChar(255)
   service_type   String   @db.VarChar(255)
   inclusion      String   @db.VarChar(255)
@@ -85,141 +40,109 @@ model delivery_services {
   @@index([product_code], name: "fk_delivery_services_product_code")
 }
 
-model destinations {
-  id           Int      @id @default(autoincrement())
-  product_code String   @db.VarChar(255)
-  number       Int
-  city         String   @db.VarChar(255)
-  products     products @relation(fields: [product_code], references: [interne_to])
 
-  @@index([product_code], name: "fk_destinations_product_code")
-}
-
-model option_description_paragraph_objects {
+model option_images {
   id                            Int                           @id @default(autoincrement())
-  paragraph_id                  String                        @db.VarChar(50)
-  number                        Int
+  option_id                     Int                        
   small                         String                        @db.LongText
   big                           String                        @db.LongText
   legende                       String                        @db.MediumText
   type                          String                        @db.VarChar(50)
-  option_description_paragraphs option_description_paragraphs @relation(fields: [paragraph_id], references: [id])
+  option_description_paragraphs option_description            @relation(fields: [option_id], references: [id])
 
-  @@index([paragraph_id], name: "fk_option_description_paragraph_objects_paragraph_id")
+  @@index([option_id], name: "fk_option_description_paragraph_objects_paragraph_id")
 }
 
-model option_description_paragraphs {
-  id                                   String                                 @id @db.VarChar(50)
-  description_id                       String                                 @db.VarChar(50)
-  number                               Int
-  title                                String                                 @db.VarChar(255)
-  text                                 String                                 @db.LongText
-  option_descriptions                  option_descriptions                    @relation(fields: [description_id], references: [id])
-  option_description_paragraph_objects option_description_paragraph_objects[]
+model option_description {
+  id                                    Int                                  @id @default(autoincrement())
+  product_code                          String                                  @db.VarChar(50)
+  number                                Int
+  title                                 String                                  @db.VarChar(255)
+  text                                  String                                  @db.LongText
+  product                               products                                @relation(fields: [product_code], references: [interne_to])
+  images                                option_images[]
 
-  @@index([description_id], name: "fk_option_description_paragraphs_description_id")
+  @@index([product_code], name: "fk_option_product_code")
 }
 
-model option_descriptions {
-  id                            String                          @id @db.VarChar(50)
-  option_id                     String                          @db.VarChar(50)
-  number                        Int
-  small_picto                   String                          @db.LongText
-  big_picto                     String                          @db.LongText
-  options                       options                         @relation(fields: [option_id], references: [id])
-  option_description_paragraphs option_description_paragraphs[]
-
-  @@index([option_id], name: "fk_option_descriptions_option_id")
-}
-
-model options {
-  id                  String                @id @db.VarChar(50)
-  product_code        String                @db.VarChar(255)
-  accomodation_type   String                @db.VarChar(255)
-  accomodation_name   String                @db.VarChar(255)
-  theme_to            String                @db.VarChar(255)
-  theme_ceto          String                @db.VarChar(255)
-  products            products              @relation(fields: [product_code], references: [interne_to])
-  option_descriptions option_descriptions[]
-
-  @@index([product_code], name: "fk_options_product_code")
-}
 
 model products {
-  code              String              @db.VarChar(255)
-  name              String              @db.VarChar(255)
-  sale              String              @db.VarChar(255)
-  option            String              @db.VarChar(255)
-  presentable_alone String              @db.VarChar(255)
-  with_delivery     String              @db.VarChar(255)
-  interne_to        String              @id @db.VarChar(255)
-  commercial_infos  commercial_infos[]
-  delivery_services delivery_services[]
-  destinations      destinations[]
-  options           options[]
-  air_types         air_types[]
+  name                String                @db.VarChar(255)
+  sale                String                @db.VarChar(255)
+  option              String                @db.VarChar(255)
+  presentable_alone   String                @db.VarChar(255)
+  with_delivery       String                @db.VarChar(255)
+  interne_to          String                @id @db.VarChar(50)
+  accomodation_type   String                @db.VarChar(50)
+  accomodation_name   String                @db.VarChar(250)
+  theme_to            String                @db.VarChar(50)
+  theme_ceto          String                @db.VarChar(50)
+  small_picto         String                @db.LongText
+  big_picto           String                @db.LongText
+  plus_title          String                @db.VarChar(50)
+  plus_value          String                @db.VarChar(50)
+  reservation_url     String                @db.LongText
+  reservation_tel     String                @db.VarChar(50)
+  catch_phrase        String                @db.LongText
+  delivery_services   delivery_services?
+  options             option_description[]
+  travels             travels[]
 }
 
-model air_type_begins {
-  id                                                  String                                @id @db.VarChar(50)
-  air_type_id                                         String                                @db.VarChar(50)
-  between_begin                                       DateTime                              @db.Date
-  between_end                                         DateTime                              @db.Date
-  end_moment                                          String                                @db.VarChar(50)
+model travel_item {
+  id                                                  Int                                         @id @default(autoincrement())
+  travel_id                                           Int                                     
+  between_begin                                       DateTime                                    @db.Date
+  between_end                                         DateTime                                    @db.Date
+  end_moment                                          String                                      @db.VarChar(50)
   day                                                 Int
-  price_main_ref                                      String                                @db.VarChar(100)
-  price_quantity                                      String                                @db.VarChar(50)
-  price_code_value                                    String                                @db.VarChar(50)
-  price_code_name                                     String                                @db.VarChar(50)
+  price_main_ref                                      String                                      @db.VarChar(100)
+  price_quantity                                      String                                      @db.VarChar(50)
+  price_code_value                                    String                                      @db.VarChar(50)
+  price_code_name                                     String                                      @db.VarChar(50)
   price_tax_value                                     Int
   price_value                                         Int
   price_original_value                                Int?
-  price_ref                                           String                                @db.VarChar(50)     
-  rule_code_value                                     String                                @db.VarChar(50)
-  rule_code_name                                      String                                @db.VarChar(50)
-  rule_at_ref                                         String                                @db.VarChar(50)
-  air_type_price_quantities                           air_type_rule_quantities[] 
-  air_types                                           air_types                     @relation(fields: [air_type_id], references: [id])
-  price_data                                          price_data                    @relation(fields: [price_main_ref], references: [id])
+  price_ref                                           String                                      @db.VarChar(50)     
+  rule_code_value                                     String                                      @db.VarChar(50)
+  rule_code_name                                      String                                      @db.VarChar(50)
+  rule_at_ref                                         String                                      @db.VarChar(50)
+  travels                                             travels                                     @relation(fields: [travel_id], references: [id])
+  reservation_data                                    reservation_data                            @relation(fields: [price_main_ref], references: [id]) 
+  person_quantity_min                                 Int
+  person_quantity_max                                 Int
+  adult_quantity_min                                  Int
+  adult_quantity_max                                  Int
+  child_quantity_min                                  Int
+  child_quantity_max                                  Int
+  infant_quantity_min                                 Int
+  infant_quantity_max                                 Int
 
-  @@index([air_type_id], name: "fk_air_type_begins_air_type_id")
+  @@index([travel_id], name: "fk_air_type_begins_air_type_id")
   @@index([price_main_ref], name: "fk_air_type_price_data_id")
 }
 
-
-model air_type_rule_quantities {
-  id                           Int                          @id @default(autoincrement())
-  air_type_begin_id            String                       @db.VarChar(50)
-  topic                        String                       @db.VarChar(50)
-  unit                         String                       @db.VarChar(50)
-  max                          Int
-  min                          Int
-  air_type_price_rules         air_type_begins              @relation(fields: [air_type_begin_id], references: [id])
-
-  @@index([air_type_begin_id], name: "fk_air_type_price_quantities_air_type_begin_id")
-}
-
-model air_types {
-  id                      String                    @id @db.VarChar(50)
-  product_code            String                    @db.VarChar(255)
+model travels {
+  id                      Int                    @id @default(autoincrement())
+  product_code            String                    @db.VarChar(50)
   from_ref                String                    @db.VarChar(50)
   from_default            String                    @db.VarChar(50)
   to_ref                  String                    @db.VarChar(50)
   products                products                  @relation(fields: [product_code], references: [interne_to])
-  air_type_begins         air_type_begins[]
+  travel_items         travel_item[]
 
   @@index([product_code], name: "fk_air_types_product_code")
 }
 
-model stay_type_meal_plans {
-  id              String          @id @db.VarChar(50) 
-  code_txt        String?          @db.VarChar(50)
-  code            String          @db.VarChar(50)
-  text            String          @db.VarChar(50)
-  price_data      price_data[]
+model meal_plans {
+  id              String              @id @db.VarChar(50) 
+  code_txt        String?             @db.VarChar(50)
+  code            String              @db.VarChar(50)
+  text            String              @db.VarChar(50)
+  price_data      reservation_data[]
 }
 
-model price_data {
+model reservation_data {
   id                      String                    @id @db.VarChar(100)
   currency                String? 
   decimals                Int? 
@@ -233,8 +156,8 @@ model price_data {
   room_ref                String                    @db.VarChar(50)  
   traveller_type          String                    @db.VarChar(50)
   traveller_quantity      Int    
-  air_type_begins         air_type_begins[]
-  meal_plan               stay_type_meal_plans      @relation(fields: [meal_plan_ref], references: [id])
+  travel_items            travel_item[]
+  meal_plan               meal_plans      @relation(fields: [meal_plan_ref], references: [id])
 
   @@index([meal_plan_ref], name: "fk_meal_plan_ref")
 }
