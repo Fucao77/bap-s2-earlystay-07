@@ -10,63 +10,21 @@ import {
   goBackBtn,
 } from './search-results.module.scss';
 
-const data = [
-  {
-    imageUrl:
-      'https://images.unsplash.com/photo-1618675962429-3f82741be252?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80',
-    title: 'Pérou - Lima',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliquadzdzqdqzdzqd qzdzqdzqdzqdqzdzqdzqd qzdzq dzqdqzdzqdqzdqzdqzdqzdqzd zqdqzdqz d qdqzd qzdzqdqz dqdqzd qzdq dqzdzqd qzdd qzd ',
-    linkUrl: '/',
-    price: 1300,
-    dayNumber: 7,
-  },
-  {
-    imageUrl:
-      'https://images.unsplash.com/photo-1618675962429-3f82741be252?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80',
-    title: 'Pérou - Lima',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...',
-    linkUrl: '/',
-    price: 1300,
-    dayNumber: 7,
-  },
-  {
-    imageUrl:
-      'https://images.unsplash.com/photo-1618675962429-3f82741be252?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80',
-    title: 'Pérou - Lima',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...',
-    linkUrl: '/',
-    price: 1300,
-    dayNumber: 7,
-  },
-  {
-    imageUrl:
-      'https://images.unsplash.com/photo-1618675962429-3f82741be252?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80',
-    title: 'Pérou - Lima',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...',
-    linkUrl: '/',
-    price: 1300,
-    dayNumber: 7,
-  },
-];
-
-export default function SearchResults({ pages }) {
+export default function SearchResults({ pages, results }) {
   return (
     <section className={container} id="results">
       <SubTitle title="Résultats" />
       <div className={resultWrapper}>
-        {data.map((item, index) => (
+        {results.length === 0 && <p>Aucun aucun résultat disponible</p>}
+        {results.map((item, index) => (
           <SearchItem
             key={index}
-            imageUrl={item.imageUrl}
-            title={item.title}
-            description={item.description}
-            linkUrl={item.linkUrl}
-            price={item.price}
-            dayNumber={item.dayNumber}
+            imageUrl={item.small_picto}
+            title={item.name}
+            description={item.catch_phrase}
+            linkUrl={'/travel/' + item.interne_to}
+            price={500}
+            dayNumber={7}
           />
         ))}
       </div>

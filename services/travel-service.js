@@ -1,9 +1,34 @@
 import { PrismaClient } from '.prisma/client';
 import { ObjectSerializer } from '../utils/serializer';
 
-// export function searchTravel({ searchValue, departureDate, duration,  }) {
+export async function searchTravels({ searchValue, page = 0, take = 20 }) {
+  const prisma = new PrismaClient();
+  const queryArgs = {
+    // skip :page * take,
+    // take,
+    where: {
+      name: {
+        contains: searchValue,
+      },
+      travels: {
+        some: {},
+      },
+    },
+  };
 
-// }
+  const results = await prisma.$transaction([
+    prisma.products.count(queryArgs),
+    prisma.products.findMany({
+      ...queryArgs,
+      take,
+      skip: page * take,
+    }),
+  ]);
+
+  prisma.$disconnect();
+
+  return { pageNumber: results[0], results: results[1] };
+}
 
 export async function getTravelById(id) {
   const prisma = new PrismaClient();

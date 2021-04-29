@@ -1,6 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 import slugify from 'slugify';
-import { ManagerValidator } from '../../utility/inputValidator/validator';
+import { ManagerValidator } from '../../utils/validator';
 
 export default async function addArticle(req, res) {
   if (req.method !== 'POST') {
