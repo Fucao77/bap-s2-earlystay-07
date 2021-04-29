@@ -13,6 +13,7 @@ import {
   containerLinks,
   socialNetwork,
   socialLogo,
+  logoFinal,
 } from './nav.module.scss';
 
 export default function Nav() {
@@ -39,7 +40,7 @@ export default function Nav() {
     <div className={container}>
       <nav className={nav}>
         <div className={logo}>
-          <p>Logo</p>
+          <img className={logoFinal} src="/img/logofinal.png"></img>
         </div>
         <div className={navRight}>
           <button className={destination}>Destination</button>

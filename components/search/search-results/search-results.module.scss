@@ -4,6 +4,7 @@
 
 .resultWrapper {
     padding: map-get($map: var.$margins, $key: 4 ) 0;
+    min-height: 40vh;
 }
 
 .footer {
