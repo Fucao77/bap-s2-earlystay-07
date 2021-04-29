@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import HtmlParser from 'react-html-parser';
 
 import {
   container,
@@ -17,7 +18,7 @@ export default function SearchItem({
   imageUrl,
   title,
   description,
-  // linkUrl,
+  linkUrl,
   price,
   dayNumber,
 }) {
@@ -31,8 +32,10 @@ export default function SearchItem({
           <div className={main}>
             <h3 className={mainTitle}>{title}</h3>
             <p className={mainDescription}>
-              {description.substring(0, 150)}
-              {description.length > 151 ? '...' : ''}
+              {HtmlParser(
+                description.substring(0, 150) +
+                  (description.length > 150 ? '...' : '')
+              )}
             </p>
           </div>
           <footer className={annexDataWrapper}>
@@ -81,7 +84,7 @@ export default function SearchItem({
             </div>
           </footer>
         </div>
-        <Link href={'/travel/d'}>
+        <Link href={linkUrl}>
           <a className={ctaLink}>Découvrir</a>
         </Link>
       </div>

@@ -18,7 +18,6 @@ import {
 export default function TravelDescription({ travel }) {
   const durations = getDurations(travel.travels);
   const mealPlans = getMealPlans(travel.travels);
-  console.log(travel);
   return (
     <div>
       <Nav />
@@ -53,18 +52,20 @@ export default function TravelDescription({ travel }) {
               )
           )}
         </TabView.TabItem>
-        <TabView.TabItem title="Images">
-          <div className={imageBlock}>
-            {travel.options[0].images.map((img, index) => (
-              <img
-                src={img.big}
-                alt=""
-                key={index}
-                className={imageBlockItem}
-              />
-            ))}
-          </div>
-        </TabView.TabItem>
+        {travel.options[0].images.length > 0 && (
+          <TabView.TabItem title="Images">
+            <div className={imageBlock}>
+              {travel.options[0].images.map((img, index) => (
+                <img
+                  src={img.big}
+                  alt=""
+                  key={index}
+                  className={imageBlockItem}
+                />
+              ))}
+            </div>
+          </TabView.TabItem>
+        )}
       </TabView>
       <TrustBanner />
       <Footer />
@@ -72,8 +73,17 @@ export default function TravelDescription({ travel }) {
   );
 }
 
-export async function getServerSideProps() {
-  const travel = await getTravelById('AQ4CR');
+export async function getServerSideProps(context) {
+  const travel = await getTravelById(context.params.id);
+
+  if (travel.travels.length === 0) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: '/',
+      },
+    };
+  }
 
   return {
     props: {

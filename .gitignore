@@ -36,3 +36,5 @@ yarn-error.log*
 data
 # env
 .env
+
+.eslintcache

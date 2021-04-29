@@ -15,7 +15,7 @@ export default function TabView({ children }) {
 
   const subComponents = subComponentList.map((key) => {
     return React.Children.map(children, (child) =>
-      child.type.name === key ? child : null
+      child?.type.name === key ? child : null
     );
   });
 
