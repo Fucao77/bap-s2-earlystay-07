@@ -4,3 +4,8 @@ export const THEMES = [
     value: 'balneaire',
   },
 ];
+
+export const RANGES_DAY = {
+  travelDuration: 5,
+  travelDate: 7,
+};

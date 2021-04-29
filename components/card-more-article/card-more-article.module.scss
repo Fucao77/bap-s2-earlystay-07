@@ -1,0 +1,47 @@
+.articleCard{
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 40vw;
+    .imageCard{
+        width: 50%; 
+    }
+
+    .articleDescription{
+        text-align: center;
+        width: 60%;
+        margin-top: var.$M-margin;
+    }
+    p{
+        font-size: 0.8rem;
+        
+    }
+    .block{
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        width: 80%;
+    }
+
+    a{
+        color: var.$secondary-orange;
+        font-weight: bold;
+        font-size: 1.3rem;
+        margin-top: 2rem;
+    }
+
+    .articleDate{
+        font-weight: bold;
+        font-size: 1rem;
+        margin-left: 10px;
+    }
+
+    .articleIcon{
+        display: flex;
+    }
+
+    .articleCalendar{
+        width: 25px;
+    }
+}

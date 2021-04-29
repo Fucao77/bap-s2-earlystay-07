@@ -1,0 +1,22 @@
+.tabWrapper {
+    padding: map-get($map: var.$margins, $key: 4 )
+}
+.tabHeader {
+    margin-bottom: map-get($map: var.$margins, $key: 4 ) ;
+}
+.navItem {
+    background: none;
+    border: none;
+    font-weight: bold;
+    font-size: var.$important-size;
+    margin-right: map-get($map: var.$margins, $key: 2 );
+    cursor: pointer;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.navItemSelected {
+    text-decoration: underline;
+}

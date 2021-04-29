@@ -19,7 +19,7 @@
     flex-direction: column;
     align-items: center;
     margin: map-get($map: var.$margins, $key: 3 ) 0;
-    padding: map-get($map: var.$margins, $key: 7 ) map-get($map: var.$margins, $key: 10 );
+    padding: map-get($map: var.$margins, $key: 5 ) map-get($map: var.$margins, $key: 8);
 }
 
 .blockRow {
@@ -30,10 +30,46 @@
 
 .blockContent {
     padding: map-get($map: var.$margins, $key: 4 ) 0;
+    display: grid;
+    gap: map-get($map: var.$margins, $key: 3);
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.delimiter {
+    width: 100%;
+    height: 2px;
+    background-color: var.$black;
+    display: block
+
+}
+
+.totalBlock {
+    @extend .blockWrapper;
+    justify-content: space-between;
+
+}
+
+.totalBlockFooter {
+    width: 100%;
     display: flex;
+    flex-direction: column;
     align-items: center;
 }
 
-.input {
-    font-size: var.$text-size;
+.totalPrice {
+    margin: map-get($map: var.$margins, $key: 1 ) 0;
+}
+
+.priceTable {
+// 
+}
+.priceTableRow {
+    padding-bottom: map-get($map: var.$margins, $key: 1 );
+    display: flex;
+    justify-content: space-between;
+
+    *:first-child {
+        margin-right: map-get($map: var.$margins, $key: 2 );
+        font-weight: bold;
+    }
 }

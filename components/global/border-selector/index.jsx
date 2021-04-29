@@ -6,6 +6,7 @@ import {
   option,
   arrowSelected,
   themeBlack,
+  themeDisable,
 } from './border-selector.module.scss';
 import classNames from 'classnames';
 import { useRef, useState, useEffect } from 'react';
@@ -18,10 +19,15 @@ export default function BorderSelector({
   selected,
   setSelected,
   theme = 'white',
+  isDisable = false,
 }) {
   const [selectorEnable, setSelectorEnable] = useState(false);
-  const toggle = () => setSelectorEnable((prev) => !prev);
+  const toggle = () => {
+    if (isDisable) return;
+    setSelectorEnable((prev) => !prev);
+  };
   const selectOption = (index) => {
+    if (isDisable) return;
     setSelected(data[index]);
     toggle();
   };
@@ -52,7 +58,8 @@ export default function BorderSelector({
       className={classNames(
         className,
         container,
-        theme === 'black' ? themeBlack : null
+        theme === 'black' ? themeBlack : null,
+        isDisable ? themeDisable : null
       )}
     >
       <button className={button} onClick={toggle} ref={buttonRef}>
