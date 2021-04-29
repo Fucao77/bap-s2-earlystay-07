@@ -124,14 +124,14 @@ export default function Nav() {
         style={!isToggle ? { display: 'none' } : null}
       >
         <div className={links} style={display2}>
-          <Link href="/connexion/connexion">
+          {/* <Link href="/connexion/connexion">
             <a className={link}>connexion</a>
-          </Link>
+          </Link> */}
           <Link href="/">
             <a className={link}>Accueil</a>
           </Link>
-          <Link href="/destination/destination.js">
-            <a className={link}>Destination</a>
+          <Link href="/avis">
+            <a className={link}>Votre avis</a>
           </Link>
           <Link href="/QSN/index.js">
             <a className={link}>Qui sommes-nous?</a>
