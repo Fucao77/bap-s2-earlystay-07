@@ -6,6 +6,7 @@
     width: 40vw;
     .imageCard{
         width: 50%; 
+        max-height: 50%;
     }
 
     .articleDescription{
@@ -27,12 +28,12 @@
     a{
         color: var.$secondary-orange;
         font-weight: bold;
-        font-size: 1.3rem;
+        font-size: 1rem;
         margin-top: 2rem;
     }
 
     .articleDate{
-        font-weight: bold;
+
         font-size: 1rem;
         margin-left: 10px;
     }

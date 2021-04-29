@@ -14,13 +14,16 @@ import {
   imageArticle,
   contentArticle,
   dateArticle,
-} from '../../styles/pages/index.module.scss';
+  sectionMoreArticle,
+  h2Article,
+} from '../../styles/pages/article.module.scss';
 
-export default function article({ article, article1 }) {
+export default function article({ article, article1, article2 }) {
   const srcMiniature = '/upload-image/article-image/' + article.miniature;
 
   const dateParse = dateToString(new Date(Date.parse(article.created_at)));
   const dateParse2 = dateToString(new Date(Date.parse(article1.created_at)));
+  const dateParse3 = dateToString(new Date(Date.parse(article2.created_at)));
   function titleCase(str) {
     var splitStr = str.toLowerCase().split(' ');
     for (var i = 0; i < splitStr.length; i++) {
@@ -33,7 +36,7 @@ export default function article({ article, article1 }) {
 
   let date = titleCase(dateParse);
   let date2 = titleCase(dateParse2);
-
+  let date3 = titleCase(dateParse3);
   return (
     <>
       <Nav />
@@ -52,11 +55,23 @@ export default function article({ article, article1 }) {
         <p className={dateArticle}>{date}</p>
       </article>
 
-      <CardArticle
-        img={article1.miniature}
-        description={article1.description}
-        date={date2}
-      />
+      <h2 className={h2Article}>Articles Similaires :</h2>
+
+      <section className={sectionMoreArticle}>
+        <CardArticle
+          id={article1.id}
+          img={article1.miniature}
+          description={article1.description}
+          date={date2}
+        />
+
+        <CardArticle
+          id={article2.id}
+          img={article2.miniature}
+          description={article2.description}
+          date={date3}
+        />
+      </section>
     </>
   );
 }
