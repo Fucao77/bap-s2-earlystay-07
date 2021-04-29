@@ -9,6 +9,9 @@
     
 }
 
+.link:first-of-type{
+    padding-top: 100px;
+}
 
 .link{
     padding: 10px;
@@ -45,25 +48,40 @@
     position: fixed;
     width: 100%;
     z-index: 50;
+    
 }
 
 .containerLinks{
    display: flex;
    justify-content: flex-end;
+   height: 100vh;
 }
+
 
 .links{
     background-color: white;
     width: fit-content;
     text-align: center;
     transition: 0.2s;
+    padding: 50px;
 }
 
 .socialLogo{
+    
     margin: 7px;
-    margin-top: 40px;
-    margin-bottom: 40px;
+    margin-top: 100px;
 }
 .logoFinal{
     width: 50px;
+}
+
+
+@media screen and (max-width:1024px) {
+    .links{
+        background-color: rgb(255, 255, 255);
+        width: 100%;
+        text-align: center;
+        transition: 0.2s;
+    }
+    
 }
