@@ -44,38 +44,4 @@
     flex-direction: column;
 }
 
-.inputFile{
-    width: 0.1px;
-	height: 0.1px;
-	opacity: 0;
-	overflow: hidden;
-	position: absolute;
-	z-index: -1;
-}
-
-
-.inputFile + .inputFileLabel {
-    padding: 4rem;
-    color: white;
-    background-color: #F1F1F1;
-    color: #7E7E7E;
-    border-radius: 10px;
-    border-width: 2px;
-    border-style: dashed;
-
-
-}
-
-
-.inputFile + .inputFileLabel {
-	cursor: pointer;
-}
-
-
-
-
-
-.wysiwyg{
-    display: none;
-}
 
