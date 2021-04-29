@@ -4,8 +4,9 @@ import {
   clock,
   pickerWrapper,
   container,
+  themeBlack,
 } from './date-picker.module.scss';
-import DayPicker, { LocaleUtils } from 'react-day-picker';
+import DayPicker, { DateUtils, LocaleUtils } from 'react-day-picker';
 import { useEffect, useRef, useState } from 'react';
 import 'react-day-picker/lib/style.css';
 import { dateToString } from '../../../utils/date';
@@ -17,12 +18,15 @@ export default function DatePicker({
   selectedDate,
   setDate,
   className,
+  theme = 'white',
+  disabledDates,
 }) {
   const [pickerEnable, setPickerEnable] = useState(false);
   const dayPickerRef = useRef(null);
   const buttonRef = useRef(null);
   const togglePicker = () => setPickerEnable((prev) => !prev);
-  const onDayClick = (dateValue) => {
+  const onDayClick = (dateValue, config) => {
+    if (config.disabled) return;
     setDate(new Date(dateValue));
   };
 
@@ -63,8 +67,21 @@ export default function DatePicker({
     );
   };
 
+  const isDayDisabled = (day) => {
+    if (!disabledDates) return false;
+    return !disabledDates.some((disableDay) =>
+      DateUtils.isSameDay(day, disableDay)
+    );
+  };
+
   return (
-    <div className={classNames(container, className)}>
+    <div
+      className={classNames(
+        container,
+        className,
+        theme === 'black' ? themeBlack : null
+      )}
+    >
       <button className={wrapper} onClick={togglePicker} ref={buttonRef}>
         <span className={labelWrapper}>
           {selectedDate ? dateToString(selectedDate) : label}
@@ -101,6 +118,10 @@ export default function DatePicker({
             onDayClick={onDayClick}
             modifiers={modifiers}
             modifiersStyles={modifiersStyle}
+            disabledDays={isDayDisabled}
+            month={
+              disabledDates ? disabledDates.sort((a, b) => a - b)[0] : null
+            }
             localeUtils={{
               ...LocaleUtils,
               formatMonthTitle,

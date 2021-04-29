@@ -1,5 +1,6 @@
 .container {
     position: relative;
+    font-size: var.$important-size;
 }
 
 .button {
@@ -7,7 +8,7 @@
     background: none;
     color: var.$white;
     padding: map-get(var.$margins, 1) map-get(var.$margins, 15);
-    font-size: var.$important-size;
+    font-size: 1em;
     position: relative;
     @include mix.flex-center-all;
     cursor: pointer;
@@ -56,5 +57,38 @@
     &:hover {
         background-color: rgba($color: var.$white, $alpha: 0.2);
         cursor: pointer;
+    }
+}
+
+
+// THEMES
+
+.themeBlack {
+
+    .button {
+        border-color: var.$black;
+        color: var.$black;
+
+        &:hover .arrow path {
+            fill: var.$black;
+        }
+    }
+
+    .arrow {
+        path {
+            stroke: var.$black;
+        }
+    }
+
+    .arrowSelected {
+        path {
+            fill: var.$black;
+        }
+    }
+
+    .containerOptions {
+        border-bottom: 2px solid var.$black;
+        border-left: 2px solid var.$black;
+        border-right: 2px solid var.$black;
     }
 }

@@ -1,11 +1,9 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { inputFile, inputFileLabel, contentInput } from './image.module.scss';
 
-export default function inputImage({ name, setValue, miniature }) {
+export default function InputImage({ name, setValue, miniature }) {
   const [img, setImg] = useState();
-  const miniaturePath =
-    '/public/upload-image/article-image/upload_30956592b69a4485907e80de940db3cd.jpg' +
-    miniature;
+  const miniaturePath = '/upload-image/article-image/' + miniature;
 
   const [preview, setPreview] = useState(miniature ? miniaturePath : null);
   const fileInputRef = useRef();
@@ -17,8 +15,6 @@ export default function inputImage({ name, setValue, miniature }) {
         setPreview(reader.result);
       };
       reader.readAsDataURL(img);
-    } else {
-      setPreview(null);
     }
   }, [img]);
 

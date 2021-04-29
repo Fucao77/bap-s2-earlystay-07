@@ -9,6 +9,10 @@
 .card {
     width: 40%;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    @media screen and (max-width:750px){
+        width: 90%; 
+    }
+   
 }
 .form {
     display: flex;
@@ -24,11 +28,18 @@
     margin : 10px;
     padding-right : 70px;
     margin-bottom: 30px;
+
+    @media screen and (max-width:750px){
+        padding-right: 0; 
+    }
 }
 .titre {
     font-family: var.$poppins;
     font-size: var.$h1-size;
     color: var.$secondary-orange;
+    @media screen and (max-width:750px){
+        font-size:var.$h3-size ; 
+    }
 }
 
 .hr {
@@ -51,4 +62,8 @@
     background-color: var.$secondary-orange;
     padding: 8px 30px;
     font-size: var.$important-size;
+    @media screen and (max-width:750px){
+        padding: 2px 8px ; 
+    }
+  
 }

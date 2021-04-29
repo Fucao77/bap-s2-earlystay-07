@@ -15,7 +15,42 @@ exports.convertXft = async function (prisma, xft, productCodes) {
   });
 
   const airTypeSchemas = [];
+  const priceDataSchemas = [];
+  const mealPlansSchemas = [];
 
+  //Fetch mealPlansSchema
+  await xftData.Segments.Segments[1].Segment[0].MealPlans.MealPlan.forEach(
+    async (meal) => {
+      mealPlansSchemas.push({
+        id: meal['@_ID'],
+        code_txt: meal['@_Code'],
+        code: String(meal.Code['@_Value']),
+        text: meal['#text'],
+      });
+    }
+  );
+
+  //Fetch priceDataSchemas
+  await xftData.Segments.Segments[1].Prices.Price.forEach(async (price) => {
+    if (price['@_ID'] === 'PA') return;
+    priceDataSchemas.push({
+      id: price['@_ID'],
+      currency: price['@_Currency'],
+      decimals: price['@_Decimals'],
+      quantity: price['@_Quantity'],
+      role: price['@_Role'],
+      duration_night: price.Rule.Durations.Duration[0]['@_Value'],
+      duration_day: price.Rule.Durations.Duration[1]['@_Value'],
+      quantity_for: price.Rule.Quantity['@_For'],
+      quantity_unit: price.Rule.Quantity['@_Unit'],
+      meal_plan_ref: price.Rule.Segment.MealPlan['@_Ref'],
+      room_ref: price.Rule.Segment.Room['@_Ref'],
+      traveller_type: price.Rule.Traveller['@_Type'],
+      traveller_quantity: price.Rule.Traveller['@_Quantity'],
+    });
+  });
+
+  //Fetch airTypeSchemas
   await xftData.Segments.Segments[0].Segment.forEach(async (seg, segIndex) => {
     const segments = Array.isArray(seg.Segments.Segment)
       ? seg.Segments.Segment
@@ -94,6 +129,14 @@ exports.convertXft = async function (prisma, xft, productCodes) {
   // MANAGE PROMISES
 
   const promiseProducer = function* () {
+    for (const index in mealPlansSchemas) {
+      yield prisma.stay_type_meal_plans.create({
+        data: mealPlansSchemas[index],
+      });
+    }
+    for (const index in priceDataSchemas) {
+      yield prisma.price_data.create({ data: priceDataSchemas[index] });
+    }
     for (const index in airTypeSchemas) {
       yield prisma.air_types.create({ data: airTypeSchemas[index] });
     }

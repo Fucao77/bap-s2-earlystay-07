@@ -4,7 +4,6 @@ import InputImage from '../input-image';
 import { ErrorMessage } from '../../error-message';
 import ValidateMessage from '../../validate-message';
 
-//style
 import {
   inputText,
   borderLessInput,
@@ -87,7 +86,7 @@ export default function Form({
             <CKEditor
               editor={ClassicEditor}
               data={content}
-              onChange={(editor) => {
+              onChange={(event, editor) => {
                 setContent(editor.getData());
               }}
               type="classic"

@@ -26,13 +26,14 @@ export default async function editArticle(req, res) {
   try {
     const form = new formidable.IncomingForm();
 
-    //save the image
+    //select path upload
     form.uploadDir = './public/upload-image/article-image';
     form.keepExtensions = true;
 
     form.parse(req, async (err, fields, files) => {
       let articleMiniature = articles.miniature;
-      const newArticleMiniature = files.miniature.path.substr(34);
+      let newArticleMiniature;
+
       const pathFile = './public/upload-image/article-image/';
 
       const content = new ManagerValidator(fields);
@@ -46,11 +47,19 @@ export default async function editArticle(req, res) {
         .isRange('description', 5, 10000)
         .isRange('content', 30, 10000);
 
-      if (!content.isValid) {
+      if (!content.isValid && fields.miniature == 'null') {
         //delete file named articleMiniature
+        newArticleMiniature = files.miniature.path.substr(34);
         fs.unlinkSync(pathFile + newArticleMiniature);
+      } else if (!content.isValid) {
         res.status(400).json(content.errors);
         return;
+      }
+
+      if (content.isValid && !fields.miniature) {
+        newArticleMiniature = files.miniature.path.substr(34);
+      } else {
+        newArticleMiniature = articleMiniature;
       }
 
       return await prisma.articles
@@ -70,7 +79,9 @@ export default async function editArticle(req, res) {
         })
 
         .then(() => {
-          fs.unlinkSync(pathFile + articleMiniature);
+          if (!fields.miniature) {
+            fs.unlinkSync(pathFile + articleMiniature);
+          }
           res.status(200).json({ message: 'Modification has been done' });
         })
 
