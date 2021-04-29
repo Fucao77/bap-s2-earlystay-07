@@ -1,4 +1,3 @@
-import Nav from '../../../components/nav';
 import Footer from '../../../components/footer';
 import Connection from '../../../components/connection';
 import { getCsrfToken, signIn } from 'next-auth/client';
@@ -15,7 +14,6 @@ export default function Connexion({ csrfToken }) {
 
   return (
     <div>
-      <Nav />
       <Connection onConnection={connection} csrfToken={csrfToken} />
       <Footer />
     </div>

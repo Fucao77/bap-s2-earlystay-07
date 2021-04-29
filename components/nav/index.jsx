@@ -119,7 +119,10 @@ export default function Nav() {
           </svg>
         </div>
       </nav>
-      <div className={containerLinks}>
+      <div
+        className={containerLinks}
+        style={!isToggle ? { display: 'none' } : null}
+      >
         <div className={links} style={display2}>
           <Link href="/connexion/connexion">
             <a className={link}>connexion</a>
