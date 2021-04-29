@@ -40,8 +40,8 @@ export default function SearchHeader({ defaultData, displaySeeMore = true }) {
       `/search?${generateQueryUrl({
         search: travelTitle,
         theme: theme?.value,
-        duration: duration.value,
-        date: departureDate.getTime(),
+        duration: duration?.value,
+        date: departureDate?.getTime(),
       })}#results`
     );
   };
