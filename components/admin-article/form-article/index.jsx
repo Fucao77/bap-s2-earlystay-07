@@ -1,26 +1,36 @@
 import React, { useState, useRef, useEffect } from 'react';
-import InputText from '../inputText';
-import axios from 'axios';
+import InputText from '../input-text';
+import InputImage from '../input-image';
+import { ErrorMessage } from '../../error-message';
+import ValidateMessage from '../../validate-message';
 
-import ValidateMessage from '../validateMessage';
+import {
+  inputText,
+  borderLessInput,
+  submitButton,
+  formArticle,
+} from './form.module.scss';
 
-//style
-import { inputText } from './form.module.scss';
-import { borderLessInput } from './form.module.scss';
-import { submitButton } from './form.module.scss';
-import { formArticle } from './form.module.scss';
-import { inputFile } from './form.module.scss';
-import { inputFileLabel } from './form.module.scss';
-import { ErrorMessage } from '../errorMessage';
+export default function Form({
+  prevTitle,
+  prevDescription,
+  prevContent,
+  onSubmit,
+  validateMessage,
+  errors,
+  prevMiniature,
+}) {
+  const [title, setTitle] = useState(
+    prevTitle ? prevTitle : 'Entrez votre titre ici'
+  );
+  const [description, setDescription] = useState(
+    prevDescription ? prevDescription : 'Entrez votre description'
+  );
+  const [content, setContent] = useState(
+    prevContent ? prevContent : 'Entrez votre contenu'
+  );
+  const [miniature, setMiniature] = useState(null);
 
-export default function Form() {
-  const [title, setTitle] = useState('Entrez votre titre ici');
-  const [description, setDescription] = useState('Entrez votre description');
-  const [content, setContent] = useState('Entrez votre contenu');
-  const [validateMessage, setValidateMessage] = useState('');
-  const [errors, setErrors] = useState({});
-
-  const miniature = 'test.png';
   const editorRef = useRef();
   const [editorLoaded, setEditorLoaded] = useState(false);
   const { CKEditor, ClassicEditor } = editorRef.current || {};
@@ -36,33 +46,14 @@ export default function Form() {
     setEditorLoaded(true);
   }, []);
 
-  const onSubmit = (e) => {
+  const onLocalSubmit = function (e) {
     e.preventDefault();
-
-    axios
-      .post('/api/addArticle', {
-        title,
-        description,
-        content,
-        miniature,
-      })
-
-      .then((res) => res.json())
-
-      .then((res) => {
-        console.log({ res });
-        setValidateMessage('Article envoyé');
-      })
-
-      .catch((e) => {
-        console.log(e.response.data);
-        setErrors(e.response.data);
-      });
+    onSubmit({ title, description, miniature, content });
   };
 
   return (
     <div>
-      <form className={formArticle} onSubmit={onSubmit}>
+      <form className={formArticle} onSubmit={onLocalSubmit}>
         <InputText
           value={title}
           setValue={setTitle}
@@ -72,15 +63,12 @@ export default function Form() {
 
         {errors.title && <ErrorMessage>{errors.title}</ErrorMessage>}
 
-        <input
-          className={inputFile}
-          type="file"
-          name="miniature"
-          id="miniature"
-        />
-        <label className={inputFileLabel} htmlFor="miniature">
-          Ajouter une miniature
-        </label>
+        <InputImage
+          value={miniature}
+          setValue={setMiniature}
+          name={'miniature'}
+          miniature={prevMiniature}
+        ></InputImage>
 
         <InputText
           value={description}

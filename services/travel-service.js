@@ -14,36 +14,24 @@ export async function getTravelById(id) {
         interne_to: id,
       },
       include: {
-        air_types: {
+        travels: {
           include: {
-            air_type_begins: {
+            travel_items: {
               include: {
-                price_data: {
+                reservation_data: {
                   include: {
                     meal_plan: true,
-                    air_type_begins: false,
                   },
                 },
-
-                air_type_price_quantities: true,
               },
             },
           },
         },
         options: {
           include: {
-            option_descriptions: {
-              include: {
-                option_description_paragraphs: {
-                  include: {
-                    option_description_paragraph_objects: true,
-                  },
-                },
-              },
-            },
+            images: true,
           },
         },
-        commercial_infos: true,
       },
     });
 
@@ -51,10 +39,10 @@ export async function getTravelById(id) {
 
     const serializer = new ObjectSerializer();
 
-    const formatedAirTypes = results.air_types.map((res) => {
+    results.travels.map((res) => {
       return {
         ...res,
-        air_type_begins: res.air_type_begins.map((begin) => {
+        air_type_begins: res.travel_items.map((begin) => {
           return serializer.serialize(begin);
         }),
       };
@@ -62,7 +50,7 @@ export async function getTravelById(id) {
 
     prisma.$disconnect();
 
-    return { ...results, air_types: formatedAirTypes };
+    return results;
   } catch (e) {
     console.log(e);
     return null;
