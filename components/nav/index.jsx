@@ -121,7 +121,7 @@ export default function Nav() {
       </nav>
       <div className={containerLinks}>
         <div className={links} style={display2}>
-          <Link href="/connexion/connexion">
+          <Link href="/admin/login">
             <a className={link}>connexion</a>
           </Link>
           <Link href="/">
