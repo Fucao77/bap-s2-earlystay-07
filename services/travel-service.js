@@ -1,11 +1,16 @@
 import { PrismaClient } from '.prisma/client';
+import { RANGES_DAY } from '../constants/travels';
 import { ObjectSerializer } from '../utils/serializer';
 
-export async function searchTravels({ searchValue, page = 0, take = 20 }) {
+export async function searchTravels({
+  searchValue,
+  departureDate,
+  duration,
+  page = 0,
+  take = 20,
+}) {
   const prisma = new PrismaClient();
   const queryArgs = {
-    // skip :page * take,
-    // take,
     where: {
       name: {
         contains: searchValue,
@@ -15,6 +20,48 @@ export async function searchTravels({ searchValue, page = 0, take = 20 }) {
       },
     },
   };
+
+  if (searchValue) {
+    queryArgs.where.name = {
+      contains: searchValue,
+    };
+  }
+
+  if (departureDate) {
+    const baseDate = new Date(Number(departureDate));
+    baseDate.setUTCHours(0);
+
+    const extremDate = new Date(Number(departureDate));
+    extremDate.setUTCDate(extremDate.getUTCDate() + RANGES_DAY.travelDate);
+
+    queryArgs.where.travels.some.travel_items = {
+      some: {
+        AND: [
+          {
+            between_begin: {
+              gte: baseDate,
+              lte: extremDate,
+            },
+          },
+        ],
+      },
+    };
+  }
+
+  if (duration) {
+    //   queryArgs.where.travels.some.travel_items = {
+    //     some : {
+    //       reservation_data : {
+    //         // is : {
+    //           duration_day : {
+    //              gte: duration,
+    //              lte: duration + RANGES_DAY.travelDuration
+    //            }
+    //         // }
+    //       }
+    //     }
+    //   }
+  }
 
   const results = await prisma.$transaction([
     prisma.products.count(queryArgs),

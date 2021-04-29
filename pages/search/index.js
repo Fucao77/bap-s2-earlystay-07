@@ -29,7 +29,11 @@ export default function Search({ travelResults }) {
 export async function getServerSideProps(context) {
   const query = context.query;
 
-  const travelResults = await searchTravels({ searchValue: query.search });
+  const travelResults = await searchTravels({
+    searchValue: query.search,
+    departureDate: query.date,
+    duration: query.duration,
+  });
 
   return {
     props: {

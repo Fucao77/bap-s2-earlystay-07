@@ -39,9 +39,9 @@ export default function SearchHeader({ defaultData, displaySeeMore = true }) {
     router.push(
       `/search?${generateQueryUrl({
         search: travelTitle,
-        theme,
-        duration,
-        date: departureDate,
+        theme: theme?.value,
+        duration: duration.value,
+        date: departureDate.getTime(),
       })}#results`
     );
   };

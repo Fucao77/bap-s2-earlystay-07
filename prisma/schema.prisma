@@ -92,8 +92,8 @@ model products {
 model travel_item {
   id                                                  Int                                         @id @default(autoincrement())
   travel_id                                           Int                                     
-  between_begin                                       DateTime                                    @db.Date
-  between_end                                         DateTime                                    @db.Date
+  between_begin                                       DateTime                                    @db.DateTime()
+  between_end                                         DateTime                                    @db.DateTime()
   end_moment                                          String                                      @db.VarChar(50)
   day                                                 Int
   price_main_ref                                      String                                      @db.VarChar(100)
