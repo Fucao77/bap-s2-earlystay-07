@@ -12,6 +12,7 @@ import {
   container,
   containerLinks,
   socialNetwork,
+  socialLogo,
 } from './nav.module.scss';
 
 export default function Nav() {
@@ -136,6 +137,7 @@ export default function Nav() {
           </Link>
           <div className={socialNetwork}>
             <svg
+              className={socialLogo}
               width="23"
               height="22"
               viewBox="0 0 23 22"
@@ -150,6 +152,7 @@ export default function Nav() {
               />
             </svg>
             <svg
+              className={socialLogo}
               width="23"
               height="22"
               viewBox="0 0 23 22"
@@ -164,6 +167,7 @@ export default function Nav() {
               />
             </svg>
             <svg
+              className={socialLogo}
               width="25"
               height="24"
               viewBox="0 0 25 24"
@@ -178,6 +182,7 @@ export default function Nav() {
               />
             </svg>
             <svg
+              className={socialLogo}
               width="25"
               height="24"
               viewBox="0 0 25 24"

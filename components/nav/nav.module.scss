@@ -16,8 +16,8 @@
     color: #3668A4;
     display: flex;
     flex-flow: column wrap;
-    align-items: flex-start;
-   
+    align-items:center;
+    margin-top: 40px;
 }
 
 .destination {
@@ -37,6 +37,7 @@
 }
 .croix{
     display: none;
+    transition: 0.2s;
 }
 
 
@@ -55,4 +56,11 @@
     background-color: white;
     width: fit-content;
     text-align: center;
+    transition: 0.2s;
+}
+
+.socialLogo{
+    margin: 7px;
+    margin-top: 40px;
+    margin-bottom: 40px;
 }
