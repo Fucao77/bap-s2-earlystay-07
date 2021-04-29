@@ -1,5 +1,5 @@
-import Header from '../../../components/admin-header';
-import Form from '../../../components/admin-article/form-article';
+import Header from '../../../../components/admin-header';
+import Form from '../../../../components/admin-article/form-article';
 import { PrismaClient } from '@prisma/client';
 import axios from 'axios';
 import { useState } from 'react';

@@ -5,16 +5,14 @@ import { ObjectSerializer } from '../utils/serializer';
 export async function searchTravels({
   searchValue,
   departureDate,
-  duration,
+  // duration,
+  theme,
   page = 0,
   take = 20,
 }) {
   const prisma = new PrismaClient();
   const queryArgs = {
     where: {
-      name: {
-        contains: searchValue,
-      },
       travels: {
         some: {},
       },
@@ -48,20 +46,24 @@ export async function searchTravels({
     };
   }
 
-  if (duration) {
-    //   queryArgs.where.travels.some.travel_items = {
-    //     some : {
-    //       reservation_data : {
-    //         // is : {
-    //           duration_day : {
-    //              gte: duration,
-    //              lte: duration + RANGES_DAY.travelDuration
-    //            }
-    //         // }
-    //       }
-    //     }
-    //   }
+  if (theme) {
+    queryArgs.where.theme_ceto = theme;
   }
+
+  // if (duration) {
+  //     queryArgs.where.travels.some.travel_items = {
+  //       some : {
+  //         reservation_data : {
+  //           is : {
+  //             duration_day : {
+  //                gte: duration,
+  //                lte: duration + RANGES_DAY.travelDuration
+  //              }
+  //           }
+  //         }
+  //       }
+  //     }
+  // }
 
   const results = await prisma.$transaction([
     prisma.products.count(queryArgs),

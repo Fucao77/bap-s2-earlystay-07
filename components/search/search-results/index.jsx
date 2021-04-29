@@ -10,7 +10,7 @@ import {
   goBackBtn,
 } from './search-results.module.scss';
 
-export default function SearchResults({ pages, results }) {
+export default function SearchResults({ pages, results, page }) {
   return (
     <section className={container} id="results">
       <SubTitle title="Résultats" />
@@ -29,7 +29,7 @@ export default function SearchResults({ pages, results }) {
         ))}
       </div>
       <footer className={footer}>
-        <SearchPageBar values={pages} />
+        <SearchPageBar values={pages} currentValue={page} />
         <GoButton
           to="#search-header"
           theme="orange"

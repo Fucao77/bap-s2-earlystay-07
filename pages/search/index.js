@@ -17,6 +17,7 @@ export default function Search({ travelResults }) {
       <Nav />
       <SearchHeader defaultData={query} displaySeeMore={false} />
       <SearchResults
+        page={query.page ? query.page : 0}
         results={travelResults.results}
         pages={generateArrayOfValue({ min: 0, max: travelResults.pageNumber })}
       />
@@ -33,6 +34,8 @@ export async function getServerSideProps(context) {
     searchValue: query.search,
     departureDate: query.date,
     duration: query.duration,
+    theme: query.theme,
+    page: query.page ? query.page : 0,
   });
 
   return {
