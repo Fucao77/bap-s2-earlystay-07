@@ -1,26 +1,27 @@
 @import '../../../styles/variables/index.scss';
 
-.button {
-
-
-    button {
-        width: 281px;
-        height: 46px;
+.create {
         background-color: var.$secondary-orange;
+        width:  281px;
+        height: 46px;
         margin-top: 60px;
+        margin-right: 130px;
+        text-align: center;
+
+    a {
         color: $white;
         font-weight: 600;
         font-size: 24px;
-        margin-right: 20px;
+        text-decoration: none;
     }
 
 }
 
 
 @media screen and (max-width: 440px) {
-    .button{
+    .create{
 
-        button{
+        a{
             width: 301px;
             height: 66px;
             font-size: 30px;

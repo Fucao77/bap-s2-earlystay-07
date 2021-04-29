@@ -34,9 +34,6 @@ yarn-error.log*
 # vercel
 .vercel
 
-<<<<<<< HEAD
-=======
 data
 # env
->>>>>>> 47cc69a7c5d20ee481a23af16cdafa019b741ffd
 .env

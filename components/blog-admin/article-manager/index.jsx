@@ -23,6 +23,7 @@ export default function Gestion() {
 
         <div className={header}>
           <h1>Mon article de blog </h1>
+
           <div className={date}>
             <p>25 mars 2021</p>
           </div>
