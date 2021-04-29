@@ -1,0 +1,30 @@
+@import '../../../styles/variables/index.scss';
+
+
+.slider {
+
+    display: flex;
+    justify-content: center;
+    padding: map-get($map: var.$margins, $key: 3 ) 0; 
+
+    .circle {
+        display: flex;
+        justify-content: space-around;
+        width: 100px;
+    }
+
+    .slide {
+        width: 20px;
+        height: 20px;
+        background-color: var.$grey ;
+        border-radius: 100%;
+        border: none;
+        transition: .5s;
+        cursor: pointer;
+    
+        &:hover {
+            background-color: var.$secondary-orange;
+        }
+}
+
+}

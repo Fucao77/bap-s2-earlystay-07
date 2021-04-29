@@ -1,0 +1,30 @@
+@import '../../../styles/variables/index.scss';
+
+.button {
+
+
+    button {
+        width: 281px;
+        height: 46px;
+        background-color: var.$secondary-orange;
+        margin-top: 60px;
+        color: $white;
+        font-weight: 600;
+        font-size: 24px;
+        margin-right: 20px;
+    }
+
+}
+
+
+@media screen and (max-width: 440px) {
+    .button{
+
+        button{
+            width: 301px;
+            height: 66px;
+            font-size: 30px;
+        }
+        
+    }
+}
