@@ -8,7 +8,7 @@ export async function searchTravels({
   // duration,
   theme,
   page = 0,
-  take = 20,
+  take = 10,
 }) {
   const prisma = new PrismaClient();
   const queryArgs = {
@@ -76,7 +76,7 @@ export async function searchTravels({
 
   prisma.$disconnect();
 
-  return { pageNumber: results[0], results: results[1] };
+  return { pageNumber: Math.ceil(results[0] / take), results: results[1] };
 }
 
 export async function getTravelById(id) {
