@@ -2,7 +2,7 @@ import { getSession } from 'next-auth/client';
 
 export async function withAuth(
   context,
-  { serverFunction = null, badRedirection = '/' }
+  { serverFunction = null, badRedirection = '/' } = {}
 ) {
   const session = await getSession(context);
 
@@ -15,7 +15,7 @@ export async function withAuth(
     };
   }
 
-  const props = await serverFunction(session);
+  const props = serverFunction && (await serverFunction(session));
 
   return {
     props: {

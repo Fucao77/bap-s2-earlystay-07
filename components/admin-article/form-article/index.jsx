@@ -9,6 +9,8 @@ import {
   borderLessInput,
   submitButton,
   formArticle,
+  inputImage,
+  editorWrapper,
 } from './form.module.scss';
 
 export default function Form({
@@ -53,6 +55,7 @@ export default function Form({
 
   return (
     <div>
+      {errors.general && <ErrorMessage>{errors.general}</ErrorMessage>}
       <form className={formArticle} onSubmit={onLocalSubmit}>
         <InputText
           value={title}
@@ -62,27 +65,28 @@ export default function Form({
         ></InputText>
 
         {errors.title && <ErrorMessage>{errors.title}</ErrorMessage>}
-
-        <InputImage
-          value={miniature}
-          setValue={setMiniature}
-          name={'miniature'}
-          miniature={prevMiniature}
-        ></InputImage>
+        <div className={inputImage}>
+          <InputImage
+            value={miniature}
+            setValue={setMiniature}
+            name={'miniature'}
+            miniature={prevMiniature}
+          />
+        </div>
 
         <InputText
           value={description}
           setValue={setDescription}
           name={'description'}
           classType={inputText}
-        ></InputText>
+        />
 
         {errors.description && (
           <ErrorMessage>{errors.description}</ErrorMessage>
         )}
 
         {editorLoaded && (
-          <div style={{ width: '70vw' }}>
+          <div style={{ width: '70vw' }} className={editorWrapper}>
             <CKEditor
               editor={ClassicEditor}
               data={content}
@@ -95,10 +99,9 @@ export default function Form({
                 border: '5px solid red',
               }}
             />
-
-            {errors.content && <ErrorMessage>{errors.content}</ErrorMessage>}
           </div>
         )}
+        {errors.content && <ErrorMessage>{errors.content}</ErrorMessage>}
 
         {validateMessage && (
           <ValidateMessage>{validateMessage}</ValidateMessage>

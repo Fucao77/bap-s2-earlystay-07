@@ -24,7 +24,8 @@ export class ManagerValidator {
 
   isRange(field, min, max) {
     if (this.body[field].length < min || this.body[field].length > max) {
-      this.errors[field] = field + ' is not in the required length';
+      this.errors[field] =
+        field + ' length must be between ' + min + ' and ' + max;
     }
     return this;
   }

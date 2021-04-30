@@ -23,14 +23,15 @@ export default function Formulaire() {
         },
       })
 
-      .then((res) => {
-        console.log({ res });
+      .then(() => {
         setValidateMessage('Article envoyé');
+        setErrors(null);
       })
 
       .catch((e) => {
         console.log(e.response.data);
-        setErrors(e.response.data);
+        setErrors({ general: e.response.data });
+        setValidateMessage('');
       });
   };
 
