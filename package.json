@@ -7,7 +7,8 @@
     "build": "next build",
     "prepare": "husky install",
     "lint": "npx eslint --fix",
-    "prettier": "npx prettier --write --ignore-unknown '**/*.(js|jsx)'"
+    "prettier": "npx prettier --write --ignore-unknown '**/*.(js|jsx)'",
+    "seed" : "npx prisma db seed --preview-feature"
   },
   "dependencies": {
     "@ckeditor/ckeditor5-build-classic": "^27.0.0",
