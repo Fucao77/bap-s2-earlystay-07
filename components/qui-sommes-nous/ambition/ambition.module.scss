@@ -1,19 +1,21 @@
 .contenu {
     width: 90vw;
-    height: 24vw;
+    height: 54vw;
     display: flex;
     justify-self: center;
     flex-direction: column;
-    padding-left: 40px;
+    padding-left: 2vw;
+    padding-top: 4vw;
+    padding-bottom: 90px;
 
     .header_contenu {
         h2{
             font-size: var.$h2-size;
-            color: var.$primary-orange;
+            color: var.$secondary-orange;
         }
 
         .liner {
-            background-color: var.$primary-orange;
+            background-color: var.$secondary-orange;
             width: 9vw;
             height: 0.1vw;
         }
@@ -21,16 +23,69 @@
 
 
     .blockimage{
-        padding-top: 40px;
+        padding-top: 2vw;
         width: 100%;
         display: flex;
         justify-content: space-around;
         align-items: center;
+        padding-bottom: 3vw;
 
         .image {
             width: 28vw;
             height: 14vw;
+            
+        }
+      
+    }
+
+    .texte {
+        padding-top:20px;
+        
+        p {
+            padding-top: 50px;
         }
     }
+
+}
+
+
+@media screen and (max-width: 440px) {
+    .contenu {
+        height: 580vw;
+
+        .header_contenu {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+
+            h2 {
+                font-size: var.$secondary-orange;
+            }
+
+        }
+
+
+        .blockimage{
+            display: flex;
+            flex-direction: column;
+            height: 200vw;
+            justify-content: space-around;
+           
+           
+            .image {
+                padding: 2vw;
+                width: 80vw;
+                height: 70vw;
+            }
+        }
+
+        .texte {
+            text-align: center;
+           
+        }
+    }
+
+   
 
 }
