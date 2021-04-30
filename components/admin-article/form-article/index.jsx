@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import InputText from '../input-text';
 import InputImage from '../input-image';
-import { ErrorMessage } from '../../error-message';
-import ValidateMessage from '../../validate-message';
+import { ErrorMessage } from '../../global/error-message';
+import ValidateMessage from '../../global/validate-message';
 
 import {
   inputText,

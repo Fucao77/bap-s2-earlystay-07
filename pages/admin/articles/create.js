@@ -2,6 +2,7 @@ import Header from '../../../components/admin-header';
 import Form from '../../../components/admin-article/form-article';
 import axios from 'axios';
 import { useState } from 'react';
+import { withAuth } from '../../../utils/auth-guard';
 
 export default function Formulaire() {
   const [validateMessage, setValidateMessage] = useState('');
@@ -44,3 +45,5 @@ export default function Formulaire() {
     </div>
   );
 }
+
+export const getServerSideProps = (ctx) => withAuth(ctx);

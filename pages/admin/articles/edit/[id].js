@@ -3,6 +3,7 @@ import Form from '../../../../components/admin-article/form-article';
 import { PrismaClient } from '@prisma/client';
 import axios from 'axios';
 import { useState } from 'react';
+import { withAuth } from '../../../../utils/auth-guard';
 
 export default function Formulaire({
   id,
@@ -60,30 +61,31 @@ export default function Formulaire({
   );
 }
 
-export async function getServerSideProps(context) {
-  const prisma = new PrismaClient();
-  const id = parseInt(context.query.id);
+export const getServerSideProps = async (context) =>
+  withAuth(context, {
+    serverFunction: async () => {
+      const prisma = new PrismaClient();
+      const id = parseInt(context.query.id);
 
-  const articles = await prisma.articles.findUnique({
-    where: {
-      id: id,
+      const articles = await prisma.articles.findUnique({
+        where: {
+          id: id,
+        },
+      });
+
+      const title = articles.title;
+      const description = articles.description;
+      const content = articles.content;
+      const miniature = articles.miniature;
+
+      prisma.$disconnect();
+
+      return {
+        id: id,
+        title: title,
+        description: description,
+        content: content,
+        miniature: miniature,
+      };
     },
   });
-
-  const title = articles.title;
-  const description = articles.description;
-  const content = articles.content;
-  const miniature = articles.miniature;
-
-  prisma.$disconnect();
-
-  return {
-    props: {
-      id: id,
-      title: title,
-      description: description,
-      content: content,
-      miniature: miniature,
-    },
-  };
-}
