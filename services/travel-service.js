@@ -77,8 +77,37 @@ export async function searchTravels({
       ...queryArgs,
       take,
       skip: page * take,
+      include: {
+        travels: {
+          include: {
+            travel_items: {
+              include: {
+                reservation_data: {
+                  include: {
+                    meal_plan: true,
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
     }),
   ]);
+
+  if (!results[1]) return null;
+  console.log(results);
+  results[1].map((res) => ({
+    ...res,
+    travels: res.travels.map((res) => {
+      return {
+        ...res,
+        air_type_begins: res.travel_items.map((begin) => {
+          return serializeDateInObject(begin);
+        }),
+      };
+    }),
+  }));
 
   prisma.$disconnect();
 

@@ -5,7 +5,6 @@ import { getArticles } from '../../../services/blog-service';
 
 export default function BlogPage({ articles }) {
   console.log(articles);
-
   return (
     <div>
       <Blog />

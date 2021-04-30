@@ -1,7 +1,8 @@
 import { PrismaClient } from '@prisma/client';
-import { ManagerValidator } from '../../../utility/inputValidator/validator';
+import { ManagerValidator } from '../../../utils/validator';
 import formidable from 'formidable';
 import fs from 'fs';
+import { getSession } from 'next-auth/client';
 
 export const config = {
   api: {
@@ -10,6 +11,8 @@ export const config = {
 };
 
 export default async function editArticle(req, res) {
+  const session = await getSession({ req });
+  console.log(session);
   if (req.method !== 'PUT') {
     return res.status(404);
   }
@@ -63,7 +66,6 @@ export default async function editArticle(req, res) {
       }
 
       return await prisma.articles
-
         .update({
           where: {
             id: parseInt(id),
@@ -90,10 +92,13 @@ export default async function editArticle(req, res) {
           //delete file named articleMiniature
           fs.unlinkSync(pathFile + newArticleMiniature);
           res.status(400).json({ error: 'Le titre existe déjà ' });
+        })
+        .finally(() => {
+          prisma.$disconnect();
         });
     });
   } catch (e) {
-    console.log(e);
+    res.status(400).json({ error: e });
   }
 
   return prisma.$disconnect();

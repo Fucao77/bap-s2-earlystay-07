@@ -39,9 +39,11 @@ export default function Nav() {
   return (
     <div className={container}>
       <nav className={nav}>
-        <div className={logo}>
-          <img className={logoFinal} src="/img/logofinal.png"></img>
-        </div>
+        <Link href="/" className={logo}>
+          <a>
+            <img className={logoFinal} src="/img/logofinal.png"></img>
+          </a>
+        </Link>
         <div className={navRight}>
           <button className={destination}>Destination</button>
           <svg

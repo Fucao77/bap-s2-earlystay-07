@@ -18,6 +18,10 @@ const options = {
       },
     }),
   ],
+  callbacks: {
+    session: async (token, user) => user,
+    redirect: async (url) => url,
+  },
 };
 
 export default (req, res) => NextAuth(req, res, options);
