@@ -48,6 +48,7 @@
 
 .flashPoint {
     display: flex;
+    margin : map-get($map: var.$margins, $key: 2 ) 0;
 
     svg {
         margin-right: map-get($map: var.$margins, $key: 2 );

@@ -46,7 +46,7 @@ export default function Footer() {
         <Link href="/connexion/connexion">
           <a className={link}>Cookies</a>
         </Link>
-        <Link href="/connexion/connexion">
+        <Link href="/FAQ">
           <a className={link}>FAQ</a>
         </Link>
       </div>

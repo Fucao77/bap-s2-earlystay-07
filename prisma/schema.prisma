@@ -83,16 +83,17 @@ model products {
   plus_value          String                @db.VarChar(50)
   reservation_url     String                @db.LongText
   reservation_tel     String                @db.VarChar(50)
+  catch_phrase        String                @db.LongText
   delivery_services   delivery_services?
   options             option_description[]
-  air_types           travels[]
+  travels             travels[]
 }
 
 model travel_item {
-  id                                                  Int                                      @id @default(autoincrement())
+  id                                                  Int                                         @id @default(autoincrement())
   travel_id                                           Int                                     
-  between_begin                                       DateTime                                    @db.Date
-  between_end                                         DateTime                                    @db.Date
+  between_begin                                       DateTime                                    @db.DateTime()
+  between_end                                         DateTime                                    @db.DateTime()
   end_moment                                          String                                      @db.VarChar(50)
   day                                                 Int
   price_main_ref                                      String                                      @db.VarChar(100)
@@ -107,15 +108,15 @@ model travel_item {
   rule_code_name                                      String                                      @db.VarChar(50)
   rule_at_ref                                         String                                      @db.VarChar(50)
   travels                                             travels                                     @relation(fields: [travel_id], references: [id])
-  price_data                                          reservation_data                            @relation(fields: [price_main_ref], references: [id]) 
-  person_quantity_min                                     Int
-  person_quantity_max                                     Int
-  adult_quantity_min                                      Int
-  adult_quantity_max                                      Int
-  child_quantity_min                                      Int
-  child_quantity_max                                      Int
-  infant_quantity_min                                     Int
-  infant_quantity_max                                     Int
+  reservation_data                                    reservation_data                            @relation(fields: [price_main_ref], references: [id]) 
+  person_quantity_min                                 Int
+  person_quantity_max                                 Int
+  adult_quantity_min                                  Int
+  adult_quantity_max                                  Int
+  child_quantity_min                                  Int
+  child_quantity_max                                  Int
+  infant_quantity_min                                 Int
+  infant_quantity_max                                 Int
 
   @@index([travel_id], name: "fk_air_type_begins_air_type_id")
   @@index([price_main_ref], name: "fk_air_type_price_data_id")

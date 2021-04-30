@@ -1,9 +1,83 @@
 import { PrismaClient } from '.prisma/client';
+import { RANGES_DAY } from '../constants/travels';
 import { ObjectSerializer } from '../utils/serializer';
 
-// export function searchTravel({ searchValue, departureDate, duration,  }) {
+export async function searchTravels({
+  searchValue,
+  departureDate,
+  // duration,
+  theme,
+  page = 0,
+  take = 10,
+}) {
+  const prisma = new PrismaClient();
+  const queryArgs = {
+    where: {
+      travels: {
+        some: {},
+      },
+    },
+  };
 
-// }
+  if (searchValue) {
+    queryArgs.where.name = {
+      contains: searchValue,
+    };
+  }
+
+  if (departureDate) {
+    const baseDate = new Date(Number(departureDate));
+    baseDate.setUTCHours(0);
+
+    const extremDate = new Date(Number(departureDate));
+    extremDate.setUTCDate(extremDate.getUTCDate() + RANGES_DAY.travelDate);
+
+    queryArgs.where.travels.some.travel_items = {
+      some: {
+        AND: [
+          {
+            between_begin: {
+              gte: baseDate,
+              lte: extremDate,
+            },
+          },
+        ],
+      },
+    };
+  }
+
+  if (theme) {
+    queryArgs.where.theme_ceto = theme;
+  }
+
+  // if (duration) {
+  //     queryArgs.where.travels.some.travel_items = {
+  //       some : {
+  //         reservation_data : {
+  //           is : {
+  //             duration_day : {
+  //                gte: duration,
+  //                lte: duration + RANGES_DAY.travelDuration
+  //              }
+  //           }
+  //         }
+  //       }
+  //     }
+  // }
+
+  const results = await prisma.$transaction([
+    prisma.products.count(queryArgs),
+    prisma.products.findMany({
+      ...queryArgs,
+      take,
+      skip: page * take,
+    }),
+  ]);
+
+  prisma.$disconnect();
+
+  return { pageNumber: Math.ceil(results[0] / take), results: results[1] };
+}
 
 export async function getTravelById(id) {
   const prisma = new PrismaClient();
@@ -14,36 +88,24 @@ export async function getTravelById(id) {
         interne_to: id,
       },
       include: {
-        air_types: {
+        travels: {
           include: {
-            air_type_begins: {
+            travel_items: {
               include: {
-                price_data: {
+                reservation_data: {
                   include: {
                     meal_plan: true,
-                    air_type_begins: false,
                   },
                 },
-
-                air_type_price_quantities: true,
               },
             },
           },
         },
         options: {
           include: {
-            option_descriptions: {
-              include: {
-                option_description_paragraphs: {
-                  include: {
-                    option_description_paragraph_objects: true,
-                  },
-                },
-              },
-            },
+            images: true,
           },
         },
-        commercial_infos: true,
       },
     });
 
@@ -51,10 +113,10 @@ export async function getTravelById(id) {
 
     const serializer = new ObjectSerializer();
 
-    const formatedAirTypes = results.air_types.map((res) => {
+    results.travels.map((res) => {
       return {
         ...res,
-        air_type_begins: res.air_type_begins.map((begin) => {
+        air_type_begins: res.travel_items.map((begin) => {
           return serializer.serialize(begin);
         }),
       };
@@ -62,7 +124,7 @@ export async function getTravelById(id) {
 
     prisma.$disconnect();
 
-    return { ...results, air_types: formatedAirTypes };
+    return results;
   } catch (e) {
     console.log(e);
     return null;
