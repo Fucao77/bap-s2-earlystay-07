@@ -73,3 +73,37 @@
         font-weight: bold;
     }
 }
+@media screen and (max-width:1250px){
+    .blockRow{
+        flex-flow: column wrap;
+    }
+}
+
+@media screen and (max-width:1024px){
+    .blockContent{
+        display: flex;
+        align-items: center;
+        flex-flow: column wrap;
+    }
+    
+    .container {
+        flex-flow: column wrap;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+    }
+   
+
+    .input {
+        max-width: 5px;
+        margin-right: 250px;
+    }
+    
+}
+
+@media screen and (max-width:500px){
+    .blockWrapper{
+        max-width:300px;
+        padding-right: 65px;
+    }
+}
