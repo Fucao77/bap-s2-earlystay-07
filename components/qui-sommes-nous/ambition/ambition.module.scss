@@ -1,0 +1,36 @@
+.contenu {
+    width: 90vw;
+    height: 24vw;
+    display: flex;
+    justify-self: center;
+    flex-direction: column;
+    padding-left: 40px;
+
+    .header_contenu {
+        h2{
+            font-size: var.$h2-size;
+            color: var.$primary-orange;
+        }
+
+        .liner {
+            background-color: var.$primary-orange;
+            width: 9vw;
+            height: 0.1vw;
+        }
+    }
+
+
+    .blockimage{
+        padding-top: 40px;
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+
+        .image {
+            width: 28vw;
+            height: 14vw;
+        }
+    }
+
+}
