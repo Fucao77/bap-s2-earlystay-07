@@ -21,6 +21,7 @@ export default function SearchItem({
   linkUrl,
   price,
   dayNumber,
+  withDelivery,
 }) {
   return (
     <article className={container}>
@@ -80,7 +81,7 @@ export default function SearchItem({
                   fill="white"
                 />
               </svg>
-              <p>JCI</p>
+              <p>{withDelivery}</p>
             </div>
           </footer>
         </div>

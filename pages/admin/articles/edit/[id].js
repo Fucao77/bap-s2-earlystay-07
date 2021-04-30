@@ -38,7 +38,7 @@ export default function Formulaire({
 
       .catch((e) => {
         console.log(e);
-        setErrors(e.response.data);
+        setErrors({ general: e.response.data });
       });
   };
 

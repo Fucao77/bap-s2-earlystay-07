@@ -1,9 +1,9 @@
-import Nav from '../../components/nav';
+import Nav from '../../components/global/nav';
 import SearchHeader from '../../components/home/search-header';
 import { useRouter } from 'next/router';
 import SearchResults from '../../components/search/search-results';
 import TrustBanner from '../../components/global/trust-banner';
-import Footer from '../../components/footer';
+import Footer from '../../components/global/footer';
 import { searchTravels } from '../../services/travel-service';
 import { generateArrayOfValue } from '../../utils/array';
 import { useEffect, useState } from 'react';
@@ -18,6 +18,8 @@ export default function Search({ travelResults }) {
   useEffect(() => {
     setCurrentPage(query.page);
   }, [query.page]);
+
+  console.log(travelResults);
 
   const onChangePage = (page) => {
     setCurrentPage(page);
