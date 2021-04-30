@@ -135,13 +135,30 @@ export async function getTravelById(id) {
       where: {
         interne_to: id,
       },
-      include: {
+      select: {
+        name: true,
+        with_delivery: true,
+        interne_to: true,
+        big_picto: true,
+        catch_phrase: true,
         travels: {
-          include: {
+          select: {
+            from_ref: true,
+            to_ref: true,
             travel_items: {
-              include: {
+              select: {
+                between_begin: true,
+                price_value: true,
+                person_quantity_max: true,
+                person_quantity_min: true,
+                child_quantity_max: true,
+                child_quantity_min: true,
+                infant_quantity_max: true,
+                infant_quantity_min: true,
+                adult_quantity_max: true,
+                adult_quantity_min: true,
                 reservation_data: {
-                  include: {
+                  select: {
                     meal_plan: true,
                   },
                 },
@@ -150,8 +167,10 @@ export async function getTravelById(id) {
           },
         },
         options: {
-          include: {
+          select: {
             images: true,
+            title: true,
+            text: true,
           },
         },
       },

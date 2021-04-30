@@ -18,6 +18,7 @@ import {
 export default function TravelDescription({ travel }) {
   const durations = getDurations(travel.travels);
   const mealPlans = getMealPlans(travel.travels);
+
   return (
     <div>
       <Nav />
