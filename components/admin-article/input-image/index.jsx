@@ -1,7 +1,13 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { inputFile, inputFileLabel, contentInput } from './image.module.scss';
+import {
+  inputFile,
+  inputFileLabel,
+  contentInput,
+  imgPreview,
+} from './image.module.scss';
+import classNames from 'classnames';
 
-export default function InputImage({ name, setValue, miniature }) {
+export default function InputImage({ name, setValue, miniature, className }) {
   const [img, setImg] = useState();
   const miniaturePath = '/upload-image/article-image/' + miniature;
 
@@ -19,9 +25,7 @@ export default function InputImage({ name, setValue, miniature }) {
   }, [img]);
 
   return (
-    <div className={contentInput}>
-      <br />
-
+    <div className={classNames(contentInput, className)}>
       <input
         className={inputFile}
         onInput={(e) => setValue(e.target.files[0])}
@@ -42,6 +46,7 @@ export default function InputImage({ name, setValue, miniature }) {
 
       {preview ? (
         <img
+          className={imgPreview}
           src={preview}
           alt="image-article"
           srcSet=""

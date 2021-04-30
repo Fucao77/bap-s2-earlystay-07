@@ -1,11 +1,11 @@
 import TravelHeader from '../../components/travel/travel-header';
-import Nav from '../../components/nav';
+import Nav from '../../components/global/nav';
 import { getTravelById } from '../../services/travel-service';
 import { getDurations, getMealPlans } from '../../utils/travel-parser';
 import OfferForm from '../../components/travel/offer-form';
 import TabView from '../../components/global/tab-view';
 import TrustBanner from '../../components/global/trust-banner';
-import Footer from '../../components/footer';
+import Footer from '../../components/global/footer';
 import HtmlParser from 'react-html-parser';
 
 import {

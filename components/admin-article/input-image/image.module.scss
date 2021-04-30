@@ -28,5 +28,12 @@
 
 
 .contentInput{
-    margin: 50px auto ;
+    margin: map-get($map: var.$margins, $key: 3 ) 0;
+    display: flex;
+    justify-content: center;
+}
+
+.imgPreview {
+    max-width: 100%;
+    height: 100%;
 }

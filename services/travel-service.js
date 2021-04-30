@@ -1,14 +1,20 @@
 import { PrismaClient } from '.prisma/client';
 import { RANGES_DAY } from '../constants/travels';
-import { ObjectSerializer } from '../utils/serializer';
+import { serializeDateInObject } from '../utils/serializer';
 
+/**
+ * Get travels according some filters
+ *
+ * @param {{searchValue: string, departureDate: string, duration: number, theme: string, page: number, take: number}} param0
+ * @returns
+ */
 export async function searchTravels({
   searchValue,
   departureDate,
   // duration,
   theme,
   page = 0,
-  take = 20,
+  take = 10,
 }) {
   const prisma = new PrismaClient();
   const queryArgs = {
@@ -76,9 +82,15 @@ export async function searchTravels({
 
   prisma.$disconnect();
 
-  return { pageNumber: results[0], results: results[1] };
+  return { pageNumber: Math.ceil(results[0] / take), results: results[1] };
 }
 
+/**
+ * Get one travel accoding its id
+ *
+ * @param {string | number} id
+ * @returns
+ */
 export async function getTravelById(id) {
   const prisma = new PrismaClient();
 
@@ -111,13 +123,11 @@ export async function getTravelById(id) {
 
     if (!results) return null;
 
-    const serializer = new ObjectSerializer();
-
     results.travels.map((res) => {
       return {
         ...res,
         air_type_begins: res.travel_items.map((begin) => {
-          return serializer.serialize(begin);
+          return serializeDateInObject(begin);
         }),
       };
     });
