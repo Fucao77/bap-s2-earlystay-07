@@ -21,10 +21,16 @@
 
 @media screen and (max-width: 440px) {
    .create {
-       height: 15vw;
-       width: 75%;
+       height: 12vw;
+       width: 55%;
+       margin-left: 20px;
        display: flex;
        align-items: center;
        justify-content: center;
+       
+    a {
+        font-size: var.$important-size;
+    }
+
    }
 }
