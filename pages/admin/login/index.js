@@ -1,4 +1,4 @@
-import Footer from '../../../components/footer';
+import Footer from '../../../components/global/footer';
 import Connection from '../../../components/connection';
 import { getCsrfToken, signIn } from 'next-auth/client';
 import { useRouter } from 'next/router';
@@ -8,7 +8,7 @@ export default function Connexion({ csrfToken }) {
 
   const connection = (connectionData) => {
     signIn('credentials', connectionData).then(() => {
-      router.push('/admin/dashboard');
+      router.push('/admin/articles');
     });
   };
 

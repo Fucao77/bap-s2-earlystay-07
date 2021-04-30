@@ -34,6 +34,7 @@
     padding: 1rem 4rem;
     margin-top: var.$L-margin;
     border-radius: 2px;
+    cursor: pointer;
 }
 
 
@@ -42,6 +43,18 @@
     display: flex;
     align-items: center;
     flex-direction: column;
+    margin: map-get($map: var.$margins, $key: 3 ) 0;
 }
 
 
+.inputImage {
+    max-width: 85%;
+    max-height: 30vh;
+    display: flex;
+    justify-content: center;
+}
+
+.editorWrapper {
+    width: 70vw;
+    margin: map-get($map: var.$margins, $key: 5)  0;
+}

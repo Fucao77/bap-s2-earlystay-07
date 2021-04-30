@@ -1,5 +1,5 @@
-import Nav from '../components/nav';
-import Footer from '../components/footer';
+import Nav from '../components/global/nav';
+import Footer from '../components/global/footer';
 import FAQ from '../components/FAQ/FAQ-button';
 import { title } from '../styles/pages/index.module.scss';
 

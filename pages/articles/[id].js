@@ -1,7 +1,7 @@
 import { PrismaClient } from '@prisma/client';
-import Nav from '../../components/nav';
+import Nav from '../../components/global/nav';
 import classNames from 'classnames';
-import { ObjectSerializer } from '../../utils/serializer';
+import { serializeDateInObject } from '../../utils/serializer';
 import { dateToString } from '../../utils/date';
 import CardArticle from '../../components/card-more-article/';
 
@@ -83,11 +83,9 @@ export async function getServerSideProps(context) {
     },
   });
 
-  const serializeArticle = new ObjectSerializer();
-
-  article = serializeArticle.serialize(article);
-  article1 = serializeArticle.serialize(article1);
-  article2 = serializeArticle.serialize(article2);
+  article = serializeDateInObject(article);
+  article1 = serializeDateInObject(article1);
+  article2 = serializeDateInObject(article2);
 
   prisma.$disconnect();
 

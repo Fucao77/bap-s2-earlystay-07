@@ -1,5 +1,5 @@
-import Nav from '../components/nav';
-import Footer from '../components/footer';
+import Nav from '../components/global/nav';
+import Footer from '../components/global/footer';
 import CGU from '../components/CGU';
 import { title } from '../components/CGU/cgu.module.scss';
 

@@ -6,15 +6,13 @@ import {
   list,
   article_header,
 } from '../blog-client/blogclient.module.scss';
-import Footer from '../footer';
+import Footer from '../global/footer';
 import HeaderArticle from './header-article';
 import ListArticle from './listes-article';
 
 export default function BlogClient() {
   return (
     <section className={section}>
-      {/* <Nav />*/}
-
       <header>
         <div className={titre}>
           <h1>Blog</h1>
