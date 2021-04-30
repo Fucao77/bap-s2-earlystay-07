@@ -1,4 +1,5 @@
 import { PrismaClient } from '.prisma/client';
+
 import { RANGES_DAY } from '../constants/travels';
 import { serializeDateInObject } from '../utils/serializer';
 
@@ -75,16 +76,20 @@ export async function searchTravels({
     prisma.products.count(queryArgs),
     prisma.products.findMany({
       ...queryArgs,
-      take,
-      skip: page * take,
-      include: {
+      select: {
+        name: true,
+        with_delivery: true,
+        interne_to: true,
+        small_picto: true,
+        catch_phrase: true,
         travels: {
-          include: {
+          select: {
             travel_items: {
-              include: {
+              select: {
+                price_value: true,
                 reservation_data: {
-                  include: {
-                    meal_plan: true,
+                  select: {
+                    duration_day: true,
                   },
                 },
               },
@@ -92,6 +97,8 @@ export async function searchTravels({
           },
         },
       },
+      take,
+      skip: page * take,
     }),
   ]);
 
