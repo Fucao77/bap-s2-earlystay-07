@@ -46,3 +46,28 @@
         width: 25px;
     }
 }
+
+
+
+@media screen and (max-width: 375px){
+
+    .articleCard{
+        width: 80vw;
+    
+
+        .articleCalendar{
+            width: 10px;
+        }
+
+        .articleDate{
+            font-size: 0.6rem;
+        }
+
+        .imageCard{
+            width: 70%; 
+            max-height: 50%;
+        }
+
+    }
+
+}
