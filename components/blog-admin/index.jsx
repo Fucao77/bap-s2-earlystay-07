@@ -9,7 +9,7 @@ import {
   title_header,
 } from '../blog-admin/blog.module.scss';
 import Button from './button-article';
-import Footer from '../footer';
+import Footer from '../global/footer';
 import Gestion from './article-manager';
 import Search from './search-input';
 import Slider from './slider-button';
@@ -42,9 +42,7 @@ export default function Blog() {
         <Slider />
       </div>
 
-      <footer>
-        <Footer></Footer>
-      </footer>
+      <Footer />
     </div>
   );
 }
