@@ -1,30 +1,36 @@
 @import '../../../styles/variables/index.scss';
 
-.button {
-
-
-    button {
-        width: 281px;
-        height: 46px;
+.create {
         background-color: var.$secondary-orange;
+        width:  14vw;
+        height: 46px;
         margin-top: 60px;
+        margin-right: 6vw;
+        text-align: center;
+
+    a {
         color: $white;
         font-weight: 600;
         font-size: 24px;
-        margin-right: 20px;
+        text-decoration: none;
+        
     }
 
 }
 
 
 @media screen and (max-width: 440px) {
-    .button{
-
-        button{
-            width: 301px;
-            height: 66px;
-            font-size: 30px;
-        }
-        
+   .create {
+       height: 12vw;
+       width: 55%;
+       margin-left: 20px;
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       
+    a {
+        font-size: var.$important-size;
     }
+
+   }
 }

@@ -6,6 +6,7 @@ import {
   liner,
   article,
   slide,
+  title_header,
 } from '../blog-admin/blog.module.scss';
 import Button from './button-article';
 import Footer from '../global/footer';
@@ -23,8 +24,10 @@ export default function Blog() {
       </header>
 
       <div className={body}>
-        <h2>Mes articles</h2>
-        <div className={liner}></div>
+        <div className={title_header}>
+          <h2>Mes articles</h2>
+          <div className={liner}></div>
+        </div>
 
         <Search />
       </div>
@@ -39,9 +42,7 @@ export default function Blog() {
         <Slider />
       </div>
 
-      <footer>
-        <Footer></Footer>
-      </footer>
+      <Footer />
     </div>
   );
 }

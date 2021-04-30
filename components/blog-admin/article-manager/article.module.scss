@@ -6,47 +6,56 @@
     padding: 20px;
 
     .article {
-        width: 1334px;
-        height: 255px;
+        width: 100%;
+        height: 13vw;
         background: var.$secondary-gradient;
         border-radius: 11px;
-
+        margin: 20px;
+    
         .img {
-            width: 392.91px;
-            height: 255px;
-            position: absolute;
+           width: 20vw;
+           height: 13vw;
+           position: absolute;
             border-radius: 11px;
         }
 
-        .header {
-            margin-left: 400px;
-            display: flex;
-            justify-content: space-around;
-            text-align: center;
-            margin-top: 20px;  
-            
+        .contenu {
 
-        }
+            width: 65vw;
+            margin-left: 26vw;
+            flex-flow: wrap-reverse;
 
-        .description {
-            width: 530.46px;
-            margin-left: 550px;
-            margin-top: 35px;
-        }
-
-        .footer {
-            width: 320px;
-            float: right;
-            display: flex;
-            justify-content: space-between;
-            margin-top: 30px;
-            margin-right: 60px;
-            
-
-            a {
-                color: var.$white;
+            .header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                text-align: center;
+                margin-top: 1vw;  
+                
             }
+    
+            .description {
+                width: 38vw;
+                margin-top: 1vw;
+            }
+    
+            .footer {
+                width: 15vw;
+               display: flex;
+               justify-content: space-around;
+                float: right;
+                margin-top: 30px;
+                
+                
+    
+                a {
+                    color: var.$white;
+                }
+            }
+
         }
+
+       
 
 
     }
@@ -57,36 +66,55 @@
 @media screen and (max-width: 440px)
 {
 
+.section {
+    .article {
+        height: 135vw;
+        display: flex;
+        flex-direction: column;
+        
 
-    .section {
-      
-        .article {
+        .img {
+           width: 89vw;
+           height: 29vw;
+           border-radius: unset;
+         }
+
+         .contenu {
             display: flex;
             flex-direction: column;
-            width: 110vh;
-            height: 657px;
-            
-            div {
-
-                .img {
-                    width: 895px;
-                    height: 239px;
-                }
-            }
-
+            padding-top: 120px;
+            font-size: 0.8rem;
+            padding-right: 100px;
 
             .header {
-                padding-top: 250px;            
-                flex-flow: column;
+                display: flex;
+                flex-direction: column;
+                padding-left: 25vw;
+                width: 60vw;
+                
             }
+
 
             .description {
+                margin-top: 20px;
                 text-align: center;
-                
+            }
+
+
+            .footer {
+                width: 100%;
+                display: flex;
+                justify-content: space-around;
+
+                a {
+                    padding: 15px;
+                }
 
             }
 
-        }
-
+          
+         }
     }
+}
+    
 }

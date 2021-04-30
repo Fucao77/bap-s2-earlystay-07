@@ -8,11 +8,14 @@ import {
 } from '../blog-client/blogclient.module.scss';
 import Footer from '../global/footer';
 import HeaderArticle from './header-article';
+import Nav from '../global/nav';
 import ListArticle from './listes-article';
 
 export default function BlogClient() {
   return (
     <section className={section}>
+      <Nav />
+
       <header>
         <div className={titre}>
           <h1>Blog</h1>
