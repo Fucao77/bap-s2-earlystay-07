@@ -149,7 +149,6 @@ export default function OfferForm({ offers }) {
                 selectedDate={departureDate}
                 setDate={setDepartureDate}
                 disabledDates={extractDates(offers)}
-                className={input}
               />
               <BorderSelector
                 label="Aéroport de départ"
