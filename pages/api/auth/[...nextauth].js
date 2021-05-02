@@ -18,6 +18,9 @@ const options = {
       },
     }),
   ],
+  pages: {
+    signIn: '/admin/login',
+  },
   callbacks: {
     session: async (token, user) => user,
     redirect: async (url) => url,

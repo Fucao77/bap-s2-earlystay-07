@@ -17,7 +17,7 @@ export default function Formulaire() {
     formData.append('miniature', miniature);
 
     axios
-      .post('/api/add-article', formData, {
+      .post('/api/articles/create', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

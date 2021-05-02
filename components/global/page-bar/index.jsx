@@ -5,7 +5,7 @@ import {
 } from './search-page-bar.module.scss';
 import classNames from 'classnames';
 
-export default function SearchPageBar({ values, onClick, currentValue }) {
+export default function PageBar({ values = [], onClick, currentValue }) {
   return (
     <div className={container}>
       {values.map((val, index) => (

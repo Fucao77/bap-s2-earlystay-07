@@ -1,29 +1,27 @@
 .search {
     display: flex;
-    margin-bottom: 5vw;
+    justify-content: space-between;
+    align-items: center;
+    padding: map-get($map: var.$margins, $key: 1 );
 
     input {
         border: none;
     }
 
-    svg {
-        float: right;
-        
-    }
-
-    height:  2vw;
+ 
+    
     border: solid;
-    margin-right: 2vw;
+
   
 }
 
 
 
-@media screen and (max-width: 440px) {
-    .search {
-        width: 55vw;
-        height: 14vw;
-    }
-}
+// @media screen and (max-width: 440px) {
+//     .search {
+//         width: 55vw;
+//         height: 14vw;
+//     }
+// }
 
 

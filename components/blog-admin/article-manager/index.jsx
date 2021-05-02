@@ -1,52 +1,59 @@
 import React from 'react';
+import { UPLOAD_PATH } from '../../../constants/upload';
+import { dateToString } from '../../../utils/date';
 import {
-  section,
   article,
   img,
   header,
-  description,
   date,
   footer,
   contenu,
+  imgWrapper,
 } from './article.module.scss';
 
-export default function Gestion() {
+export default function ArticleItem({
+  title,
+  imageUrl,
+  description,
+  id,
+  createdAt,
+  onDelete,
+}) {
   return (
-    <section className={section}>
-      <div className={article}>
-        <div>
-          <img
-            src="https://images.unsplash.com/photo-1618271121437-c1c70b12c294?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1225&q=80"
-            alt=""
-            className={img}
-          />
+    <article className={article}>
+      <div className={imgWrapper}>
+        <img
+          src={
+            imageUrl.match(/http/)
+              ? imageUrl
+              : `${UPLOAD_PATH.articleImg}/${imageUrl}`
+          }
+          alt=""
+          className={img}
+        />
+      </div>
+
+      <div className={contenu}>
+        <div className={header}>
+          <h1>{title} </h1>
+
+          <div className={date}>
+            <p>{dateToString(createdAt)}</p>
+          </div>
         </div>
 
-        <div className={contenu}>
-          <div className={header}>
-            <h1>Mon article de blog </h1>
+        <div className={description}>
+          <p>{description}</p>
+        </div>
 
-            <div className={date}>
-              <p>25 mars 2021</p>
-            </div>
-          </div>
-
-          <div className={description}>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod,
-              fugiat ducimus? Consequuntur eligendi, nemo atque temporibus, qui
-              error provident nostrum, dolor quo nulla neque illo nihil amet
-              ratione at repellendus!
-            </p>
-          </div>
-
-          <div className={footer}>
-            <a href="">Modifier</a>
-            <a href="">Consulter</a>
-            <a href="">Supprimer</a>
-          </div>
+        <div className={footer}>
+          <a href={`/admin/articles/edit/${id}`}>Modifier</a>
+          <a href="">Consulter</a>
+          <button href="#" onClick={onDelete}>
+            Supprimer
+          </button>
         </div>
       </div>
-    </section>
+    </article>
   );
 }

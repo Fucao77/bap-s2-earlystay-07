@@ -3,13 +3,15 @@
     height: auto;
     display: flex;
     justify-content: space-around;
-    padding-top: 50px;
+    margin : map-get($map: var.$margins, $key: 6 ) 0;
+    overflow: hidden;
 
     .blockimg {
       width: 45%;
 
      img {
          width: 36vw;
+         max-height: 40vh;
          height: auto;
      }
 
@@ -40,7 +42,7 @@
         a {
             width: 185px;
             height: 37px;
-            background-color: var.$primary-orange;
+            background-color: var.$secondary-orange;
             display: flex;
             justify-content: center;
             align-items: center;

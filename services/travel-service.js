@@ -159,6 +159,7 @@ export async function getTravelById(id) {
                 adult_quantity_min: true,
                 reservation_data: {
                   select: {
+                    duration_day: true,
                     meal_plan: true,
                   },
                 },
@@ -192,6 +193,7 @@ export async function getTravelById(id) {
     return results;
   } catch (e) {
     console.log(e);
+    prisma.$disconnect();
     return null;
   }
 }

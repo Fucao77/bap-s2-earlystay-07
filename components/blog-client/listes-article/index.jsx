@@ -1,4 +1,7 @@
 import React from 'react';
+import Link from 'next/link';
+import { UPLOAD_PATH } from '../../../constants/upload';
+import { dateToString } from '../../../utils/date';
 import {
   article,
   photo,
@@ -9,23 +12,27 @@ import {
   footer,
 } from '../listes-article/listearticle.module.scss';
 
-export default function ListArticle() {
+export default function ListArticle({
+  description,
+  miniature,
+  page,
+  publishedAt,
+}) {
   return (
-    <section className={article}>
+    <article className={article}>
       <div className={photo}>
         <img
-          src="https://images.unsplash.com/photo-1508162252424-e8ad5ef02539?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+          src={
+            miniature?.match(/http/)
+              ? miniature
+              : `${UPLOAD_PATH.articleImg}/${miniature}`
+          }
           alt=""
         />
       </div>
 
       <div className={texte}>
-        <p>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorem quas
-          ducimus iste rem, consequuntur iure dignissimos accusamus eos harum
-          similique saepe corrupti accusantium iusto nesciunt ullam facere
-          aliquam provident sed!
-        </p>
+        <p>{description}</p>
       </div>
 
       <div className={icone}>
@@ -58,13 +65,15 @@ export default function ListArticle() {
               fill="black"
             />
           </svg>
-          <p>25 mars 2021</p>
+          <p>{dateToString(publishedAt)}</p>
         </div>
       </div>
 
       <div className={footer}>
-        <a href="#">Voir plus</a>
+        <Link href={page}>
+          <a>Voir plus</a>
+        </Link>
       </div>
-    </section>
+    </article>
   );
 }

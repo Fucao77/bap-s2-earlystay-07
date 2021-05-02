@@ -1,7 +1,22 @@
+.article{
+  padding: 0  map-get($map: var.$margins, $key: 6 );
+}
+.pageBtnWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: map-get($map: var.$margins, $key: 6 ) 0;
+}
+.titleHeader {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: map-get($map: var.$margins, $key: 2 ) map-get($map: var.$margins, $key: 6 );
+}
 .blog {
   header {
     width: 100%;
-    height: 13vw;
+    height: 20vh;
     background-color: #1e3a5c;
     display: flex;
     justify-content: space-between;
@@ -21,25 +36,8 @@
     padding-left: 1vw;
     
 
-    h2 {
-      color: var.$primary-orange;
-      margin-left: 20px;
-    }
 
 
- 
-
-    .liner {
-      background-color: var.$primary-orange;
-      width: 10vw;
-      height: 6px;
-      margin-left: 50px;
-      margin-top: 20px;
-    }
-
-    input {
-      margin-right: 50px;
-    }
     
     
   }
@@ -48,6 +46,20 @@
 
 
 @media screen and (max-width: 440px) {
+
+
+  .titleHeader {
+    flex-direction: column;
+    align-items: center;
+
+    & > * {
+      margin-bottom: map-get($map: var.$margins, $key: 6 );
+    }
+  }
+
+    .article{
+      padding: 0  map-get($map: var.$margins, $key: 3 );
+    }
 
     .blog {
 
@@ -68,13 +80,6 @@
         display: flex;
         flex-direction: column-reverse;
         align-items: center;
-        height: 45vw;
-
-        .title_header {
-          .liner {
-            width: 35vw;
-          }
-        }
 
       }
     

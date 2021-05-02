@@ -135,7 +135,8 @@ export default function OfferForm({ offers }) {
         <h3 className={title}>Séjour</h3>
         <p>
           A partir de
-          <strong> {formatToEuros(vitrineTravel.price_value)}€</strong>
+          <strong> {formatToEuros(vitrineTravel.price_value)}€</strong> /
+          personne
         </p>
       </article>
       <div className={blockRow}>

@@ -45,3 +45,10 @@
         width: 25px;
     }
 }
+
+@media screen and (max-width: 600px) {
+    .articleCard {
+        width: 90%;
+        margin-bottom: map-get($map: var.$margins, $key: 6 );
+    }
+}

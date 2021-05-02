@@ -2,16 +2,20 @@ import React from 'react';
 import {
   section,
   titre,
-  liner,
-  list,
-  article_header,
+  articlesWrapper,
 } from '../blog-client/blogclient.module.scss';
 import Footer from '../global/footer';
 import HeaderArticle from './header-article';
 import Nav from '../global/nav';
 import ListArticle from './listes-article';
 
-export default function BlogClient() {
+export default function BlogClient({ articles }) {
+  const mainArticle = articles.articles[0];
+  const annexArticles = articles.articles.slice(
+    1,
+    articles.articles.length - 1
+  );
+
   return (
     <section className={section}>
       <Nav />
@@ -22,31 +26,27 @@ export default function BlogClient() {
         </div>
       </header>
 
-      <div className={article_header}>
-        <HeaderArticle />
+      <div>
+        <HeaderArticle
+          title={mainArticle.title}
+          miniature={mainArticle.miniature}
+          description={mainArticle.description.slice(0, 250)}
+          page={`/blog/${mainArticle.slug}`}
+        />
       </div>
 
-      <div className={liner}></div>
-
-      <div className={list}>
-        <div>
-          <ListArticle />
-        </div>
-
-        <div>
-          <ListArticle />
-        </div>
-      </div>
-
-      <div className={list}>
-        <div>
-          <ListArticle />
-        </div>
-
-        <div>
-          <ListArticle />
-        </div>
-      </div>
+      <section className={articlesWrapper}>
+        {annexArticles.map((article) => (
+          <ListArticle
+            key={article.id}
+            title={article.title}
+            description={article.description.slice(0, 150) + '...'}
+            miniature={article.miniature}
+            publishedAt={new Date(Date.parse(article.created_at))}
+            page={`/blog/${article.slug}`}
+          />
+        ))}
+      </section>
 
       <footer>
         <Footer />

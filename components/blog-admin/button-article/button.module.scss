@@ -1,15 +1,14 @@
-@import '../../../styles/variables/index.scss';
-
 .create {
         background-color: var.$secondary-orange;
-        width:  14vw;
+        
         height: 46px;
         margin-top: 60px;
         margin-right: 6vw;
-        text-align: center;
+        padding: map-get($map: var.$margins, $key: 3 );
+        @include mix.flex-center-all;
 
     a {
-        color: $white;
+        color: var.$white;
         font-weight: 600;
         font-size: 24px;
         text-decoration: none;

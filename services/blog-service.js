@@ -25,6 +25,9 @@ export async function getArticles({ name = null, page = 0, take = 10 } = {}) {
       ...filters,
       skip: page * take,
       take,
+      orderBy: {
+        created_at: 'desc',
+      },
     }),
   ]);
 
