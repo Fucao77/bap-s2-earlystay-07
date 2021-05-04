@@ -43,7 +43,7 @@ const data = [
   {
     title: 'Comment puis-je réserver un voyage ?',
     content:
-      'La réservation d’un voyage est possible uniquement sur le site earlystay.fr \n\nPour choisir votre voyage, vous pouvez sélectionner les critères souhaités (dates, aéroport de départ, durée, thème, destination) parmi les choix proposés.\nIl vous suffit ensuite de suivre les étapes de réservation jusqu’à l’étape du paiement.',
+      'La réservation d’un voyage est possible uniquement sur le site earlystay.fr <br/><br/>Pour choisir votre voyage, vous pouvez sélectionner les critères souhaités (dates, aéroport de départ, durée, thème, destination) parmi les choix proposés.<br/>Il vous suffit ensuite de suivre les étapes de réservation jusqu’à l’étape du paiement.',
   },
   {
     title: 'Comment puis-je payer mon voyage ?',
@@ -58,13 +58,13 @@ const data = [
   {
     title: 'Comment être certain que ma réservation soit bien enregistrée ?',
     content:
-      'Une fois le paiement effectué pour valider votre réservation, vous recevrez automatiquement un courrier électronique de confirmation de réservation comprenant:\n\n    -    la confirmation de votre réservation (détail des prestations réservées),\n    -    les conditions générales earlystay,\n    -    les conditions générales de l’Organisateur technique\n-    le contrat d’assurance, en cas de souscription d’une assurance.\n\n    Vous recevrez par la suite un reçu de paiement, ainsi qu’une facture.',
+      'Une fois le paiement effectué pour valider votre réservation, vous recevrez automatiquement un courrier électronique de confirmation de réservation comprenant:<br/><br/>    -    la confirmation de votre réservation (détail des prestations réservées),<br/>    -    les conditions générales earlystay,<br/>    -    les conditions générales de l’Organisateur technique<br/>-    le contrat d’assurance, en cas de souscription d’une assurance.<br/><br/>    Vous recevrez par la suite un reçu de paiement, ainsi qu’une facture.',
   },
   {
     title: 'Comment puis-je ajouter une assurance voyages ?',
     content: `Lorsque vous sélectionnez un voyage sur notre site earlystay.fr, la page devis apparaît comprenant une rubrique Assurance. 
     Aucune assurance n’est incluse dans les voyages proposés sur notre site internet.
-    Si vous la souscrivez, votre contrat vous sera envoyé par courrier électronique en même temps que votre confirmation de réservation.\n\n
+    Si vous la souscrivez, votre contrat vous sera envoyé par courrier électronique en même temps que votre confirmation de réservation.<br/><br/>
     Attention, aucun ajout n'est possible après votre réservation.`,
   },
   {
@@ -88,14 +88,14 @@ const data = [
   },
 ];
 
-export default function FAQpage() {
+export default function FAQpage({ questions = data }) {
   return (
     <div>
       <Nav />
       <h1 className={title}>FAQ</h1>
-      {data.map((item, index) => (
+      {questions.map((item, index) => (
         <FAQ key={index} title={item.title}>
-          <p>{HtmlParser(item.content.replaceAll('\n', '<br/>'))}</p>
+          <p>{HtmlParser(item.content)}</p>
         </FAQ>
       ))}
 

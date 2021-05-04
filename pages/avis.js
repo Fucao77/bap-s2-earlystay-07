@@ -1,11 +1,13 @@
 import Nav from '../components/global/nav';
 import Footer from '../components/global/footer';
-import {} from '../styles/pages/index.module.scss';
+import { container } from '../styles/pages/avis.module.scss';
+import { title } from '../styles/pages/index.module.scss';
 
 export default function avis() {
   return (
-    <div>
+    <div className={container}>
       <Nav />
+      <h1 className={title}>Avis</h1>
       <div
         className="powr-reviews"
         id="4c22c627_1619618763"

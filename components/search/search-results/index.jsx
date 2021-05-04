@@ -1,7 +1,7 @@
 import GoButton from '../../global/go-button';
 import SubTitle from '../../global/sub-title';
 import SearchItem from '../search-item';
-import SearchPageBar from '../search-page-bar';
+import PageBar from '../../global/page-bar';
 import {
   orderOffers,
   getTravelItems,
@@ -45,11 +45,7 @@ export default function SearchResults({ pages, results, page, onChangePage }) {
         ))}
       </div>
       <footer className={footer}>
-        <SearchPageBar
-          values={pages}
-          currentValue={page}
-          onClick={onChangePage}
-        />
+        <PageBar values={pages} currentValue={page} onClick={onChangePage} />
         <GoButton
           to="#search-header"
           theme="orange"

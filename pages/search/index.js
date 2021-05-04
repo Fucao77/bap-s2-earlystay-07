@@ -19,8 +19,6 @@ export default function Search({ travelResults }) {
     setCurrentPage(query.page);
   }, [query.page]);
 
-  console.log(travelResults);
-
   const onChangePage = (page) => {
     setCurrentPage(page);
     axios({

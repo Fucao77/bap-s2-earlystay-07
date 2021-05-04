@@ -1,9 +1,9 @@
 import { PrismaClient } from '@prisma/client';
 import slugify from 'slugify';
-import { ManagerValidator } from '../../utils/validator';
+import { ManagerValidator } from '../../../../utils/validator';
 import formidable from 'formidable';
 import fs from 'fs';
-import { UPLOAD_DIR } from '../../constants/upload';
+import { UPLOAD_DIR } from '../../../../constants/upload';
 
 export const config = {
   api: {

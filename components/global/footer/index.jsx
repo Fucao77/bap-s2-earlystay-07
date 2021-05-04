@@ -6,7 +6,7 @@ export default function Footer() {
   return (
     <footer className={footer}>
       <div className={content}>
-        <h3 className={title}>Nos destination</h3>
+        <h3 className={title}>Nos destinations</h3>
         <Link href="/connexion/connexion">
           <a className={link}>Egypte</a>
         </Link>
@@ -33,6 +33,9 @@ export default function Footer() {
         </Link>
         <Link href="/connexion/connexion">
           <a className={link}>Votre Avis</a>
+        </Link>
+        <Link href="/blog">
+          <a className={link}>Blog</a>
         </Link>
       </div>
       <div className={content}>

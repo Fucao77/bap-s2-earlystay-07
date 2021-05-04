@@ -1,4 +1,5 @@
 import { PrismaClient } from '.prisma/client';
+
 import { RANGES_DAY } from '../constants/travels';
 import { serializeDateInObject } from '../utils/serializer';
 
@@ -75,16 +76,20 @@ export async function searchTravels({
     prisma.products.count(queryArgs),
     prisma.products.findMany({
       ...queryArgs,
-      take,
-      skip: page * take,
-      include: {
+      select: {
+        name: true,
+        with_delivery: true,
+        interne_to: true,
+        small_picto: true,
+        catch_phrase: true,
         travels: {
-          include: {
+          select: {
             travel_items: {
-              include: {
+              select: {
+                price_value: true,
                 reservation_data: {
-                  include: {
-                    meal_plan: true,
+                  select: {
+                    duration_day: true,
                   },
                 },
               },
@@ -92,6 +97,8 @@ export async function searchTravels({
           },
         },
       },
+      take,
+      skip: page * take,
     }),
   ]);
 
@@ -128,13 +135,31 @@ export async function getTravelById(id) {
       where: {
         interne_to: id,
       },
-      include: {
+      select: {
+        name: true,
+        with_delivery: true,
+        interne_to: true,
+        big_picto: true,
+        catch_phrase: true,
         travels: {
-          include: {
+          select: {
+            from_ref: true,
+            to_ref: true,
             travel_items: {
-              include: {
+              select: {
+                between_begin: true,
+                price_value: true,
+                person_quantity_max: true,
+                person_quantity_min: true,
+                child_quantity_max: true,
+                child_quantity_min: true,
+                infant_quantity_max: true,
+                infant_quantity_min: true,
+                adult_quantity_max: true,
+                adult_quantity_min: true,
                 reservation_data: {
-                  include: {
+                  select: {
+                    duration_day: true,
                     meal_plan: true,
                   },
                 },
@@ -143,8 +168,10 @@ export async function getTravelById(id) {
           },
         },
         options: {
-          include: {
+          select: {
             images: true,
+            title: true,
+            text: true,
           },
         },
       },
@@ -166,6 +193,7 @@ export async function getTravelById(id) {
     return results;
   } catch (e) {
     console.log(e);
+    prisma.$disconnect();
     return null;
   }
 }

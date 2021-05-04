@@ -1,3 +1,9 @@
+.articlesWrapper {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin-bottom: map-get($map: var.$margins, $key: 10 );
+}
+
 .section {
   header {
     width: 100%;

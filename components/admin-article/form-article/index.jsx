@@ -55,7 +55,7 @@ export default function Form({
 
   return (
     <div>
-      {errors.general && <ErrorMessage>{errors.general}</ErrorMessage>}
+      {errors?.general && <ErrorMessage>{errors.general}</ErrorMessage>}
       <form className={formArticle} onSubmit={onLocalSubmit}>
         <InputText
           value={title}
@@ -64,7 +64,7 @@ export default function Form({
           classType={borderLessInput}
         ></InputText>
 
-        {errors.title && <ErrorMessage>{errors.title}</ErrorMessage>}
+        {errors?.title && <ErrorMessage>{errors.title}</ErrorMessage>}
         <div className={inputImage}>
           <InputImage
             value={miniature}
@@ -81,7 +81,7 @@ export default function Form({
           classType={inputText}
         />
 
-        {errors.description && (
+        {errors?.description && (
           <ErrorMessage>{errors.description}</ErrorMessage>
         )}
 
@@ -101,7 +101,7 @@ export default function Form({
             />
           </div>
         )}
-        {errors.content && <ErrorMessage>{errors.content}</ErrorMessage>}
+        {errors?.content && <ErrorMessage>{errors.content}</ErrorMessage>}
 
         {validateMessage && (
           <ValidateMessage>{validateMessage}</ValidateMessage>

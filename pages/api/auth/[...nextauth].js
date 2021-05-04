@@ -14,10 +14,13 @@ const options = {
       authorize: async ({ username, password }) => {
         return await AdminAuth.login(username, password)
           .then((res) => Promise.resolve(res))
-          .catch(() => Promise.reject('/auth/sign-in?error=BAD_AUTH'));
+          .catch(() => Promise.reject('/admin/login?error=BAD_AUTH'));
       },
     }),
   ],
+  pages: {
+    signIn: '/admin/login',
+  },
   callbacks: {
     session: async (token, user) => user,
     redirect: async (url) => url,

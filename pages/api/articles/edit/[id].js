@@ -1,5 +1,5 @@
 import { PrismaClient } from '@prisma/client';
-import { ManagerValidator } from '../../../utils/validator';
+import { ManagerValidator } from '../../../../utils/validator';
 import formidable from 'formidable';
 import fs from 'fs';
 import { getSession } from 'next-auth/client';

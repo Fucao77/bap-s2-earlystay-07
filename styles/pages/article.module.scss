@@ -1,13 +1,3 @@
-.title {
-    font-family: var.$poppins;
-    font-size: var.$h1-size;
-    color: var.$secondary-orange;
-    text-align: center;
-    padding: 20px;
-    padding-top: 100px;
-}
-
-
 .imageText{
     display: flex;
 }
@@ -40,6 +30,8 @@
     .contentArticle{
         margin-top: var.$M-margin;
         font-size: var.$text-size; 
+        max-width: 100%;
+        word-wrap: break-word;
     }
 
     .dateArticle{
@@ -48,6 +40,20 @@
         text-align: end;
     }
 
+}
+
+.h2Article{
+    font-weight: normal;
+    text-decoration: underline;
+    margin-left: var.$XL-margin;
+    margin-bottom: var.$XXl-margin;
+}
+
+.sectionMoreArticle{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    margin-bottom: map-get($map: var.$margins, $key: 10 );
 }
 
 @media screen and (max-width: 1400px)
@@ -72,4 +78,30 @@
         }
     }
 
+    .sectionMoreArticle{
+        display: flex;
+        flex-direction: column ;
+        width: 100%;
+        justify-content: space-around;
+        align-items: center;
+        min-height: 50vh;
+        margin-bottom: map-get($map: var.$margins, $key: 5 );
+    }
+}
+
+
+@media screen and (max-width: 375px){
+    .blogArticle{
+
+        padding: 10vh var.$L-margin;
+
+        .titleArticle{
+            font-size: 1.3rem;
+        }
+
+        .descriptionArticle, .contentArticle, .dateArticle{
+            font-size: 0.8rem;
+        }
+
+    }
 }
